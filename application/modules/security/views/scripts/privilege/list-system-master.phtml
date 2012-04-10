@@ -1,0 +1,185 @@
+<?php //echo $this->totalItemCount; ?>
+
+<form method="post" action="<?php echo $this->seoUrl("/security/privilege/list-system-master")?>">
+    
+ <table class="from_table" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right" class="form_tab_lebel" valign="top"><?php echo $this->puts('Master Code');?>:</td>
+    <td align="left" class="form_tab_input" valign="top"><input type="text" 
+	value="<?php echo $this->escape($this->searchText); ?>" name="master_code"></td>
+    
+    <td align="left" class="form_tab_input" valign="top"><input class="search" value="Search" type="submit" name="search"><img class="search_img" src="<?php echo $this->cdnUri()?>/images/search_img.png" alt=""></td>
+  </tr>
+  
+</table>
+    
+       
+</form>
+
+<?php if (count($this->paginator)): ?>
+
+
+        <?php
+        $sno=0;
+        $page=$this->paginator->getCurrentPageNumber();
+        $items_per_page=$this->paginator->getItemCountPerPage(); 
+        if($page>1)
+        {
+                $sno=$items_per_page*$page - $items_per_page ; 	
+        }
+        ?>
+        <?php 
+           
+           echo $this->paginationControl($this->paginator, 'Sliding', 'pagination-ext.phtml',array("linkArray"=>$this->linkArray));
+             
+        ?>
+<div> <?php echo $this->flashMessages()?> </div>
+
+
+    <div class="gird_box">
+        <div class="scroll-pane">
+          <table class="grid_table" border="0"  cellspacing="0" cellpadding="0" width="100%">
+		  
+		<tr>
+                <th align="left" width="15%"><?php echo $this->puts('S. No.');?></th>
+                <th align="left" width="52%"><?php echo $this->puts('Master Code');?> <?php echo $this->sort("master_code", $this->sortOptions);?></th>
+                <th align="left" width="15%"><?php echo $this->puts('Is Active');?> <?php echo $this->sort("status", $this->sortOptions);?></th>
+                <th align="left" width="18%"><?php echo $this->puts('Action');?></th>
+            </tr>
+        <?php 
+        foreach ($this->paginator as $item): ?>
+        <?php $sno++?>
+          
+            <tr class="package_row1">
+              <td align="left"><?php echo $sno?>.</td>
+              <td align="left"><?php echo $item->master_code;?></td>
+             
+             
+              <td class="image"align="center" id="changeStatus_<?php echo $item->master_code;?>">
+                 <?php if($this->checkAcl("/security/privilege/change-status")){?>
+                 <?php if( $item->status=="1") {
+                    $title="Click here to make inactive!";
+                    $image="/images/icons/active-1.png";
+                }else{
+                    $image="/images/icons/deactive.png";
+                    $title="Click here to make active!";
+                }?> 
+                 <a href="javascript:void(0)" 
+                 onclick="changeMasterStatus('<?php echo $item->master_code;?>', <?php echo $item->status;?>)"><img title="<?php echo $title?>" alt="<?php echo $title?>" src="<?php echo $image?>" /></a>
+                  <?php } ?>
+                </td>
+              	      <td class="image" align="center">
+                        <?php $dUrl=$this->seoUrl("/security/privilege/delete-system-master-code/masterCode/".$item->master_code);?>                
+                        <?php if($this->checkAcl("/security/privilege/add-system-master")){?>                        
+                        <a href="<?php echo $this->seoUrl("/security/privilege/add-system-master/masterCode/".$item->master_code)?>"><img title="Edit Values" alt="Edit Values" src="<?php echo $this->cdnUri()?>/images/icons/edit.png" /></a>  
+                        <?php } ?>               
+                        <?php if($this->checkAcl("/security/privilege/delete-system-master-code")){?>                
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)" onclick="deleteMaster('<?php echo $dUrl; ?>')"><img title="Delete" alt="Delete" src="<?php echo $this->cdnUri()?>/images/del_icon.png" /></a>
+                         <?php } ?>
+                      </td>
+            </tr>
+            <?php endforeach; ?>
+          </table>
+        </div>
+      </div>
+        <?php 
+           
+            echo $this->paginationControl($this->paginator, 'Sliding', 'pagination-ext.phtml',array("linkArray"=>$this->linkArray));
+           
+        ?>
+
+<?php else :
+echo "<p>No result found, Please try again.</p>";
+endif; ?>
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+function deleteMaster(DURL)
+{
+    var c=confirm("Are you sure to delete");
+    if (c==true)
+     window.location.href=DURL;   
+}
+
+ function changeMasterStatus(master_code,master_status)
+    {
+        
+       $("#changeStatus_"+master_code).html('<img height="25px" alt="In process..." src="/images/loading.gif"/>');
+       $.post(
+            "/security/privilege/change-status", 
+            { 
+               "masterCode" : master_code,
+               "status" : master_status
+            }, 
+            function (data) {
+                
+                if(data.result==1)
+                {
+                    if(master_status==1)
+                        master_status=0;
+                    else
+                        master_status=1;
+                    
+                    if( master_status==1) 
+                    {
+                    
+                        var title="Click here to make inactive!";
+                        var image="/images/icons/active-1.png";
+                    }
+                    else
+                    {
+                        var title="Click here to make active!";
+                        var image="/images/icons/deactive.png";
+                    }
+                
+                    $("#changeStatus_"+master_code).html('<a onclick="changeMasterStatus(\''+ master_code + '\',' + master_status + ')" href="javascript:void(0);" title="'+ title +'" ><img alt="'+ title +'" src="'+ image +'"/></a>');
+                }
+                    
+            },"json"
+        );
+    }
+		
+		
+           // Script For Grid Starts //
+		$(document).ready(function(){
+			//row click
+			$('tr.package_row1').click(function (event) {
+								$('tr.package_row1').toggleClass('active', false);
+								$(this).toggleClass('active', true);
+								});
+			// table Width
+			var tblWidth=0;
+			$('.grid_table tr:first').children().each(function(index) {
+			tblWidth = tblWidth + parseInt($(this).attr('width'));
+									});
+			//$(".grid_table").css("width", tblWidth);
+		});
+
+		$('.grid_table tr').find('td:last').addClass('last')
+		$('.grid_table tr').find('th:last').addClass('last')
+		// Script For Grid Ends //
+
+
+
+		// Script For Scroll Panel Starts //
+		$(function(){
+		//$('.scroll-pane').jScrollPane({showArrows: true});
+		});
+		// Script For Scroll Panel Ends //
+
+
+		// Script For Tabs Panel Starts //
+			$(function(){
+				$('#tabs').tabs();
+			});
+		// Script For Tabs Panel Ends //
+        
+     </script>

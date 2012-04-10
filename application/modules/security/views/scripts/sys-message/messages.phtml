@@ -1,0 +1,142 @@
+<form method="post" action="<?php echo $this->seoUrl("/security/sys-message/messages")?>">
+    
+  <table class="from_table" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right" class="form_tab_lebel" valign="top"><?php echo $this->puts('Category');?>:</td>
+    <td align="left" class="form_tab_input" valign="top"><input type="text" name="categoryName"  class="text-input small-input" value="<?php echo $this->categoryName?>" /></td>    
+    <td align="right" class="form_tab_lebel" valign="top"><?php echo $this->puts('Severity');?>:</td>
+    <td align="left" class="form_tab_input" valign="top"><input type="text" name="severityName"  class="text-input small-input" value="<?php echo $this->severityName?>" /></td>    
+    <td align="right" class="form_tab_lebel" valign="top"><?php echo $this->puts('Type');?>:</td>
+    <td align="left" class="form_tab_input" valign="top"><input type="text" name="typeName"  class="text-input small-input" value="<?php echo $this->typeName?>" /></td>    
+    <td align="left" class="form_tab_input" valign="top"><input type="submit" class="search" value="Search"><img class="search_img" src="<?php echo $this->cdnUri()?>/images/search_img.png" alt=""></td>
+  </tr>
+</table>     
+    
+</form>
+<div> <?php echo $this->flashMessages()?> </div>
+<?php if (count($this->paginator)): ?>
+<?php
+$sno=0;
+$page=$this->paginator->getCurrentPageNumber();
+$items_per_page=$this->paginator->getItemCountPerPage(); 
+if($page>1)
+{
+        $sno=$items_per_page*$page - $items_per_page ; 	
+}
+?>
+
+<?php 
+    
+    echo $this->paginationControl($this->paginator, 'Sliding', 'pagination-ext.phtml',array("linkArray"=>$this->linkArray));
+       
+?>
+<div class="gird_box">
+        <div class="scroll-pane">
+          <table style="margin: 0 0 15px 0" class="grid_table" border="0"  cellspacing="0" cellpadding="0">
+            <tr>
+              <th align="left" width="60"><?php echo $this->puts('S. No.');?></th>
+              <th align="left" width="80"><?php echo $this->puts('Message Id');?></th>
+              <th align="left" width="250"><?php echo $this->puts('Category Name');?>
+             <?php echo $this->sort("category", $this->sortOptions);?>
+              </th>
+              <th align="left" width="100"><?php echo $this->puts('Severity');?>
+                <?php echo $this->sort("severity", $this->sortOptions);?>
+              </th>
+              <th align="left" width="100"><?php echo $this->puts('Type');?>
+                <?php echo $this->sort("type", $this->sortOptions);?>
+              </th>
+              <th align="left" width="200"><?php echo $this->puts('User Message');?></th>
+              <th align="left" width="200"><?php echo $this->puts('System Message');?></th>
+              <th align="left" width="160"><?php echo $this->puts('Action');?></th>
+            </tr>
+            
+            <?php 
+        foreach ($this->paginator as $item): ?>
+        <?php $sno++?>
+          
+            <tr class="package_row1">
+              
+             
+            <td align="left"><?php echo $sno?></td>
+            <td align="left"><?php echo $item->message_id;?></td>
+            <td align="left"><?php echo $item->category_name;?></td>
+            <td align="left"><?php echo $item->severity_name; ?></td>
+            <td align="left"><?php echo $item->type_name; ?></td>
+            <td align="left"><?php echo $item->user_message; ?></td>
+            <td align="left"><?php echo $item->sys_message; ?></td>
+             <td class="image" align="left">
+                <!-- Icons -->
+                <?php if($this->checkAcl("/security/sys-message/edit-message")){?>
+                <a title="Edit" href="<?php echo $this->seoUrl("/security/sys-message/edit-message/id/".$item->message_id."/guid/".$item->row_guid)?>"><img alt="Edit" src="<?php echo $this->cdnUri()?>/images/icons/edit.png"></a>
+                <?php } ?>
+                 <?php 
+                    $image="/images/icons/del.png";
+                    $title="Click here to delete Message!";
+                ?>
+                <?php if($this->checkAcl("/security/sys-message/delete-message")){?>
+                &nbsp;&nbsp;
+                <a title="<?php echo $title?>" href="<?php echo $this->seoUrl("/security/sys-message/delete-message/id/".$item->message_id."/guid/".$item->row_guid)?>" onclick="javascript: return confirm('Are you sure you want to delete?');"><img alt="<?php echo $title?>"  src="<?php echo $image?>"></a> 
+                <?php } ?>
+            </td>
+            
+            
+      	     
+            </tr>
+            <?php endforeach; ?>
+          </table>
+        </div>
+      </div>
+        <?php 
+          
+            echo $this->paginationControl($this->paginator, 'Sliding', 'pagination-ext.phtml',array("linkArray"=>$this->linkArray));
+           
+        ?>
+
+
+
+
+
+
+
+<?php endif; ?>
+
+
+<script type="text/javascript">
+		
+		
+        	
+           // Script For Grid Starts //
+		$(document).ready(function(){
+			//row click
+			$('tr.package_row1').click(function (event) {
+								$('tr.package_row1').toggleClass('active', false);
+								$(this).toggleClass('active', true);
+								});
+			// table Width
+			var tblWidth=0;
+			$('.grid_table tr:first').children().each(function(index) {
+									tblWidth = tblWidth + parseInt($(this).attr('width'));
+									});
+			$(".grid_table").css("width", tblWidth);
+		});
+
+		$('.grid_table tr').find('td:last').addClass('last')
+		$('.grid_table tr').find('th:last').addClass('last')
+		// Script For Grid Ends //
+
+
+
+		// Script For Scroll Panel Starts //
+		$(function(){
+		$('.scroll-pane').jScrollPane({showArrows: true});
+		});
+		// Script For Scroll Panel Ends //
+
+
+		// Script For Tabs Panel Starts //
+			$(function(){
+				$('#tabs').tabs();
+			});
+		// Script For Tabs Panel Ends //
+        
+     </script>

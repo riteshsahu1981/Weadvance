@@ -1,0 +1,60 @@
+<div class="result_box">Results: <?php echo $this->firstItemNumber; ?>-<?php echo $this->lastItemNumber; ?> of <?php echo $this->totalItemCount; ?>
+</div>
+
+      <div class="paging">
+        <ul>
+           
+            <!-- First page link -->
+            <?php
+            $arrayLink=array();
+
+            if(is_array($this->linkArray))
+                    $arrayLink=$this->linkArray;
+            ?>
+            <li>
+            <?php if (isset($this->previous)): ?>
+                <a title="First Page" class="arrow-first" href="<?= $this->url(array_merge(array('page' => $this->first),$arrayLink)); ?>"><img src="<?php echo $this->cdnUri()?>/images/arrow-first.png" alt="FIRST"></a> 
+            <?php else: ?>
+                <a title="First Page" class="arrow-first" href="#"><img src="<?php echo $this->cdnUri()?>/images/arrow-first.png" alt="FIRST"></a>
+            <?php endif; ?>
+            </li>
+          <li>
+              <!-- Previous page link -->
+            <?php if (isset($this->previous)): ?>
+                <a title="Previous Page"  class="arrow-prev" href="<?= $this->url(array_merge(array('page' => $this->previous),$arrayLink)); ?>"><img src="<?php echo $this->cdnUri()?>/images/arrow-first.png" alt="previous"></a> 
+            <?php else: ?>
+                <a title="Previous Page"  class="arrow-prev" href="#"><img src="<?php echo $this->cdnUri()?>/images/arrow-first.png" alt="previous"></a>
+            <?php endif; ?>
+          </li>
+           <!-- Numbered page links -->
+        <?php foreach ($this->pagesInRange as $page): ?>
+           <li>
+            <?php if ($page != $this->current): ?>
+                <a title="<?= $page; ?>"  href="<?= $this->url(array_merge(array('page' => $page),$arrayLink)); ?>"><?= $page; ?></a>
+            <?php else: ?>
+                <a title="<?= $page; ?>" class="active" href="<?= $this->url(array_merge(array('page' => $page),$arrayLink)); ?>"><?= $page; ?></a>
+            <?php endif; ?>
+           </li>
+        <?php endforeach; ?>
+           
+          <!-- Next page link -->
+          <li>
+           <?php if (isset($this->next)): ?>
+                <a title="Next Page"  class="arrow-next" href="<?= $this->url(array_merge(array('page' => $this->next),$arrayLink)); ?>"><img src="<?php echo $this->cdnUri()?>/images/arrow-next.png" alt="next"></a> 
+            <?php else: ?>
+                <a title="Next Page"  class="arrow-next" href="#" ><img src="<?php echo $this->cdnUri()?>/images/arrow-next.png" alt="previous"></a>
+            <?php endif; ?>
+          </li>
+           
+          <!-- Last page link -->
+          <li>  
+        <?php if (isset($this->next)): ?>
+              <a title="Last Page" class="arrow-last" href="<?= $this->url(array_merge(array('page' => $this->last),$arrayLink)); ?>"><img src="<?php echo $this->cdnUri()?>/images/arrow-last.png" alt=""></a>
+        <?php else: ?>
+           <a title="Last Page" class="arrow-last" href="#"><img src="<?php echo $this->cdnUri()?>/images/arrow-last.png" alt=""></a>
+        <?php endif; ?>
+          </li>   
+          
+          
+        </ul>
+      </div>

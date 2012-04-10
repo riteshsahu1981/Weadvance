@@ -1,0 +1,426 @@
+<?php
+$this->headScript()->appendFile("/js/ui.dropdownchecklist-1.4-min.js");
+$this->headScript()->appendFile("/js/ui.dropdownchecklist.js");
+//$this->headScript()->appendFile("/js/jquery-1.6.1.min.js");
+$this->headScript()->appendFile("/js/jquery-ui-1.8.13.custom.min.js");
+$this->headLink()->appendStylesheet('/js/ui.dropdownchecklist.standalone.css');
+$this->headLink()->appendStylesheet('/js/ui.dropdownchecklist.themeroller.css');
+$this->headLink()->appendStylesheet('/js/smoothness-1.8.13/jquery-ui-1.8.13.custom.css');
+?>
+
+
+<script language="javascript">
+  $(function() {
+  $("#empCmb").change(function(){
+
+  $("#custText").val(this.value)    ;
+  });
+  });
+</script>
+
+<script type="text/javascript">
+  $(function() {
+
+  $("#dialog-modal").hide();
+
+  $("#addon").click(function() {
+  $("#dialog-modal").dialog({
+  height: 260,
+  width: 500,
+  modal: true,
+  resizable: false,
+  buttons: {
+  'Ok': function() {
+  $(this).dialog('close');
+  },
+  Cancel: function() {
+  $(this).dialog('close');
+  }
+  }
+
+
+  });
+  });
+  });
+
+</script>
+
+<div id="dialog-modal" title="Quick Status Update">
+  <form name="addon_form">
+
+
+    <div class="form_row">
+      <div class="form_label">
+        Quick Supplier: <span class="required">*</span>
+      </div>
+      <div class="form_field">
+        <select>
+          <option class=""  value="--Select--">--Select--</option>
+          <option class=""  value="--Select--">Smith</option>
+          <option class=""  value="--Select--">WBS</option>
+          <option class=""  value="--Select--">DB</option>
+          <option class=""  value="--Select--">Tacco</option>
+          <option class=""  value="--Select--">Blain</option>
+          <option class=""  value="--Select--">Cuff</option>
+        </select>
+            </div>
+    </div>
+    <div class="form_row">
+      <div class="form_label">
+        Status: <span class="required">*</span>
+      </div>
+      <div class="form_field">
+        <select>
+          <option class=""  value="--Select--">--Select--</option>
+          <option class=""  value="--Select--">Condemn</option>
+          <option class=""  value="--Select--">Un-Condemn</option>
+          <option class=""  value="--Select--">Retained</option>
+          <option class=""  value="--Select--">Un-Retained</option>
+        </select>
+      </div>
+    </div>
+  </form>
+</div>
+<form>
+   
+   
+   <table width="100%" cellspacing="0" cellpadding="0">
+ 
+  <tr>
+    <td align="left"> <table class="from_table" border="0" cellspacing="0" cellpadding="0">
+    	
+    	<tr>
+          <td align="right" class="form_tab_lebel" valign="top">Cow ID: </td>
+          <td align="left" class="form_tab_input" valign="top">
+            <input type="text" value="">
+      </td>
+          <td align="right"  class="form_tab_lebel" valign="top"><?php echo $this->puts("Supplier")?>:</td>
+          <td align="left" valign="top">
+            <select>
+
+
+              <option value="-- Select --">-- Select --</option>
+              <option value="Smith">Smith</option>
+              <option value="John">John</option>
+              <option value="Mike">Mike</option>
+              <option value="Smith">Smith</option>
+              <option value="John">John</option>
+              <option value="Mike">Mike</option>
+              <option value="Smith">Smith</option>
+              <option value="John">John</option>
+              <option value="Mike">Mike</option>
+              <option value="Smith">Smith</option>
+              <option value="John">John</option>
+              <option value="Mike">Mike</option>
+            </select>
+          </td>
+        </tr>
+      <tr>
+      <td align="right" class="form_tab_lebel" valign="top">&nbsp;</td>
+      <td align="left" class="form_tab_input search_button"  valign="top" >
+        <input type="button" class="search" value="Search">
+          <img class="search_img" src="<?php echo $this->cdnUri()?>/images/search_img.png" alt="">
+      </td>
+      <td align="right"  class="form_tab_lebel" valign="top">&nbsp;</td>
+      <td align="left" class="form_tab_input" valign="top">&nbsp;</td>
+      <td align="right"  class="form_tab_lebel" valign="top">&nbsp;</td>
+      <td align="left" class="form_tab_input" valign="top"></td>
+    </tr>
+      <tr>
+        <td align="left" class="form_tab_input" colspan="4" valign="top" style="padding:23px 0 0 0;"><input type="button" id="addon" class="gray_button_dark"  value="Quick  Status Update"></td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+      </tr>
+    	</table>
+    </td>
+  </tr>
+</table>
+
+
+
+</form>
+
+<div class="gird_box">
+  <div class="scroll-pane">
+    <table class="grid_table" border="0"  cellspacing="0" cellpadding="0">
+      <tr>
+        <th align="left" width="60">Seq No.</th>
+        <th align="left" width="90">Cow ID</th>
+        <th align="left" width="90">Breed<img src="<?php echo $this->cdnUri()?>/images/arrow.gif" align="right" alt=""></th>
+        <th align="left" width="90">Type<img src="<?php echo $this->cdnUri()?>/images/arrow.gif" align="right" alt=""></th>
+        <th align="left" width="110">Color<img src="<?php echo $this->cdnUri()?>/images/arrow.gif" align="right" alt=""></th>
+        <th align="left" width="110">Knock Date<img src="<?php echo $this->cdnUri()?>/images/arrow.gif" align="right" alt=""></th>
+        <th align="left" width="140">Supplier<img src="<?php echo $this->cdnUri()?>/images/arrow.gif" align="right" alt=""></th>
+        <th align="left" width="120">Status<img src="<?php echo $this->cdnUri()?>/images/arrow.gif" align="right" alt=""></th>
+        <th align="left" width="150">Action </th>
+      </tr>
+
+      <tr class="package_row1">
+        <td align="left">1</td>
+        <td align="left">1234</td>
+        <td align="left">Bull</td>
+        <td align="left">Angus</td>
+        <td align="left">Red</td>
+        <td align="left">01/02/2012</td>
+
+        <td align="left">Smith</td>
+        <td align="left" valign="middle" class="image">
+            <select class="s1">
+
+            <option class=""  value="--Select--">Condemn</option>
+            <option class=""  value="--Select--">Un-Condemn</option>
+            <option class=""  value="--Select--">Retained</option>
+            <option class=""  value="--Select--">Un-Retained</option>
+
+          </select>
+         
+          
+         
+        </td>
+        <td align="left" class="image">
+          <a href=" " style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/edit.png" border="0" title="Edit"/></a>
+          <a href=" "  style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/accept.png" border="0" title="Accept"/></a>
+          <a href=" "  style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/print.png" border="0" title="Print"/></a>
+        </td>
+      </tr>
+      <tr class="package_row1">
+        <td align="left">2</td>
+        <td align="left">1235</td>
+        <td align="left">Bull</td>
+        <td align="left">Angus</td>
+        <td align="left">Red</td>
+        <td align="left">01/02/2012</td>
+        <td align="left">Smith</td>
+        <td align="left" class="image">
+          <select class="s1">
+
+            <option class=""  value="--Select--">Condemn</option>
+            <option class=""  value="--Select--">Un-Condemn</option>
+            <option class=""  value="--Select--">Retained</option>
+            <option class=""  value="--Select--">Un-Retained</option>
+
+          </select>
+
+        </td>
+        <td align="left" class="image">
+          <a href=" " style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/edit.png" border="0" title="Edit"/></a>
+          <a href=" "  style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/accept.png" border="0" title="Accept"/></a>
+          <a href=" "  style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/print.png" border="0" title="Accept"/></a>
+        </td>
+      </tr>
+      <tr class="package_row1">
+        <td align="left">3</td>
+        <td align="left">1236</td>
+        <td valign="middle" class="image">
+          Cow
+        </td>
+        <td valign="middle" class="image">
+          Holstein
+        </td>
+        <td valign="middle" class="image">
+          Black
+        </td>
+        <td valign="middle" class="image">
+          01/02/2012
+        </td>
+        <td valign="middle" class="image">
+         Mike
+        </td>
+        <td align="left" class="image">
+          <select class="s1">
+
+            <option class=""  value="--Select--">Condemn</option>
+            <option class=""  value="--Select--">Un-Condemn</option>
+            <option class=""  value="--Select--">Retained</option>
+            <option class=""  value="--Select--">Un-Retained</option>
+
+          </select>
+
+        </td>
+        <td align="left" class="image">
+          <a href=" " style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/edit.png" border="0" title="Edit"/></a>
+          <a href=" "  style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/accept.png" border="0" title="Accept"/></a>
+            <a href=" "  style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/print.png" border="0" title="Accept"/></a>
+         
+        </td>
+      </tr>
+
+      <tr class="package_row1">
+        <td align="left">4</td>
+        <td align="left">1237</td>
+        <td valign="middle" class="image">Cow</td>
+        <td valign="middle" class="image">Holstein</td>
+        <td valign="middle" class="image">Black</td>
+
+        <td valign="middle" class="image">
+          01/02/2012
+        </td>
+
+        <td valign="middle" class="image">Mike</td>
+        <td align="left" class="image">
+          <select class="s1">
+
+            <option class=""  value="--Select--">Condemn</option>
+            <option class=""  value="--Select--">Un-Condemn</option>
+            <option class=""  value="--Select--">Retained</option>
+            <option class=""  value="--Select--">Un-Retained</option>
+
+          </select>
+
+        </td>
+        <td align="left" class="image">
+          <a href=" " style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/edit.png" border="0" title="Edit"/></a>
+          <a href=" "  style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/accept.png" border="0" title="Accept"/></a>
+          <a href=" "  style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/print.png" border="0" title="Accept"/></a>
+        </td>
+
+      </tr>
+      <tr class="package_row1">
+        <td align="left">
+          5
+        </td>
+        <td align="left">1238</td>
+        <td valign="middle" class="image">Cow</td>
+        <td valign="middle" class="image">Holstein</td>
+        <td valign="middle" class="image">Black</td>
+        <td valign="middle" class="image">
+          01/02/2012
+        </td>
+
+        <td valign="middle" class="image">
+Mike
+        </td>
+        <td align="left" class="image">
+          <select class="s1">
+
+            <option class=""  value="--Select--">Condemn</option>
+            <option class=""  value="--Select--">Un-Condemn</option>
+            <option class=""  value="--Select--">Retained</option>
+            <option class=""  value="--Select--">Un-Retained</option>
+
+          </select>
+
+        </td>
+        <td align="left" class="image">
+          <a href=" " style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/edit.png" border="0" title="Edit"/></a>
+          <a href=" "  style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/accept.png" border="0" title="Accept"/></a>
+          <a href=" "  style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/print.png" border="0" title="Print"/></a>
+        </td>
+      </tr>
+      <tr class="package_row1">
+        <td align="left" class="image">
+          <input class="" type="text" value="6">
+        </td>
+        <td align="left">1239</td>
+        <td valign="middle" class="image">Cow</td>
+        <td valign="middle" class="image">Holstein</td>
+        <td valign="middle" class="image">Black</td>
+        <td valign="middle" class="image">
+          01/02/2012
+        </td>
+
+        <td valign="middle" class="image">
+          Smith
+        </td>
+        <td align="left" class="image">
+          <select class="s1">
+
+            <option class=""  value="--Select--">Condemn</option>
+            <option class=""  value="--Select--">Un-Condemn</option>
+            <option class=""  value="--Select--">Retained</option>
+            <option class=""  value="--Select--">Un-Retained</option>
+
+          </select>
+
+        </td>
+        <td align="left" class="image">
+          <a href=" " style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/edit.png" border="0" title="Edit"/></a>
+          <a href=" "  style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/accept.png" border="0" title="Accept"/></a>
+          <a href=" "  style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/print.png" border="0" title="Print"/></a>
+        </td>
+      </tr>
+      <?php for($i=1;$i<15;$i++){?>
+      <tr class="package_row1">
+        <td align="left">
+          <?php echo $i+6; ?>
+        </td>
+        <td align="left">
+          12<?php echo $i+39; ?>
+        </td>
+
+        <td valign="middle" class="image">Cow</td>
+        <td valign="middle" class="image">Holstein</td>
+        <td valign="middle" class="image">Black</td>
+        <td valign="middle" class="image">
+          01/02/2012
+        </td>
+
+        <td valign="middle">
+          John
+        </td>
+        <td align="left" class="image">
+          <select class="s1">
+
+            <option class=""  value="--Select--">Condemn</option>
+            <option class=""  value="--Select--">Un-Condemn</option>
+            <option class=""  value="--Select--">Retained</option>
+            <option class=""  value="--Select--">Un-Retained</option>
+
+          </select>
+
+        </td>
+        <td align="left" class="image">
+          <a href=" " style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/edit.png" border="0" title="Edit"/></a>
+          <a href=" "  style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/accept.png" border="0" title="Accept"/></a>
+            <a href=" "  style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/print.png" border="0" title="Print"/></a>
+         
+        </td>
+      </tr>
+      <?php } ?>
+    </table>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+
+
+  // Script For Grid Starts //
+  $(document).ready(function () {
+  //row click
+  $('tr.package_row1').click(function (event) {
+  $('tr.package_row1').toggleClass('active', false);
+  $(this).toggleClass('active', true);
+  });
+  // table Width
+  var tblWidth = 0;
+  $('.grid_table tr:first').children().each(function (index) {
+  tblWidth = tblWidth + parseInt($(this).attr('width'));
+  });
+  //$(".grid_table").css("width", tblWidth);
+  });
+
+  $('.grid_table tr').find('td:last').addClass('last')
+  $('.grid_table tr').find('th:last').addClass('last')
+  // Script For Grid Ends //
+
+
+
+  // Script For Scroll Panel Starts //
+  /*$(function(){
+  $('.scroll-pane').jScrollPane({showArrows: true});
+  });*/
+  // Script For Scroll Panel Ends //
+
+
+  // Script For Tabs Panel Starts //
+  $(function () {
+  $('#tabs').tabs();
+  });
+  // Script For Tabs Panel Ends //
+
+  $(".s1").dropdownchecklist({ emptyText: "Please select ...", width: 110 });
+  //$(".s1").dropdownchecklist({ firstItemChecksAll: true, explicitClose: '...close' , width: 110 }); //Jitendra
+
+</script>

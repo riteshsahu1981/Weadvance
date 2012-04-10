@@ -1,0 +1,164 @@
+<?php echo $this->doctype() ?>
+<html lang="en">
+<head>
+<?php echo $this->headTitle(); ?>   
+	<?php echo $this->headMeta(); ?>
+	 <?php 
+	  /*-------------- jquery ui----------------------*/
+	  if($this->jQuery()->isEnabled())
+		echo $this->jQuery();
+	  /*-----------------------------------------------*/
+	 ?>
+  <?php $this->headLink()->appendStylesheet('/style/calculator_hex.css'); ?>
+   
+  <?php echo $this->headScript(); ?>
+  <?php echo $this->headLink(); ?>	
+    
+    
+    
+    <script type="text/javascript">
+// Script For All pages Starts //
+		$(document).ready(function(){
+		$(".menu_options p").first().addClass("first");
+		$("footer ul").find("li:last").css("background" , "none");
+		$(".right_section").css("width", $('.main_section').width()-218);
+                //$(".content_area").css("height", $('.main_section').height()-51);
+                
+		});
+		
+		$(window).resize(function(){
+		$(".right_section").css("width", $('.main_section').width()-218);
+		});
+		
+// Script For All Pages Ends //
+</script>
+<script>
+  $(function(){
+      
+      	  // Custom: Hex
+	// ********************
+		$('.hex').keyboard({		
+		layout: 'custom',
+		 openOn : null,
+         stayOpen : true,
+		customLayout: {
+			'default' : [
+				'1 2 3 {b}',
+				'4 5 6 {clear}',
+				'7 8 9 {c}',
+				'{zero} {accept}'
+			]
+		},
+		maxLength : 6,
+		restrictInput : true, // Prevent keys not in the displayed keyboard from being typed in
+		useCombos : false // don't want A+E to become a ligature
+	});
+	$('#hex').click(function(){
+		$('.hex').getkeyboard().reveal();
+	});
+  });
+	
+	
+</script>
+
+
+</head>
+
+<body>
+    <?php echo $this->pageElement('header')?>
+    <div class="main_section">
+        <div class="outer_main_section">
+            <div class="inner_main_section">
+                <?php echo $this->pageElement('left-panel')?>
+                <section class="right_section">
+                    <div class="heading_area">
+                        <?php //echo $this->pageHeading?>
+                        <?php              
+                            $page = $this->navigation()->findActive($this->navigation()->getContainer());
+                            if(isset($page['page']))
+                            echo $this->puts($page['page']->getLabel());
+                            else
+                            echo $this->pageHeading;        
+                            $limit = Zend_Registry::get('bookMark_limit');
+                            $addBookmark="<img title='Add into Bookmark' alt='Add into Bookmark' src='".$this->cdnUri()."/images/add_bookmark.png' class='imgfull' border='0' align='right'/>";
+                            $bookmarked="<img title='Added into Bookmark' alt='Added into Bookmark' src='".$this->cdnUri()."/images/bookmarked.png' class='imgfull' border='0' align='right'/>";
+                            
+                            $menuID=$this->menuId;
+                            
+                            if ($menuID!=2)
+                            {
+                            $security=new Base_Security_Menu();
+                            $countBookmark=$security->countBookmark($menuID);
+                            //echo $countBookmark;
+                          ?>
+                        
+                        <?php if ($menuID) { ?>
+                        <div class="imgfull" id="bookmarkRow" style="padding-top:4px;">
+                            <?php 
+                            if ($countBookmark>=$limit)
+                            {
+                             echo 'Bookmarked Limit Over';   
+                            }
+                            else
+                            {
+                            $bookmarkAdd=$security->isBookMarked($menuID);
+                            if ($bookmarkAdd) { ?>
+                                <?php echo $bookmarked; ?>
+                            <?php } else {  if($this->checkAcl("/security/privilege/add-book-mark")){ ?>
+                            <a href="javascript:void(0)" onclick="addBookMark('<?php echo $menuID; ?>')"><?php echo $addBookmark; ?></a>
+                            <?php } } ?>
+                       
+                        <?php } ?>
+                        </div>
+                        <?php } } ?>
+                        <!--
+                        <?php //if($this->isFullScreen===true){?>
+                            <a title="Full Screen" href="<?php //echo $this->seoUrl($this->fullScreenLink)?>"><img src="<?php //echo $this->cdnUri()?>/images/full_screen.png" alt="" class="imgfull" border="0" align="right"></a>
+                        <?php //} ?>
+                            -->
+                    </div>
+                    <div class="content_area">
+                        <?php echo $this->layout()->content ?>
+                    </div>
+                </section>
+            
+            </div>
+        </div>
+    </div>
+    <?php echo $this->pageElement('footer')?>
+    <script>
+function addBookMark(menu)
+    {
+        
+       $("#bookmarkRow").html('<img height="36px" alt="In process..." src="/images/loading.gif"/>');
+       $.post(
+            "/security/privilege/add-book-mark", 
+            { 
+               "id" : menu
+            }, 
+            function (data) {
+                
+                if(data.result==1)
+                {
+                   alert("Your BookMark limit is over. Maximum 15 is allowed");
+                   $("#bookmarkRow").html('Bookmarked Limit Over');
+                }
+                else  if(data.result==2)
+                {
+                    $("#bookmarkRow").html("<?php echo $bookmarked; ?>");
+                }
+                else  if(data.result==3)    
+                {
+                        alert("All ready added into bookmark");
+                        $("#bookmarkRow").html("<?php echo $bookmarked; ?>");   
+                }
+                else  if(data.result==4)    
+                {
+                        alert("Error: Invalid request");
+                }
+            },"json"
+        );
+    }
+        </script>    
+</body>
+</html>

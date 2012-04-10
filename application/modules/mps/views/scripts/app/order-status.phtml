@@ -1,0 +1,447 @@
+<script type="text/javascript">
+function updateToDate(obj, obj1Name)
+{
+	var obj1 = document.getElementById(obj1Name)
+	obj1.value= obj.value
+}
+
+</script>
+
+<form>
+      <table class="from_table" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right" class="form_tab_lebel" valign="top"><?php echo $this->puts("Order ID:")?></td>
+    <td align="left" class="form_tab_input" valign="top"><input type="text" value=""></td>
+    <td align="right"  class="form_tab_lebel" valign="top"><?php echo $this->puts("Customer ID:")?></td>
+    <td align="left" class="form_tab_input" valign="top"><input type="text" value=""></td>
+    
+  </tr>
+
+  <tr>
+    <td align="right" class="form_tab_lebel" valign="top"><?php echo $this->puts("From:")?> </td>
+    <td align="left" class="form_tab_input" valign="top"><div class="bone_date_bx2">
+                <input type="text" id="datepickerFrom" onchange="updateToDate(this, 'datepickerTo')">
+              </div>
+              </td>
+    <td align="right"  class="form_tab_lebel" valign="top"><?php echo $this->puts("To:")?> </td>
+    <td align="left" class="form_tab_input" valign="top"><div class="bone_date_bx2">
+                <input type="text" id="datepickerTo">
+              </div></td>
+    
+  </tr>
+  
+  <tr>
+    <td align="right" class="form_tab_lebel" valign="top">&nbsp;</td>
+    <td align="left" class="form_tab_input search_button" valign="top"><input type="button" class="search" value="<?php echo $this->puts("Search")?>">
+            <img class="search_img" src="<?php echo $this->cdnUri()?>/images/search_img.png" alt=""></td>
+    <td align="right"  class="form_tab_lebel" valign="top">&nbsp;</td>
+    <td align="left" class="form_tab_input" valign="top">&nbsp;</td>
+
+  </tr>
+  
+</table>
+	 <script>
+                  $(function () {
+                      $("#datepickerFrom,#datepickerTo").datepicker({
+                          showOn: "button",
+                          buttonImage: "<?php echo $this->cdnUri()?>/images/calendar_icon.png",
+                          buttonImageOnly: true
+                      });
+                  });
+	</script> 
+      </form>
+      <div class="result_box">Results: 1-20 of 50</div>
+      <div class="paging">
+        <ul>
+          <li>
+            <a href="#" class="arrow-first" title="First">
+              <img src="<?php echo $this->cdnUri()?>/images/arrow-first.png" alt="">
+            </a>
+          </li>
+          <li>
+            <a href="#" class="arrow-prev" title="Previous">
+              <img src="<?php echo $this->cdnUri()?>/images/arrow-prev.png" alt="">
+            </a>
+          </li>
+          <li>
+            <a href="#" class="active" title="Page 1">1</a>
+          </li>
+          <li>
+            <a href="#" title="Page 2">2</a>
+          </li>
+          <li>
+            <a href="#" title="Page 3">3</a>
+          </li>
+          <li>
+            <a href="#" class="arrow-next" title="Next">
+              <img src="<?php echo $this->cdnUri()?>/images/arrow-next.png" alt="">
+            </a>
+          </li>
+          <li>
+            <a href="#" class="arrow-last" title="Last">
+              <img src="<?php echo $this->cdnUri()?>/images/arrow-last.png" alt="">
+            </a>
+          </li>
+        </ul>
+      </div>
+<div class="print_div print_div_1"><a title="Print" href="#"><img src="<?php echo $this->cdnUri()?>/images/icons/print.png" alt="Print" title="Print" border="0"><span>Print</span></a></div>
+<div class="print_div print_div_2"><a title="Export to Excel" href="#"><img src="<?php echo $this->cdnUri()?>/images/icons/smallexporttoexl.png" alt="Export to Excel" title="Export to Excel" style="margin-right:3px" border="0"><span>Export</span></a></div>
+
+      <div class="gird_box">
+        <div class="scroll-pane">
+          <table class="grid_table" style="margin:0 0 15px 0;" border="0"  cellspacing="0" cellpadding="0">
+            <tr>
+              <th align="left" width="70"><?php echo $this->puts("Product ID")?></th>
+              <th align="left" width="180"><?php echo $this->puts("Product Name")?></th>
+              <th align="left" width="110"><?php echo $this->puts("Total Weight")?></th>
+              <th align="left" width="110"><?php echo $this->puts("Acc. Weight")?><img src="<?php echo $this->cdnUri()?>/images/arrow.gif" align="right" alt=""></th>
+              <th align="left" width="100"><?php echo $this->puts("Case Ordered")?></th>
+              <th align="left" width="100"><?php echo $this->puts("Case Shipped")?></th>
+              <th align="left" width="100"><?php echo $this->puts("Order Number")?></th>
+              <th align="left" width="150"><?php echo $this->puts("Customer")?><img src="<?php echo $this->cdnUri()?>/images/arrow.gif" align="right" alt=""></th>
+              <th align="left" width="100"><?php echo $this->puts("Ship Date")?></th>
+              <th align="left" width="100"><?php echo $this->puts("P.O. Number")?></th>
+              <th align="left" width="100"><?php echo $this->puts("Price ($)")?></th>
+              
+            </tr>
+           
+            <tr class="package_row1">
+              <td align="left">001</td>
+              <td align="left">Flats</td>
+              <td align="left">60.00</td>
+              <td align="left">64.77</td>
+              <td align="left">1</td>
+              <td align="left">0</td>
+              <td align="left">30</td>
+              <td align="left">Thompsan</td>
+              <td align="left">04/01/2012</td>
+              <td align="left">Verbal 03/31</td>
+              <td align="left">$0.00</td>
+             
+            </tr>
+            <tr class="package_row1">
+              <td align="left">002</td>
+             <td align="left">Flats</td>
+              <td align="left">60.00</td>
+              <td align="left">64.77</td>
+              <td align="left">1</td>
+              <td align="left">0</td>
+              <td align="left">30</td>
+              <td align="left">Thompsan</td>
+              <td align="left">04/01/2012</td>
+              <td align="left">Verbal 03/31</td>
+              <td align="left">$0.00</td>
+            </tr>
+            <tr class="package_row1">
+              <td align="left">003</td>
+             <td align="left">Flats</td>
+              <td align="left">60.00</td>
+              <td align="left">64.77</td>
+              <td align="left">1</td>
+              <td align="left">0</td>
+              <td align="left">30</td>
+              <td align="left">Thompsan</td>
+              <td align="left">04/01/2012</td>
+              <td align="left">Verbal 03/31</td>
+              <td align="left">$0.00</td>
+            </tr>
+            <tr class="package_row1">
+              <td align="left">004</td>
+              <td align="left">Flats</td>
+              <td align="left">60.00</td>
+              <td align="left">64.77</td>
+              <td align="left">1</td>
+              <td align="left">0</td>
+              <td align="left">30</td>
+              <td align="left">Thompsan</td>
+              <td align="left">04/01/2012</td>
+              <td align="left">Verbal 03/31</td>
+              <td align="left">$0.00</td>
+            </tr>
+            <tr class="package_row1">
+              <td align="left">005</td>
+             <td align="left">Flats</td>
+              <td align="left">60.00</td>
+              <td align="left">64.77</td>
+              <td align="left">1</td>
+              <td align="left">0</td>
+              <td align="left">30</td>
+              <td align="left">Thompsan</td>
+              <td align="left">04/01/2012</td>
+              <td align="left">Verbal 03/31</td>
+              <td align="left">$0.00</td>
+            </tr>
+            <tr class="package_row1">
+              <td align="left">006</td>
+              <td align="left">Flats</td>
+              <td align="left">60.00</td>
+              <td align="left">64.77</td>
+              <td align="left">1</td>
+              <td align="left">0</td>
+              <td align="left">30</td>
+              <td align="left">Thompsan</td>
+              <td align="left">04/01/2012</td>
+              <td align="left">Verbal 03/31</td>
+              <td align="left">$0.00</td>
+            </tr>
+            <tr class="package_row1">
+              <td align="left">007</td>
+              <td align="left">Eye Round</td>
+              <td align="left">960.00</td>
+              <td align="left">840.78</td>
+              <td align="left">16</td>
+              <td align="left">0</td>
+              <td align="left">30</td>
+              <td align="left">Thompson</td>
+              <td align="left">04/01/2008</td>
+              <td align="left">Verbal 04/01</td>
+              <td align="left">$0.00</td>
+            
+            </tr>
+            <tr class="package_row1">
+              <td align="left">008</td>
+             <td align="left">Eye Round</td>
+              <td align="left">960.00</td>
+              <td align="left">840.78</td>
+              <td align="left">16</td>
+              <td align="left">0</td>
+              <td align="left">30</td>
+              <td align="left">Thompson</td>
+              <td align="left">04/01/2008</td>
+              <td align="left">Verbal 04/01</td>
+              <td align="left">$0.00</td>
+            </tr>
+            <tr class="package_row1">
+              <td align="left">009</td>
+              <td align="left">Eye Round</td>
+              <td align="left">960.00</td>
+              <td align="left">840.78</td>
+              <td align="left">16</td>
+              <td align="left">0</td>
+              <td align="left">30</td>
+              <td align="left">Thompson</td>
+              <td align="left">04/01/2008</td>
+              <td align="left">Verbal 04/01</td>
+              <td align="left">$0.00</td>
+            </tr>
+            <tr class="package_row1">
+              <td align="left">010</td>
+              <td align="left">Eye Round</td>
+              <td align="left">960.00</td>
+              <td align="left">840.78</td>
+              <td align="left">16</td>
+              <td align="left">0</td>
+              <td align="left">30</td>
+              <td align="left">Thompson</td>
+              <td align="left">04/01/2008</td>
+              <td align="left">Verbal 04/01</td>
+              <td align="left">$0.00</td>
+            </tr>
+            <tr class="package_row1">
+              <td align="left">011</td>
+              <td align="left">Eye Round</td>
+              <td align="left">960.00</td>
+              <td align="left">840.78</td>
+              <td align="left">16</td>
+              <td align="left">0</td>
+              <td align="left">30</td>
+              <td align="left">Thompson</td>
+              <td align="left">04/01/2008</td>
+              <td align="left">Verbal 04/01</td>
+              <td align="left">$0.00</td>
+            </tr>
+            <tr class="package_row1">
+              <td align="left">012</td>
+             <td align="left">Eye Round</td>
+              <td align="left">960.00</td>
+              <td align="left">840.78</td>
+              <td align="left">16</td>
+              <td align="left">0</td>
+              <td align="left">30</td>
+              <td align="left">Thompson</td>
+              <td align="left">04/01/2008</td>
+              <td align="left">Verbal 04/01</td>
+              <td align="left">$0.00</td>
+            </tr>
+            <tr class="package_row1">
+              <td align="left">013</td>
+             <td align="left">Eye Round</td>
+              <td align="left">960.00</td>
+              <td align="left">840.78</td>
+              <td align="left">16</td>
+              <td align="left">0</td>
+              <td align="left">30</td>
+              <td align="left">Thompson</td>
+              <td align="left">04/01/2008</td>
+              <td align="left">Verbal 04/01</td>
+              <td align="left">$0.00</td>
+            </tr>
+            <tr class="package_row1">
+              <td align="left">014</td>
+             <td align="left">Eye Round</td>
+              <td align="left">960.00</td>
+              <td align="left">840.78</td>
+              <td align="left">16</td>
+              <td align="left">0</td>
+              <td align="left">30</td>
+              <td align="left">Thompson</td>
+              <td align="left">04/01/2008</td>
+              <td align="left">Verbal 04/01</td>
+              <td align="left">$0.00</td>
+            </tr>
+            <tr class="package_row1">
+              <td align="left">015</td>
+              <td align="left">Combo 80% Boneless</td>
+              <td align="left">16800.00</td>
+              <td align="left">22844</td>
+              <td align="left">8</td>
+              <td align="left">0</td>
+              <td align="left">35</td>
+              <td align="left">Smith Grind</td>
+              <td align="left">04/01/2012</td>
+              <td align="left">Verbal 04/01</td>
+              <td align="left">$0.00</td>
+              
+            </tr>
+            <tr class="package_row1">
+              <td align="left">016</td>
+              <td align="left">Combo 80% Boneless</td>
+              <td align="left">16800.00</td>
+              <td align="left">22844</td>
+              <td align="left">8</td>
+              <td align="left">0</td>
+              <td align="left">35</td>
+              <td align="left">Smith Grind</td>
+              <td align="left">04/01/2012</td>
+              <td align="left">Verbal 04/01</td>
+              <td align="left">$0.00</td>
+            </tr>
+            <tr class="package_row1">
+              <td align="left">017</td>
+              <td align="left">Combo 80% Boneless</td>
+              <td align="left">16800.00</td>
+              <td align="left">22844</td>
+              <td align="left">8</td>
+              <td align="left">0</td>
+              <td align="left">35</td>
+              <td align="left">Smith Grind</td>
+              <td align="left">04/01/2012</td>
+              <td align="left">Verbal 04/01</td>
+              <td align="left">$0.00</td>
+            </tr>
+            <tr class="package_row1">
+              <td align="left">018</td>
+              <td align="left">Combo 80% Boneless</td>
+              <td align="left">16800.00</td>
+              <td align="left">22844</td>
+              <td align="left">8</td>
+              <td align="left">0</td>
+              <td align="left">35</td>
+              <td align="left">Smith Grind</td>
+              <td align="left">04/01/2012</td>
+              <td align="left">Verbal 04/01</td>
+              <td align="left">$0.00</td>
+            </tr>
+            <tr class="package_row1">
+              <td align="left">019</td>
+              <td align="left">Combo 80% Boneless</td>
+              <td align="left">16800.00</td>
+              <td align="left">22844</td>
+              <td align="left">8</td>
+              <td align="left">0</td>
+              <td align="left">35</td>
+              <td align="left">Smith Grind</td>
+              <td align="left">04/01/2012</td>
+              <td align="left">Verbal 04/01</td>
+              <td align="left">$0.00</td>
+            </tr>
+            <tr class="package_row1">
+              <td align="left">020</td>
+              <td align="left">Combo 80% Boneless</td>
+              <td align="left">16800.00</td>
+              <td align="left">22844</td>
+              <td align="left">8</td>
+              <td align="left">0</td>
+              <td align="left">35</td>
+              <td align="left">Smith Grind</td>
+              <td align="left">04/01/2012</td>
+              <td align="left">Verbal 04/01</td>
+              <td align="left">$0.00</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="result_box">Results: 1-20 of 50</div>
+      <div class="paging">
+        <ul>
+          <li>
+            <a href="#" class="arrow-first" title="First">
+              <img src="<?php echo $this->cdnUri()?>/images/arrow-first.png" alt="">
+            </a>
+          </li>
+          <li>
+            <a href="#" class="arrow-prev" title="Previous">
+              <img src="<?php echo $this->cdnUri()?>/images/arrow-prev.png" alt="">
+            </a>
+          </li>
+          <li>
+            <a href="#" class="active" title="Page 1">1</a>
+          </li>
+          <li>
+            <a href="#" title="Page 2">2</a>
+          </li>
+          <li>
+            <a href="#" title="Page 3">3</a>
+          </li>
+          <li>
+            <a href="#" class="arrow-next" title="Next">
+              <img src="<?php echo $this->cdnUri()?>/images/arrow-next.png" alt="">
+            </a>
+          </li>
+          <li>
+            <a href="#" class="arrow-last" title="Last">
+              <img src="<?php echo $this->cdnUri()?>/images/arrow-last.png" alt="">
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+     <script type="text/javascript">
+		
+		
+        // Script For Grid Starts //
+		$(document).ready(function(){
+			//row click
+			$('tr.package_row1').click(function (event) {
+								$('tr.package_row1').toggleClass('active', false);
+								$(this).toggleClass('active', true);
+								});
+			// table Width
+			var tblWidth=0;
+			$('.grid_table tr:first').children().each(function(index) {
+									tblWidth = tblWidth + parseInt($(this).attr('width'));
+									});
+			$(".grid_table").css("width", tblWidth);
+		});
+
+		$('.grid_table tr').find('td:last').addClass('last')
+		$('.grid_table tr').find('th:last').addClass('last')
+		// Script For Grid Ends //
+
+
+
+		// Script For Scroll Panel Starts //
+		$(function(){
+		$('.scroll-pane').jScrollPane({showArrows: true});
+		});
+		// Script For Scroll Panel Ends //
+
+
+		// Script For Tabs Panel Starts //
+			$(function(){
+				$('#tabs').tabs();
+			});
+		// Script For Tabs Panel Ends //
+        
+     </script>

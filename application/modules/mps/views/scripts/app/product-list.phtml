@@ -1,0 +1,194 @@
+<?php
+$this->headScript()->appendFile("/js/ui.dropdownchecklist-1.4-min.js");
+$this->headScript()->appendFile("/js/ui.dropdownchecklist.js");
+//$this->headScript()->appendFile("/js/jquery-1.6.1.min.js");
+$this->headScript()->appendFile("/js/jquery-ui-1.8.13.custom.min.js");
+$this->headLink()->appendStylesheet('/js/ui.dropdownchecklist.standalone.css');
+$this->headLink()->appendStylesheet('/js/ui.dropdownchecklist.themeroller.css');
+$this->headLink()->appendStylesheet('/js/smoothness-1.8.13/jquery-ui-1.8.13.custom.css');
+?>
+
+      <form>
+        <table class="from_table" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td align="right" class="form_tab_lebel" valign="top">Product ID:</td>
+            <td align="left" class="form_tab_input" valign="top">
+              <input type="text" value="">
+            </td>
+            <td align="right" class="form_tab_lebel" valign="top">Product Name:</td>
+            <td align="left" class="form_tab_input" valign="top">
+              <input type="text" value="">
+            </td>
+            <td align="right"  class="form_tab_lebel" valign="top">Pack Location:</td>
+            <td align="left" class="form_tab_input" valign="top">
+		<select multiple="multiple" class="s1">
+			<option value="-- Select --">Bone</option>
+			<option value="-- Select --">Pack</option>
+			<option value="-- Select --">Combo</option>
+			<option value="-- Select --">Partial</option>
+		</select>             
+            </td>
+          </tr>
+          <tr>
+            <td align="right" class="form_tab_lebel" valign="top"></td>
+            <td align="left" class="form_tab_input search_button" valign="top">
+              <input class="search" value="Search" type="button"><img class="search_img" src="<?php echo $this->cdnUri()?>/images/search_img.png" alt=""></td>
+            <td align="right"  class="form_tab_lebel" valign="top"></td>
+
+          </tr>
+        </table>
+    
+        
+         	<!--<div class="form_row">
+            <div class="form_field" style="padding:10px 0px 0px 440px;">
+                 <input class="search" value="Search" type="button">
+                  <img class="search_img" src="<?php echo $this->cdnUri()?>/images/search_img.png" alt="">   </div>
+            </div>-->
+            
+      </form>
+      <div class="result_box">Results: 1-20 of 50</div>
+      <div class="paging">
+        <ul>
+          <li>
+            <a href="#" class="arrow-first" title="First">
+              <img src="<?php echo $this->cdnUri()?>/images/arrow-first.png" alt="">
+            </a>       
+          </li>
+          <li>
+            <a href="#" class="arrow-prev" title="Previous">
+              <img src="<?php echo $this->cdnUri()?>/images/arrow-prev.png" alt="">
+            </a>
+          </li>
+          <li>
+            <a href="#" class="active" title="Page 1">1</a>
+          </li>
+          <li>
+            <a href="#" title="Page 2">2</a>
+          </li>
+          <li>
+            <a href="#" title="Page 3">3</a>
+          </li>
+          <li>
+            <a href="#" class="arrow-next" title="Next">
+              <img src="<?php echo $this->cdnUri()?>/images/arrow-next.png" alt="">
+            </a>
+          </li>
+          <li>
+            <a href="#" class="arrow-last" title="Last">
+              <img src="<?php echo $this->cdnUri()?>/images/arrow-last.png" alt="">
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="gird_box">
+        <div class="scroll-pane">
+          <table width="100%" class="grid_table" border="0" cellpadding="0" cellspacing="0">
+            <tbody>
+              <tr>
+              <th align="left" width="8%">Product ID</th>
+              <th align="left" width="12%">Product Name</th>
+              <th align="left" width="12%">Pack Location<img src="<?php echo $this->cdnUri()?>/images/arrow.gif" alt="" align="right"></th>
+                <th align="left" width="12%">Case Format</th>
+                <!--<th align="left" width="12%">Part Number</th>
+                <th align="left" width="12%">Sell By Days</th>
+                <th align="left" width="12%">Price/lb ($)</th>-->
+                <th width="8%" align="left">Action</th>
+            </tr>
+           <?php for($i=1;$i<21;$i++):?>
+            <tr class="package_row1">
+              <td align="left">00<?php echo $i; ?></td>
+              <td align="left">Beef PIZZLE</td>
+              <td align="left">Pack</td>
+              <td align="left">Packed + Julian</td>
+              <td align="left" class="image">
+                  <a href="javascript:void(0);"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/edit.png" border="0" title="Edit"/></a>
+                  <a href="javascript:void(0);"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/accept.png" border="0" title="Accept"/></a>
+                  <a href="javascript:void(0);" onclick="if(confirm('Are you sure to delete this data?')){ alert('OK, deleted') } else { alert ('Not deleted')}"><img src="<?php echo $this->cdnUri();?>/images/icons/del.png" title="Delete" /></a>
+                
+              </td>
+            </tr>
+            		
+            <?php endfor;?>
+
+          </tbody></table>
+        </div>
+      </div>
+      <div class="result_box">Results: 1-20 of 50</div>
+      <div class="paging">
+        <ul>
+          <li>
+            <a href="#" class="arrow-first" title="First">
+              <img src="<?php echo $this->cdnUri()?>/images/arrow-first.png" alt="">
+            </a>
+          </li>
+          <li>
+            <a href="#" class="arrow-prev" title="Previous">
+              <img src="<?php echo $this->cdnUri()?>/images/arrow-prev.png" alt="">
+            </a>
+          </li>
+          <li>
+            <a href="#" class="active" title="Page 1">1</a>
+          </li>
+          <li>
+            <a href="#" title="Page 2">2</a>
+          </li>
+          <li>
+            <a href="#" title="Page 3">3</a>
+          </li>
+          <li>
+            <a href="#" class="arrow-next" title="Next">
+              <img src="<?php echo $this->cdnUri()?>/images/arrow-next.png" alt="">
+            </a>
+          </li>
+          <li>
+            <a href="#" class="arrow-last" title="Last">
+              <img src="<?php echo $this->cdnUri()?>/images/arrow-last.png" alt="">
+            </a>
+          </li>
+        </ul>
+      </div>
+     <script type="text/javascript">
+		
+		
+        // Script For Grid Starts //
+		$(document).ready(function(){
+			//row click
+			$('tr.package_row1').click(function (event) {
+								$('tr.package_row1').toggleClass('active', false);
+								$(this).toggleClass('active', true);
+								});
+			// table Width
+			var tblWidth=0;
+			$('.grid_table tr:first').children().each(function(index) {
+									tblWidth = tblWidth + parseInt($(this).attr('width'));
+									});
+		//	$(".grid_table").css("width", tblWidth);
+		});
+
+		$('.grid_table tr').find('td:last').addClass('last')
+		$('.grid_table tr').find('th:last').addClass('last')
+		// Script For Grid Ends //
+
+
+
+		// Script For Scroll Panel Starts //
+		$(function(){
+		//$('.scroll-pane').jScrollPane({showArrows: true});
+		});
+		// Script For Scroll Panel Ends //
+
+
+		// Script For Tabs Panel Starts //
+			$(function(){
+				$('#tabs').tabs();
+			});
+		// Script For Tabs Panel Ends //
+        
+     </script>
+
+            <script type="text/javascript">
+
+		$(".s1").dropdownchecklist({ emptyText: "Please select ...", width: 110 });
+                //$(".s1").dropdownchecklist({ firstItemChecksAll: true, explicitClose: '...close' , width: 110 }); //Jitendra
+                
+     </script>

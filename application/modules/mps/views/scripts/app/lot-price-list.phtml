@@ -1,0 +1,186 @@
+<form>
+   
+    <table class="from_table" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right" class="form_tab_lebel" valign="top">Breed: </td>
+    <td align="left" class="form_tab_input" valign="top"><select>
+            <option value="-- Select --">-- Select --</option>
+            <option value="-- Select --">Breed1</option>
+            <option value="-- Select --">Breed2</option>
+            <option value="-- Select --">Breed3</option>
+        </select></td>
+    <td align="right"  class="form_tab_lebel" valign="top">Supplier:</td>
+    <td align="left" class="form_tab_input" valign="top"><select>
+            <option value="-- Select --">-- Select --</option>
+            <option value="-- Select --">Supplier1</option>
+            <option value="-- Select --">Supplier2</option>
+            <option value="-- Select --">Supplier3</option>
+        </select></td>
+    <td align="right"  class="form_tab_lebel" valign="top">Range:</td>
+    <td align="left" class="form_tab_input" valign="top">
+      <input type="text" id="from" value="0" class="spinbutton_input"/>
+    </td>
+    <td class="form_tab_lebel_to" align="left" valign="top">To:</td>
+    <td valign="top"><input type="text" id="to" value="0"  class="spinbutton_input"/></td>
+  </tr>
+ 
+  
+  <tr>
+    <td align="right" class="form_tab_lebel" valign="top">&nbsp;</td>
+    <td align="left" class="form_tab_input search_button" valign="top"><input class="search" value="Search" type="button">
+            <img class="search_img" src="<?php echo $this->cdnUri()?>/images/search_img.png" alt=""></td>
+    <td align="right"  class="form_tab_lebel" valign="top">&nbsp;</td>
+    <td align="left" class="form_tab_input" valign="top">&nbsp;</td>
+    <td align="right"  class="form_tab_lebel" valign="top">&nbsp;</td>
+    <td align="left" class="form_tab_input" valign="top">&nbsp;</td>
+  </tr>
+  
+</table>
+
+  
+</form>
+
+<div class="result_box">Results: 1-20 of 50</div>
+      <div class="paging">
+       <ul>
+          <li>
+            <a href="#" class="arrow-first" title="First">
+              <img src="<?php echo $this->cdnUri()?>/images/arrow-first.png" alt="">
+            </a>
+          </li>
+          <li>
+            <a href="#" class="arrow-prev" title="Previous">
+              <img src="<?php echo $this->cdnUri()?>/images/arrow-prev.png" alt="">
+            </a>
+          </li>
+          <li>
+            <a href="#" class="active" title="Page 1">1</a>
+          </li>
+          <li>
+            <a href="#" title="Page 2">2</a>
+          </li>
+          <li>
+            <a href="#" title="Page 3">3</a>
+          </li>
+          <li>
+            <a href="#" class="arrow-next" title="Next">
+              <img src="<?php echo $this->cdnUri()?>/images/arrow-next.png" alt="">
+            </a>
+          </li>
+          <li>
+            <a href="#" class="arrow-last" title="Last">
+              <img src="<?php echo $this->cdnUri()?>/images/arrow-last.png" alt="">
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="gird_box">
+        <div class="scroll-pane">
+          <table class="grid_table" width="100%" border="0"  cellspacing="0" cellpadding="0">
+            <tr>
+              <th align="left" width="10%">S.No</th>
+              <th align="left" width="20%">Breed</th>
+              <th align="left" width="35%">Supplier<img src="<?php echo $this->cdnUri()?>/images/arrow.gif" alt="" align="right"></th>
+              <th align="left" width="20%">Range<img src="<?php echo $this->cdnUri()?>/images/arrow.gif" alt="" align="right"></th>
+              <th align="left" width="15%">Action</th>
+            </tr>
+         <?php for($i=1;$i<21;$i++):?>
+            <tr class="package_row1">
+              <td align="left"><?php echo $i?></td>
+              <td align="left">Breed1</td>
+              <td align="left">Supplier1</td>
+              <td align="left">10-30</td>
+              <td align="left" class="image"><a href="#"><img src="<?php echo $this->cdnUri()?>/images/icons/edit.png" title="Edit" /></a><a href="#"><img src="<?php echo $this->cdnUri()?>/images/icons/del.png" title="Delete" /></a></td>
+            </tr>
+            <?php endfor;?>
+           
+          </table>
+        </div>
+      </div>
+      <div class="result_box">Results: 1-20 of 50</div>
+      <div class="paging">
+        <ul>
+          <li>
+            <a href="#" class="arrow-first" title="First">
+              <img src="<?php echo $this->cdnUri()?>/images/arrow-first.png" alt="">
+            </a>
+          </li>
+          <li>
+            <a href="#" class="arrow-prev" title="Previous">
+              <img src="<?php echo $this->cdnUri()?>/images/arrow-prev.png" alt="">
+            </a>
+          </li>
+          <li>
+            <a href="#" class="active" title="Page 1">1</a>
+          </li>
+          <li>
+            <a href="#" title="Page 2">2</a>
+          </li>
+          <li>
+            <a href="#" title="Page 3">3</a>
+          </li>
+          <li>
+            <a href="#" class="arrow-next" title="Next">
+              <img src="<?php echo $this->cdnUri()?>/images/arrow-next.png" alt="">
+            </a>
+          </li>
+          <li>
+            <a href="#" class="arrow-last" title="Last">
+              <img src="<?php echo $this->cdnUri()?>/images/arrow-last.png" alt="">
+            </a>
+          </li>
+        </ul>
+      </div>
+      
+      
+      
+      
+      
+<script type="text/javascript">
+		
+		
+        // Script For Grid Starts //
+		$(document).ready(function(){
+			//row click
+			$('tr.package_row1').click(function (event) {
+								$('tr.package_row1').toggleClass('active', false);
+								$(this).toggleClass('active', true);
+								});
+			// table Width
+			var tblWidth=0;
+			$('.grid_table tr:first').children().each(function(index) {
+									tblWidth = tblWidth + parseInt($(this).attr('width'));
+									});
+			//$(".grid_table").css("width", tblWidth);
+		});
+
+		$('.grid_table tr').find('td:last').addClass('last')
+		$('.grid_table tr').find('th:last').addClass('last')
+		// Script For Grid Ends //
+
+
+
+		// Script For Scroll Panel Starts //
+		$(function(){
+		//$('.scroll-pane').jScrollPane({showArrows: true});
+		});
+		// Script For Scroll Panel Ends //
+
+
+		// Script For Tabs Panel Starts //
+			$(function(){
+				$('#tabs').tabs();
+			});
+		// Script For Tabs Panel Ends //
+                
+        $(function(){
+	var nocows = $('#from').spinit({ height: 16, width: 40, min: 0, initValue: 0, max: 100});
+        var nocows = $('#to').spinit({ height: 16, width: 40, min: 0, initValue: 0, max: 100});
+    });
+                
+                
+     </script>
+     
+     
+
+     

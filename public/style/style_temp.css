@@ -1,0 +1,18 @@
+@charset "utf-8";
+/* CSS Document */
+
+.form_label_150{min-width: 150px;}
+.widthauto_pad_left{ padding-left:15px;  min-width: inherit !important;}
+
+.formsection3{width:12%; min-width: inherit !important;}
+.formsection4{width:120px; min-width: inherit !important;}
+.formsection5{width:25px; min-width: inherit !important; padding: 7px 1px 0 0 !important;}
+
+/*CSS are to be updated in main CSS Sheet*/
+
+.form_field_tree{
+    font: 12px/12px Arial,Helvetica,sans-serif;
+    overflow: visible;
+    padding:0;
+}
+.jstree-default.jstree-focused{ background:none !important;}

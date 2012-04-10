@@ -1,0 +1,112 @@
+
+<div class="popwrap">
+  <div class="popup_full_img"> <a href="<?php echo $this->seoUrl("/mps/app/weighing")?>"><img src="<?php echo $this->cdnUri()?>/images/full_screen_out.png" align="right" title="Back to Weighing"> </a></div>
+  <div class="popwrap_con">
+    <div class="left_con" style="width:100%">
+      <table>
+        <tr>
+          <td><div class="idsection">
+              <div class="idsection_bx1">
+                <input name="" type="text" placeholder="Enter Cow ID" value="" style="color:#b1a7a7" class="hex">
+              </div>
+              <div class="idsection_bx2"><a href="#"><img id="hex" src="<?php echo $this->cdnUri()?>/images/keyboard.png" alt="" border="0"></a></div>
+            </div></td>
+          <td width="20"></td>
+          <td><div class="idsection">
+              <div class="idsection_bx1">
+                <input name="" type="text" placeholder="Last Hot Weight" value="" style="color:#b1a7a7">
+              </div>
+            </div></td>
+          <td width="10"></td>
+          <td valign="middle"><input type="button" class="gray_button activegray" value="Submit">
+          </td>
+        </tr>
+        <tr>
+      <td colspan="3">      
+       <div style="padding: 20px 0 0 0px;">
+           <input type="button" class="gray_button" value="Condemn">
+          
+          <input type="button" class="gray_button" value="Un-Condemn">
+          <input type="button" class="gray_button" value="Retain">
+          <input type="button" class="gray_button" value="Un-Retain">
+       </div>
+      </td> 
+    </tr>
+      </table>
+      <div class="touch_gird_box">
+        <div class="scroll_pane_tab">
+          <table class="grid_table touch_table" width="101%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <th align="left" width="7%">Seq No.</th>
+              <th align="left" width="8%">Cow ID <img src="<?php echo $this->cdnUri()?>/images/arrow.gif" align="right" alt=""></th>
+              <th align="left" width="13%">Knocked Date<img src="<?php echo $this->cdnUri()?>/images/arrow.gif" align="right" alt=""></th>
+              <th align="left" width="12%">Cow Weight</th>
+              <th align="left" width="12%">Supplier <img src="<?php echo $this->cdnUri()?>/images/arrow.gif" align="right" alt=""></th>
+              <th align="left" width="8%">Condemn</th>
+              <th align="left" width="7%">Edit</th>
+              <th align="left" width="7%">Reprint</th>
+              
+            </tr>
+      <?php for($i=1;$i<21;$i++){?> 
+           <tr class="package_row1">
+          <td><?php echo $i; ?></td>
+          <td>1102<?php echo $i; ?></td>
+          <td>01/15/2012</td>
+          <td class="image">
+              <?php if($i<5){ ?> 350 <?php } else if($i<6) {?><input class="" type="text" value="434"> <?php } ?>
+          </td>
+          
+          <td>Smith</td>
+          <td align="left" valign="middle" class="image">
+           Condemn
+          </td>
+           <td class="image"><a href="#"><img src="<?php echo $this->cdnUri()?>/images/icons/edit_large.png" alt="Edit" border="0" title="Edit"></a> </td>
+       
+          <td class="image"><a href="#"><img src="<?php echo $this->cdnUri()?>/images/icons/print_large.png" alt="Reprint" title="Reprint" border="0"></a> </td>
+          </tr>
+        <?php } ?>
+          </table>
+        </div>
+      </div>
+      <script type="text/javascript">
+	 // Script For Grid Starts //
+		$(document).ready(function(){
+			//row click
+			$('tr.package_row1').click(function (event) {
+								$('tr.package_row1').toggleClass('active', false);
+								$(this).toggleClass('active', true);
+								});
+			// table Width
+			var tblWidth=0;
+			$('.grid_table tr:first').children().each(function(index) {
+									tblWidth = tblWidth + parseInt($(this).attr('width'));
+									});
+			//$(".grid_table").css("width", tblWidth);
+		});
+
+		$('.grid_table tr').find('td:last').addClass('last')
+		$('.grid_table tr').find('th:last').addClass('last')
+		// Script For Grid Ends //
+
+
+
+		// Script For Scroll Panel Starts //
+		$(function(){
+		$('.scroll_pane_tab').jScrollPane({showArrows: true});
+		});
+		// Script For Scroll Panel Ends //
+
+
+		// Script For Tabs Panel Starts //
+			$(function(){
+				$('#tabs').tabs();
+			});
+		// Script For Tabs Panel Ends //
+        
+     </script>
+    </div>
+  </div>
+</div>
+<script>
+$('input[placeholder], textarea[placeholder]').placeholder();
+</script>

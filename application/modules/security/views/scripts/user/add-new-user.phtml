@@ -1,0 +1,185 @@
+<form method="post" action="<?php echo $this->seoUrl("/security/user/add-new-user")?>" >
+  <div class="form_row">
+    <div class="form_label">
+      <?php echo $this->puts($this->form->username->getLabel()); ?> <span class="required">*</span>
+    </div>
+    <div class="form_field">
+      <?php echo $this->form->username; ?>
+        </div>
+  </div>
+  <div class="form_row form_separate">
+    <div class="form_label">
+      <?php echo $this->puts($this->form->password->getLabel()); ?> <span class="required">*</span>
+    </div>
+    <div class="form_field">
+     <?php echo $this->form->password; ?>
+        </div>
+    <div class="form_label">
+     <?php echo $this->puts($this->form->confirmPassword->getLabel()); ?> <span class="required">*</span>
+    </div>
+    <div class="form_field">
+      <?php echo $this->form->confirmPassword; ?>
+        </div>
+  </div>
+  <div class="form_row">
+    <div class="form_label">
+      <?php echo $this->puts($this->form->organizationName->getLabel()); ?> <span class="required">*</span>
+    </div>
+    <div class="form_field">
+      <?php echo $this->form->organizationName; ?>
+        </div>
+  </div>
+  <div class="form_row">
+    <div class="form_label">
+      <?php echo $this->puts($this->form->firstName->getLabel()); ?> <span class="required">*</span>
+    </div>
+    <div class="form_field">
+      <?php echo $this->form->firstName; ?>
+        </div>
+    <div class="form_label">
+      <?php echo $this->puts($this->form->lastName->getLabel()); ?> <span class="required">*</span>
+    </div>
+    <div class="form_field">
+      <?php echo $this->form->lastName; ?>
+        </div>
+  </div>
+  <div class="form_row">
+    <div class="form_label">
+      <?php echo $this->puts($this->form->address1->getLabel()); ?> <span class="required">*</span>
+    </div>
+    <div class="form_field">
+      <?php echo $this->form->address1; ?>
+        </div>
+    <div class="form_label">
+      <?php echo $this->puts($this->form->address2->getLabel()); ?>
+    </div>
+    <div class="form_field">
+      <?php echo $this->form->address2; ?>
+        </div>
+  </div>
+  <div class="form_row">
+    <div class="form_label">
+      <?php echo $this->puts($this->form->city->getLabel()); ?> <span class="required">*</span>
+    </div>
+    <div class="form_field">
+      <?php echo $this->form->city; ?>
+        </div>
+    <div class="form_label">
+      <?php echo $this->puts($this->form->state->getLabel()); ?> <span class="required">*</span>
+    </div>
+    <div class="form_field">
+      <?php echo $this->form->state; ?>
+        </div>
+  </div>
+  <div class="form_row">
+    <div class="form_label">
+      <?php echo $this->puts($this->form->zip->getLabel()); ?> <span class="required">*</span>
+    </div>
+    <div class="form_field">
+      <?php echo $this->form->zip; ?>
+        </div>
+  </div>
+  <div class="form_row">
+    <div class="form_label">
+      <?php echo $this->puts($this->form->phone->getLabel()); ?> <span class="required">*</span>
+    </div>
+    <div class="form_field">
+      <?php echo $this->form->phone; ?>
+        </div>
+    <div class="form_label">
+      <?php echo $this->puts($this->form->fax->getLabel()); ?> <span class="required">*</span>
+    </div>
+    <div class="form_field">
+      <?php echo $this->form->fax; ?>
+        </div>
+  </div>
+  <div class="form_row">
+    <div class="form_label">
+      <?php echo $this->puts($this->form->email->getLabel()); ?> <span class="required">*</span>
+    </div>
+    <div class="form_field">
+      <?php echo $this->form->email; ?>
+        </div>
+    <div class="form_label">
+      <?php echo $this->puts($this->form->sex->getLabel()); ?> <span class="required">*</span>
+    </div>
+    <div class="form_field">
+      <?php echo $this->form->sex; ?>
+        </div>
+  </div>
+  <div class="form_row">
+    <div class="form_label">
+      <?php echo $this->puts($this->form->groupId->getLabel()); ?> <span class="required">*</span>
+    </div>
+    <div class="form_field">
+       <?php echo $this->form->groupId;?>
+    </div>
+
+    <div class="form_label">
+      <?php echo $this->puts($this->form->subGroupId->getLabel());?> <span class="required">*</span>
+    </div>
+    <div class="form_field">
+      <?php echo $this->form->subGroupId;?>
+    </div>
+  </div>
+  <div class="form_row">
+    <div class="form_label">
+      <?php echo $this->puts($this->form->roleId->getLabel());?> <span class="required">*</span>
+    </div>
+    <div class="form_field">
+      <?php echo $this->form->roleId;?>
+    </div>
+    <div class="form_label">
+      <?php echo $this->puts($this->form->supervisorId->getLabel());?> <span class="required">*</span>
+    </div>
+    <div class="form_field">
+      <?php echo $this->form->supervisorId;?>
+    </div>
+  </div>
+
+    
+  <div class="form_row">
+    <div class="form_label">&nbsp;</div>
+    <div class="form_field">
+            <?php echo $this->form->submit;?>
+      
+        </div>
+  </div>
+</form>
+
+
+<script type="text/javascript">
+
+function getSubGroups()
+{
+    $.post(
+            "/security/privilege/ajax-get-sub-group", 
+            { 
+               "group_id" : $("#groupId").val()
+            }, 
+            function (data) {
+                $("#subGroupId").html("");
+                $.each(data, function(i, item){
+                    $("#subGroupId").append('<option value="' + i + '">' + item + '</option>');
+                });
+                    
+            },"json"
+    );
+}
+function getRoles()
+{
+    $.post(
+            "/security/privilege/ajax-get-role", 
+            { 
+               "sub_group_id" : $("#subGroupId").val()
+            }, 
+            function (data) {
+                $("#roleId").html("");
+                $.each(data, function(i, item){
+                    $("#roleId").append('<option value="' + i + '">' + item + '</option>');
+                });
+                    
+            },"json"
+    );
+}
+</script>

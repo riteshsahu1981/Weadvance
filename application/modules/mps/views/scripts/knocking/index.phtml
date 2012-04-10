@@ -1,0 +1,442 @@
+<form name="kill_cow" id="kill_cow" method="post" action='/mps/knocking/kill-cow'>   
+    <div> <?php echo $this->flashMessages()?> </div>
+<div class="left_con">
+    <input type="hidden" name="supplier_id" id="supplier_id" value="">
+    
+    <input type="hidden" name="cow_id" id="cow_id" value="">
+    <input type="hidden" name="map_id1" id="map_id1" value="">
+    <input type="hidden" name="map_id2" id="map_id2" value="">
+    <input type="hidden" name="map_id3" id="map_id3" value="">
+        <div class="left_con_button">
+            <?php
+            $suppObj = new Admin_Model_Supplier();
+            $quick_supplier = $suppObj->quickSupplier();
+            
+            foreach($quick_supplier as $quicks){
+            ?>
+          <input type="button" id="<?php echo $quicks->id; ?>" class="gray_button supplier_class" value="<?php echo $quicks->username; ?>">
+          <?php } ?>
+          
+          
+        </div>
+        <div class="idsection">
+          <div class="idsection_bx1">
+            <input type="text" placeholder="<?php echo $this->puts("Enter Cow ID") ?>" id="cow_id_box" class="hex">
+          </div>
+          <div class="idsection_bx2"> <img class="keyboard" id="hex" src="<?php echo $this->cdnUri()?>/images/keyboard.png" alt="Keyboard" title="Keyboard"></div>
+        </div>
+
+        <div class="idsection">
+          <p><?php echo $this->puts("Enter Cow ID or Select from above Suppliers") ?></p>
+        </div>
+        <span id="idStatus" class="error"></span> 
+	<div class="sep_left">&nbsp;</div>
+        
+        
+        <div class="product_sec">
+          <div class="product_breadcrum">
+            <ul id="breadCrumb">
+              <li><a href="javascript:void(0);" id="bcSelectProduct">Select Product</a></li>
+            </ul>
+          </div>
+           
+          <div class="product_levelone" id="level1" >
+          </div>
+          
+          <div class="product_leveltwo" id="level2">
+              
+           </div>
+            
+            <div class="product_leveltwo" id="level2n" style="display:none;">
+              <?php $sysmasObj = new Security_Model_SystemMaster;
+                    $animalArr = $sysmasObj->getAnimalArray();
+                    foreach($animalArr as $animals){
+            
+              ?>
+                        <input type="button" rel="<?php echo $animals->master_id; ?>" class="bluesm_button" value="<?php echo $animals->master_value; ?>" id="cmdCow<?php echo $animals->master_id; ?>" >
+                        
+              <?php }?>
+           </div>
+            
+            
+          </div>
+      </div>
+</form>
+<script type="text/javascript">
+            
+            $(function () {
+                var animal_name;
+                var animal_id;
+                $(".bluesm_button").click(function(){
+                    
+                     $("#breadCrumb").append('<li>'+$(this).val()+'</li>');
+                    var animal_id = $(this).attr("rel");
+                    var animal_name = $(this).val();
+                    $.post(
+                    "/mps/knocking/ajax-get-animal-type", 
+                    { 
+                    
+                    "animal_id" : $(this).attr("rel")
+                    }, 
+                    function (data) {
+                        $(".error").css("display","none");
+                        
+                        //alert (data);
+                        if(data){
+                            $("#level1").html('<h5 class="green_button">Type</h5>');
+                            
+                            $("#level2n").hide();
+                            $("#level2").html('');
+                            $("#level2").show();
+                            $.each(data, function(i, item){
+                             
+                           
+                           $("#level2").append('<input rel="'+item['map_id2']+'" type="button" class="green_button" value="'+item['breed']+'" id="cmdbreed'+item['map_id1']+item['map_id2']+'" >');
+                           
+                           $("#cmdbreed"+item['map_id1']+item['map_id2']).click(function(){
+                              $("#breadCrumb").html('<li><a href="javascript:void(0);" id="bcSelectProduct">Select Product</a></li><li><a href="javascript:void(0);" class="bluesm_button">'+animal_name+'</a></li><li>'+$(this).val()+'</li>');
+                              
+                              var animal_breed = item['breed'];
+                            $.post(
+                            "/mps/knocking/ajax-get-animal-color", 
+                            { 
+
+                            "breed_id" : $(this).attr("rel"),
+                            "animal_id" : animal_id
+
+                            }, 
+                            function (data) {
+                                $(".error").css("display","none");
+
+                                if(data){
+                                    $("#level1").html('<h5 class="red_button">Color</h5>');
+
+                                    $("#level2n").hide();
+                                    $("#level2").html('');
+                                    $("#level2").show();
+                                    $.each(data, function(i, item){
+
+
+                                $("#level2").append('<input type="button" class="red_light_button" value="'+item['color']+'" id="cmdcolor'+item['map_id1']+item['map_id2']+item['map_id3']+'" >');
+                                
+                                $("#cmdcolor"+item['map_id1']+item['map_id2']+item['map_id3']).click(function(){
+                                   
+                                   var animal_breed_colorID = item['map_id1']+','+item['map_id2']+','+item['map_id3'];
+                                   
+                                   $("#breadCrumb").html('<li><a href="javascript:void(0);" id="bcSelectProduct">Select Product</a></li><li><a href="javascript:void(0);" class="bluesm_button">'+animal_name+'</a></li><li id="cmdbreed"><a href="javascript:void(0)" id="cmdbreed'+item['map_id1']+item['map_id2']+'">'+animal_breed+'</a></li><li>'+$(this).val()+'</li>');
+                                   
+                                   $("#level1").html('');
+                                   $("#level2").html('<input type="button" onclick="clickCancel()" class="gray_button activegray" value="Cancel" id="cmdCancel" >');
+                                   $("#level2").append('<input type="button" onclick="return clickContinue('+item['map_id1']+','+item['map_id2']+','+item['map_id2']+')" class="gray_button activegray" value="Continue" id="cmdContinue">');
+                                   
+                                   }
+                                    );
+                                        
+                                    }
+                                    ); 
+
+                                }
+                                else{
+
+                                    $("form input, form textarea, form select").each(function(i){
+                                        $(this).val('');
+                                    }); 
+                                }
+                                },"json"
+                            );
+
+                        });
+                
+                
+                    }
+                    ); 
+                            
+                        }
+                        else{
+                             
+                        }
+                        },"json"
+                    );
+                
+                });
+                
+
+            })
+            
+            
+            function clickCancel(){
+                $("#breadCrumb").html('<li><a href="javascript:void(0);" id="bcSelectProduct">Select Product</a></li>');
+                $("#level2").html('');
+            
+            }
+            
+            function clickContinue(map_id1,map_id2,map_id3){
+                if($("#supplier_id").val() == ''){
+                    if($("#cow_id_box").val() == ''){
+                        alert ('Please enter Cow Id');
+                        $("#cow_id_box").focus();
+                        return false;
+                    }
+                }
+                $("#map_id1").val(map_id1);
+                $("#map_id2").val(map_id2);
+                $("#map_id3").val(map_id3);
+                
+                var cow_id = $("#cow_id_box").val();
+                $("#cow_id").val(cow_id);
+                
+                
+                $("#kill_cow").submit();
+                //window.location.href = 'knocking/kill-cow?map_id1='+map_id1+'&map_id2='+map_id2+'&map_id3='+map_id3;
+                
+            }
+            
+            function cmdBreedClick()
+            {
+                $("#level1").html('<h5 class="blue_button">Breed</h5>');
+                $("#level2n").show();
+                $("#level2").hide();
+                $("#breadCrumb").html('<li><a href="javascript:void(0);" id="bcSelectProduct">Select Product</a></li>');
+                
+                /* $("#level2").html('<input type="button" class="bluesm_button" value="Cow" id="cmdCow" >');
+                $("#level2").append('<input type="button" class="bluesm_button" value="Bull" id="cmdBull">');
+                $("#level2").append('<input type="button" class="bluesm_button" value="Hefer" id="cmdHefer">');
+                
+                $("#breadCrumb").html('<li><a href="#" id="bcSelectProduct">Select Product</a></li>'); */
+                
+            }
+            $("#cmdBreed").live('click', cmdBreedClick);
+            $("#bcSelectProduct").live('click', cmdBreedClick);
+            
+            
+            
+            
+            function cmdCowClick()
+            {
+                cmdTypeClick();
+//                $("#level1").html('<input type="button" class="green_button" value="Type" id="cmdType">');
+//                
+//                $("#level2").html('');
+//
+//
+                 $("#breadCrumb").html('<li><a href="#" id="bcSelectProduct">Select Product</a></li>');
+                 
+                 $("#breadCrumb").append('<li>Cow</li>');
+                 
+            }
+            $('#cmdCow').live('click', cmdCowClick);
+            
+            $("#bcBreed").live('click', cmdBreedClick);
+            $("#bcCow").live('click', cmdBreedClick);
+            function cmdTypeClick()
+            {
+                $("#level1").html('<h5 class="green_button">Type</h5>');
+                $("#level2").html('<input type="button" class="green_button" value="Holstein" id="cmdHolstein" >');
+                $("#level2").append('<input type="button" class="green_button" value="Jersey" id="cmdJersey">');
+                $("#level2").append('<input type="button" class="green_button" value="Angus" id="cmdAngus">');
+                $("#level2").append('<input type="button" class="green_button" value="Herford" id="cmdHerford">');
+                $("#level2").append('<input type="button" class="green_button" value="Other" id="cmdOther">');
+                
+            }
+            $("#cmdType").live('click', cmdTypeClick);
+            $("#bcType").live('click', cmdCowClick);
+           
+            
+            
+            
+        </script>
+
+<div class="right_con">
+        <div id="tabs">
+          <ul>
+            <li><a href="#tabs-1"><?php echo $this->puts("In Yard")?></a></li>
+            <li><a href="#tabs-2"><?php echo $this->puts("Killed")?></a></li>
+          </ul>
+          <div id="tabs-1">
+            <div class="touch_gird_box">
+              <div class="scroll_pane_tab">
+                <table class="grid_table touch_table" width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <th align="left" width="150"><?php echo $this->puts("Supplier")?> <img src="<?php echo $this->cdnUri()?>/images/arrow.gif" align="right" alt=""></th>
+                    <th align="left" width="150"><?php echo $this->puts("Cow ID")?></th>
+                    <th align="left" width="150"><?php echo $this->puts("Lot")?> <img src="<?php echo $this->cdnUri()?>/images/arrow.gif" align="right" alt=""></th>
+                    <th align="left" width="150"><?php echo $this->puts("Date In")?> <img src="<?php echo $this->cdnUri()?>/images/arrow.gif" align="right" alt=""></th>
+                  </tr>
+                  
+                  <?php 
+                  $rawObj = new Mps_Model_RawProduct();
+                  $IncomingCows = $rawObj->fetchAll("status='1' AND process_status='Incoming'" , "id");
+                  
+                  foreach($IncomingCows as $incoming){
+                      ?>
+                  <tr class="package_row1" id="<?php echo $incoming->id; ?>" onclick="$('#cow_id_box').val(this.id) ;">
+                      <?php
+                      $supplier_info = $suppObj->fetchRow("id = '$incoming->supplierId'");
+                      ?>
+                    <td><?php echo $supplier_info->username; ?></td>
+                    <td><?php echo $incoming->id; ?></td>
+                    <td><?php echo $incoming->transactionId; ?></td>
+                    
+                    <td><?php echo $incoming->incomingDate; ?></td>
+                  </tr>
+                  <?php }?>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div id="tabs-2">
+            <div class="touch_gird_box">
+              <div class="scroll_pane_tab">
+                <table class="grid_table touch_table" width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <th align="left" width="150">Supplier <img src="<?php echo $this->cdnUri()?>/images/arrow.gif" align="right" alt=""></th>
+                    <th align="left" width="150">Cow ID</th>
+                    <th align="left" width="150">Lot <img src="<?php echo $this->cdnUri()?>/images/arrow.gif" align="right" alt=""></th>
+                    <th align="left" width="150">Date In <img src="<?php echo $this->cdnUri()?>/images/arrow.gif" align="right" alt=""></th>
+                  </tr>
+                  <?php
+                  $KnockedCows = $rawObj->fetchAll("status='1' AND process_status='Knocked'" , "id");
+                  
+                  foreach($KnockedCows as $knocked){?>
+                  <tr class="package_row1">
+                    <?php
+                      $supplier_info = $suppObj->fetchRow("id = '$knocked->supplierId'");
+                      ?>
+                    <td><?php echo $supplier_info->username; ?></td>
+                    <td><?php echo $knocked->id; ?></td>
+                    <td><?php echo $knocked->transactionId; ?></td>
+                    
+                    <td><?php echo $knocked->knockedDate; ?></td>
+                  </tr>
+                  <?php } ?>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript">
+		
+		
+        // Script For Grid Starts //
+		$(document).ready(function(){
+			//row click
+			$('tr.package_row1').click(function (event) {
+								$('tr.package_row1').toggleClass('active', false);
+								$(this).toggleClass('active', true);
+								});
+			// table Width
+			var tblWidth=0;
+			$('.grid_table tr:first').children().each(function(index) {
+									tblWidth = tblWidth + parseInt($(this).attr('width'));
+									});
+			$(".grid_table").css("width", tblWidth);
+		});
+
+		$('.grid_table tr').find('td:last').addClass('last')
+		$('.grid_table tr').find('th:last').addClass('last')
+		// Script For Grid Ends //
+
+
+
+		// Script For Scroll Panel Starts //
+		$(function(){
+		$('.scroll_pane_tab').jScrollPane({showArrows: true});
+		});
+		// Script For Scroll Panel Ends //
+
+
+		// Script For Tabs Panel Starts //
+			$(function(){
+				$('#tabs').tabs();
+			});
+		// Script For Tabs Panel Ends //
+                
+                
+                
+                $("#cow_id_box").blur(function(){
+               var val=$(this).val();
+               if (val!="")
+                   {
+                          $.post(
+                            "/mps/production/check-cowid", 
+                            { 
+                               "id":val,
+                               "process_status" : 'Incoming'
+                              
+                            }, 
+                            function (data) {
+                                 if(data.result==0)
+                                     {
+                                         $("#idStatus").html("Cow id does not exist.");
+                                         setTimeout('$("#idStatus").html("")',4000);
+                                     }
+                                     else
+                                         {
+                                              //$("#weight_"+id).html(val);
+                                         }
+
+
+                            },"json"
+                        );
+                   
+                   }
+           });
+           
+           
+           $(".supplier_class").click(function(){
+               
+               var className = $(this).attr('class');
+               if(className == 'gray_button supplier_class bluesm_button'){
+                   $("#breadCrumb").html('<li><a href="javascript:void(0);" id="bcSelectProduct">Select Product</a></li>');
+                   $("#level2").html('');
+                   $("#level2n").hide();
+                   $("#level1").html('');
+                   $(".supplier_class").removeClass('bluesm_button');
+                   $("#supplier_id").val('');
+               }else{
+                    cmdBreedClick();
+                    $(".supplier_class").removeClass('bluesm_button');
+                    $(this).addClass('bluesm_button');
+                    var val=this.id;
+                    $("#supplier_id").val(val);
+               }
+               
+           });
+           
+           
+           
+           /* $(".supplier_class").click(function(){
+               
+               
+               var val=this.id;
+               if (val!="")
+                   {
+                          $.post(
+                            "/mps/knocking/ajax-get-supplier-cow", 
+                            { 
+                               "id":val
+                              
+                            }, 
+                            function (data) {
+                               
+                                 if(data.result==0)
+                                     {
+                                         $("#idStatus").html("No Cow Incoming for this supplier.");
+                                         $("#cow_id_box").val('');
+                                         setTimeout('$("#idStatus").html("")',4000);
+                                     }
+                                     else
+                                         {
+                                              $("#cow_id_box").val(data.result);
+                                         }
+
+
+                            },"json"
+                        );
+                   
+                   }
+               
+           }); */
+        
+     </script>
+      </div>

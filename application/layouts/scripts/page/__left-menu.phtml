@@ -1,0 +1,185 @@
+<section class="left_section">
+
+  <?php
+  $selected_class="selected";
+  $selectedIndex="";
+  ?>
+    <!-- Menu Options Start  -->
+    <div class="menu_header">Menu Options</div>
+    <div class="menu_options"> 
+        
+    <a class="menuitem <?php if($this->actionName=="dashboard"){echo $selected_class;}?>" href="<?php echo $this->seoUrl("/mps/app/dashboard")?>" >Dashboard</a>
+    
+    <a class="menuitem submenuheader <?php if($this->actionName=="incoming-cows"){echo "$selected_class"; $selectedIndex=0;}?>"   href="#" >Buying</a>
+      <div class="submenu" <?php if($this->actionName=="incoming-cows"){echo "style='display : block;'";}?> >
+          <ul>
+              <li><a  <?php if($this->actionName=="incoming-cows"){echo "class='$selected_class'";}?> href="<?php echo $this->seoUrl("/mps/app/incoming-cows")?>">Incoming Cows</a></li>
+        </ul>
+      </div>
+
+    <a class="menuitem submenuheader <?php if(in_array($this->actionName, array("knocking-box","compliance", "blood-station" ,"weighing"))){echo "$selected_class"; $selectedIndex=1;}?>" href="#" >Production</a>
+      <div class="submenu">
+          <ul>
+              <li><a <?php if($this->actionName=="knocking-box"){echo "class='$selected_class'";}?> href="<?php echo $this->seoUrl("/mps/app/knocking-box")?>">Knocking</a></li>
+              <li><a <?php if($this->actionName=="compliance"){echo "class='$selected_class'";}?> href="<?php echo $this->seoUrl("/mps/app/compliance")?>">Compliance</a></li>
+              <li><a <?php if($this->actionName=="blood-station"){echo "class='$selected_class'";}?> href="<?php echo $this->seoUrl("/mps/app/blood-station")?>">Blood Station</a></li>
+              <li><a <?php if($this->actionName=="weighing"){echo "class='$selected_class'";}?> href="<?php echo $this->seoUrl("/mps/app/weighing")?>">Weighing</a></li>
+        </ul>
+      </div>
+      
+      <a class="menuitem submenuheader <?php if(in_array($this->actionName, array("pricing","billing", "invoicing" ))){echo "$selected_class";  $selectedIndex=2;}?>" href="#" >Accounts</a>
+      <div class="submenu">
+          <ul>
+              <li><a <?php if($this->actionName=="pricing"){echo "class='$selected_class'";}?> href="<?php echo $this->seoUrl("/mps/app/pricing")?>">Pricing</a></li>
+              <li><a <?php if($this->actionName=="billing"){echo "class='$selected_class'";}?> href="<?php echo $this->seoUrl("/mps/app/billing")?>">Billing</a></li>
+              <li><a <?php if($this->actionName=="invoicing"){echo "class='$selected_class'";}?> href="<?php echo $this->seoUrl("/mps/app/invoicing")?>" >Invoicing</a></li>
+        </ul>
+      </div>
+      
+      
+      <a class="menuitem submenuheader <?php if(in_array($this->actionName, array("bone","tripe", "combo", "retail-inventory" ))){echo "$selected_class";  $selectedIndex=3;}?>" href="#" >Inventory</a>
+      <div class="submenu">
+          <ul>
+              
+              <li><a <?php if($this->actionName=="bone"){echo "class='$selected_class'";}?> href="<?php echo $this->seoUrl("/mps/app/bone")?>">Bone</a></li>
+              <li><a <?php if($this->actionName=="tripe"){echo "class='$selected_class'";}?> href="<?php echo $this->seoUrl("/mps/app/tripe")?>">Pack/Tripe</a></li>
+              <li><a <?php if($this->actionName=="combo"){echo "class='$selected_class'";}?> href="<?php echo $this->seoUrl("/mps/app/combo")?>">Combo</a></li>
+              <li><a <?php if($this->actionName=="retail-inventory"){echo "class='$selected_class'";}?> href="<?php echo $this->seoUrl("/mps/app/retail-inventory")?>">Retail Production</a></li>
+        </ul>
+      </div>
+      <a class="menuitem <?php if($this->actionName=="office-retail"){echo "$selected_class";}?>" href="<?php echo $this->seoUrl("/mps/app/office-retail")?>" >Office Retail</a>
+      
+      
+      <a class="menuitem submenuheader <?php if(in_array($this->actionName, array("order-capture","order-list" ))){echo "$selected_class";  $selectedIndex=4;}?>" href="#" >Order Processing</a>
+      <div class="submenu">
+          <ul>
+              <li><a <?php if($this->actionName=="order-capture"){echo "class='$selected_class'";}?> href="<?php echo $this->seoUrl("/mps/app/order-capture")?>">Order Capture</a></li>
+              <li><a <?php if($this->actionName=="order-list"){echo "class='$selected_class'";}?> href="<?php echo $this->seoUrl("/mps/app/order-list")?>">Order List</a></li>
+
+              
+              
+        </ul>
+      </div>
+      
+      
+      <a class="menuitem submenuheader <?php if(in_array($this->actionName, array("pick-order" ))){echo "$selected_class"; $selectedIndex=5;}?>" href="#" >Shipping</a>
+      <div class="submenu">
+          <ul>
+              <li><a <?php if($this->actionName=="pick-order"){echo "class='$selected_class'";}?> href="<?php echo $this->seoUrl("/mps/app/pick-order")?>">Pick Order</a></li>
+        </ul>
+      </div>
+      
+      <a class="menuitem submenuheader <?php if(in_array($this->actionName, array("scan-production","cow-status", "reports","order-status","scan-inventory", "production-reports" ))){echo "$selected_class";  $selectedIndex=6;}?>" href="#" >Reports</a>
+      <div class="submenu">
+          <ul>
+              <li><a <?php if($this->actionName=="scan-production"){echo "class='$selected_class'";}?> href="<?php echo $this->seoUrl("/mps/app/scan-production")?>">Scan Production</a></li>
+              <li><a <?php if($this->actionName=="cow-status"){echo "class='$selected_class'";}?> href="<?php echo $this->seoUrl("/mps/app/cow-status")?>">Cow Status</a></li>
+              
+
+<!--              <li><a href="<?php echo $this->seoUrl("/mps/app/month-end")?>">Month End</a></li>-->
+              <li><a <?php if($this->actionName=="order-status"){echo "class='$selected_class'";}?> href="<?php echo $this->seoUrl("/mps/app/order-status")?>">Order Status</a></li>
+              
+              <li><a <?php if($this->actionName=="production-reports"){echo "class='$selected_class'";}?> href="<?php echo $this->seoUrl("/mps/app/production-reports")?>">Production Reports</a></li>
+<!--              <li><a href="<?php echo $this->seoUrl("/mps/app/shipping-status")?>">Shipping Status</a></li>-->
+        </ul>
+      </div>
+      
+    </div>
+    <div class="menu_footer"></div>
+ 
+    <!-- Menu Options End  -->
+    
+  
+    
+    
+    <!-- System Settings Start  -->
+    <div class="menu_header">System Settings</div>
+    <div class="menu_options"> 
+      <a class="menuitem submenuheader <?php if(in_array($this->actionName, array("create-user","manage-user" ))){echo "$selected_class";  $selectedIndex=7;}?>" href="#" >Manage Staff</a>
+      <div class="submenu">
+          <ul>
+              <li><a <?php if($this->actionName=="create-user"){echo "class='$selected_class'";}?> href="<?php echo $this->seoUrl("/mps/app/create-user")?>">Add Staff</a> </li>
+              <li><a <?php if($this->actionName=="manage-user"){echo "class='$selected_class'";}?> href="<?php echo $this->seoUrl("/mps/app/manage-user")?>">Staff List</a> </li>
+        </ul>
+      </div>
+      
+       <a class="menuitem submenuheader  <?php if(in_array($this->actionName, array("create-supplier","supplier-list" ))){echo "$selected_class"; $selectedIndex=8;}?>" href="#" >Manage Supplier</a>
+      <div class="submenu">
+          <ul>
+              <li><a  <?php if($this->actionName=="create-supplier"){echo "class='$selected_class'";}?> href="<?php echo $this->seoUrl("/mps/app/create-supplier")?>">Add Supplier</a> </li>
+              <li><a  <?php if($this->actionName=="supplier-list"){echo "class='$selected_class'";}?> href="<?php echo $this->seoUrl("/mps/app/supplier-list")?>">Supplier List</a></li>
+        </ul>
+      </div>
+    
+      <a class="menuitem submenuheader  <?php if(in_array($this->actionName, array("create-customer","customer-list" ))){echo "$selected_class"; $selectedIndex=9;}?>" href="#" >Manage Customer</a>
+      <div class="submenu">
+          <ul>
+              <li><a  <?php if($this->actionName=="create-customer"){echo "class='$selected_class'";}?> href="<?php echo $this->seoUrl("/mps/app/create-customer")?>">Add Customer</a> </li>
+              <li><a  <?php if($this->actionName=="customer-list"){echo "class='$selected_class'";}?> href="<?php echo $this->seoUrl("/mps/app/customer-list")?>">Customer List</a></li>
+        </ul>
+      </div>
+      <a class="menuitem submenuheader <?php if(in_array($this->actionName, array("create-product","product-list" ))){echo "$selected_class"; $selectedIndex=10;}?>" href="#" >Manage Product</a>
+      <div class="submenu">
+          <ul>
+              <li><a  <?php if($this->actionName=="create-product"){echo "class='$selected_class'";}?>  href="<?php echo $this->seoUrl("/mps/app/create-product")?>">Add Product</a> </li>
+              <li><a  <?php if($this->actionName=="product-list"){echo "class='$selected_class'";}?> href="<?php echo $this->seoUrl("/mps/app/product-list")?>">Product List</a></li>
+        </ul>
+      </div>
+      <a class="menuitem submenuheader <?php if(in_array($this->actionName, array("menu-create","menu-list", "permission-setup" ))){echo "$selected_class"; $selectedIndex=11;}?>" href="#" >Manage Menu</a>
+      <div class="submenu">
+          <ul>
+              <li><a  <?php if($this->actionName=="menu-create"){echo "class='$selected_class'";}?> href="<?php echo $this->seoUrl("/mps/app/menu-create")?>">Add Menu</a> </li>
+              <li><a  <?php if($this->actionName=="menu-list"){echo "class='$selected_class'";}?> href="<?php echo $this->seoUrl("/mps/app/menu-list")?>">Menu List</a></li>
+              <li><a <?php if($this->actionName=="permission-setup"){echo "class='$selected_class'";}?> href="<?php echo $this->seoUrl("/mps/app/permission-setup")?>" >Menu Permission Setup</a></li>
+        </ul>
+      </div>
+       <a class="menuitem submenuheader <?php if(in_array($this->actionName, array("create-inventory-location","inventory-location-list" ))){echo "$selected_class"; $selectedIndex=12;}?>" href="#" >Manage Location</a>
+      <div class="submenu">
+          <ul>
+              <li><a  <?php if($this->actionName=="create-inventory-location"){echo "class='$selected_class'";}?> href="<?php echo $this->seoUrl("/mps/app/create-inventory-location")?>">Add Location</a> </li>
+              <li><a <?php if($this->actionName=="inventory-location-list"){echo "class='$selected_class'";}?> href="<?php echo $this->seoUrl("/mps/app/inventory-location-list")?>">Location List</a></li>
+        </ul>
+      </div>
+       
+      <a class="menuitem <?php if($this->actionName=="index" && $this->controllerName=="privilege" ){echo "$selected_class";}?>" href="<?php echo $this->seoUrl("/security/privilege/index")?>" >Group/Role Setup</a>
+      <a class="menuitem <?php if($this->actionName=="manage-actions" ){echo "$selected_class";}?>" href="<?php echo $this->seoUrl("/mps/app/manage-actions")?>" >Manage Actions</a>
+      
+      
+      <a class="menuitem <?php if($this->actionName=="index" && $this->controllerName=="legend" ){echo "$selected_class";}?>" href="<?php echo $this->seoUrl("/security/legend/index")?>" >Manage Legends</a>
+      <a class="menuitem <?php if($this->actionName=="manage-cow-profile" ){echo "$selected_class";}?>" href="<?php echo $this->seoUrl("/mps/app/manage-cow-profile")?>" >Manage Cow Profile</a>
+     <a class="menuitem <?php if($this->actionName=="manage-organization" ){echo "$selected_class";}?>" href="<?php echo $this->seoUrl("/mps/app/manage-organization")?>" >Manage Organization</a>
+     <a class="menuitem <?php if($this->actionName=="lot-price-list" ){echo "$selected_class";}?>" href="<?php echo $this->seoUrl("/mps/app/lot-price-list")?>" >Manage Lot Price</a>
+    </div>
+    <div class="menu_footer"></div>
+    <!--   System Settings End-->
+    
+  </section>
+
+<script>
+   
+
+//       ddaccordion.init({
+//	headerclass: "submenuheader", //Shared CSS class name of headers group
+//	contentclass: "submenu", //Shared CSS class name of contents group
+//	revealtype: "click", //Reveal content when user clicks or onmouseover the header? Valid value: "click", "clickgo", or "mouseover"
+//	onpage: "#ff0000",
+//	mouseoverdelay: 200, //if revealtype="mouseover", set delay in milliseconds before header expands onMouseover
+//	collapseprev: true, //Collapse previous content (so only one open at any time)? true/false 
+//	defaultexpanded: [<?php echo $selectedIndex?>], //index of content(s) open by default [index1, index2, etc] [] denotes no content
+//	onemustopen: false, //Specify whether at least one header should be open always (so never all headers closed)
+//	animatedefault: true, //Should contents open by default be animated into view?
+//	persiststate: false, //persist state of opened contents within browser session?
+//	toggleclass: ["", ""], //Two CSS classes to be applied to the header when it's collapsed and expanded, respectively ["class1", "class2"]
+//	togglehtml: ["suffix", "<img src='plus.gif' class='statusicon' />", "<img src='minus.gif' class='statusicon' />"], //Additional HTML added to the header when it's collapsed and expanded, respectively  ["position", "html1", "html2"] (see docs)
+//	animatespeed: "fast", //speed of animation: integer in milliseconds (ie: 200), or keywords "fast", "normal", or "slow"
+//	oninit:function(headers, expandedindices){ //custom code to run when headers have initalized
+//		//do nothing
+//	},
+//	onopenclose:function(header, index, state, isuseractivated){ //custom code to run whenever a header is opened or closed
+//		//do nothing
+//	}
+//})
+
+
+
+</script>    

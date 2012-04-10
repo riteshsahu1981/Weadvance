@@ -1,0 +1,172 @@
+<?php
+$this->headScript()->appendFile("/js/ui.dropdownchecklist-1.4-min.js");
+$this->headScript()->appendFile("/js/ui.dropdownchecklist.js");
+//$this->headScript()->appendFile("/js/jquery-1.6.1.min.js");
+$this->headScript()->appendFile("/js/jquery-ui-1.8.13.custom.min.js");
+$this->headLink()->appendStylesheet('/js/ui.dropdownchecklist.standalone.css');
+$this->headLink()->appendStylesheet('/js/ui.dropdownchecklist.themeroller.css');
+$this->headLink()->appendStylesheet('/js/smoothness-1.8.13/jquery-ui-1.8.13.custom.css');
+?>
+
+      <form>
+       
+        <div class="form_row_add">
+          <div class="form_label">Case Format: <span class="required">*</span></div>
+          <div class="form_field">
+            <select>
+              <option value="-- Select --">BlackOutBug</option>
+              <option value="-- Select --">JulianDateOnly</option>
+              <option value="-- Select --">Packed+Julian</option>
+              <option value="-- Select --">Packed Date Only</option>
+              <option value="-- Select --">pork</option>
+            </select>
+          </div>
+
+          <div class="form_row">
+            <div class="form_label">
+              Label/Case: <span class="required">*</span>
+            </div>
+            <div class="form_field">
+              <input type="text" value="">
+          </div>
+          </div>
+          
+        </div>
+        <div class="form_row">
+          <div class="form_label">Product Identifier: <span class="required">*</span></div>
+          <div class="form_field">
+            <input type="text" value="">
+          </div>
+          <div class="form_label">Pack Location: <span class="required">*</span></div>
+          <div class="form_field">
+           <select multiple="multiple" class="s1">
+              <option value="-- Select --">Bone</option>
+              <option value="-- Select --">Pack</option>
+              <option value="-- Select --">Combo</option>
+              <option value="-- Select --">Partial</option>
+            </select>
+          </div>
+        </div>
+        <div class="form_row">
+          <div class="form_label">Part Number: <span class="required">*</span></div>
+          <div class="form_field">
+             <input type="text" value="">
+          </div>
+          <div class="form_label">
+            Sell By Days: <span class="required">*</span>
+          </div>
+          <div class="form_field">
+            <input type="text" value="">
+          </div>
+        </div>
+        
+        
+        
+        <div class="form_row">
+          
+       
+          <div class="form_label">Price/Lb ($):</div>
+          <div class="form_field">
+             <input type="text" value="">
+        </div>
+
+          <div class="form_label">Pallet ID:</div>
+          <div class="form_field">
+            <input type="text" value=""> (For Partials Pallets Only)
+        </div>
+        </div>
+
+
+        <div class="form_row">
+          <div class="form_label">
+            <span class="required">Des. Line #1:</span>
+          </div>
+          <div class="form_field">
+            <input type="text" value="">
+          </div>
+          <div class="form_label">
+            <span class="required">Des. Line #2: </span>
+          </div>
+          <div class="form_field">
+            <input type="text" value="">
+          </div>
+        </div>
+        <div class="form_row">
+          <div class="form_label">
+            <span class="required">Des. Line #3: </span>
+          </div>
+          <div class="form_field">
+            <input type="text" value="">
+          </div>
+          <div class="form_label">
+            <span class="required">Des. Line #4:</span>
+          </div>
+          <div class="form_field">
+            <input type="text" value="">
+          </div>
+        </div>
+        
+        
+        <div class="form_row form_separate" style="padding:5px 0 5px 0;"> &nbsp; </div>
+        <div class="form_row" style="padding:0;text-align:left;">
+          <div class="form_label" style="text-align:left;">
+            <h2>Weight</h2>
+          </div>
+        </div>
+        
+        <div class="form_row">
+          <div class="form_label">Lower Weight: <span class="required">*</span></div>
+          <div class="form_field">
+            <input type="text" value="">
+          </div>
+          <div class="form_label">Fixed Weight: <span class="required">*</span></div>
+          <div class="form_field">
+            <input type="text" value="">
+          </div>
+        </div>
+        <div class="form_row">
+          <div class="form_label">Heigh Weight: <span class="required">*</span></div>
+          <div class="form_field">
+             <input type="text" value="">
+          </div>
+          <div class="form_label">Tare Weight: <span class="required">*</span></div>
+          <div class="form_field">
+            <input type="text" value="">
+          </div>
+        </div>
+        <div class="form_row form_separate"> &nbsp; </div>
+        <div class="form_row">
+          <div class="form_label">
+            <h2>Select an Application Requirement</h2>
+          </div>
+        </div>
+        <div class="form_row">
+        <div class="form_label">Required Application:</div>
+           <div class="form_field_same">
+            <input name="required_app1" type="radio" value="">
+              Print all Random Weight <br/>
+              <input name="required_app1" type="radio" value="">
+                Print Random Wts.within limits <br/>
+
+                <span style="padding:10px 0 0 0;">
+                  <input name="required_app1" type="radio" value="" >
+                  Print Random Wts.within limits   <br/>
+                </span>
+              </div>
+          
+        
+            </div>
+        <div class="form_row">
+          <div class="form_label">&nbsp;</div>
+          <div class="form_field">
+            <input type="button" value="Submit">
+          </div>
+        </div>
+      </form>
+
+       <script type="text/javascript">
+
+		$(".s1").dropdownchecklist({ emptyText: "Please select ...", width: 110 });
+                //$(".s1").dropdownchecklist({ firstItemChecksAll: true, explicitClose: '...close' , width: 110 }); //Jitendra
+                
+     </script>

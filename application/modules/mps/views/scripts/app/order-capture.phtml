@@ -1,0 +1,402 @@
+<div class="bone_panel">
+        <div class="bone_left">
+          <div class="bone_left_head">
+            <h2><?php echo $this->puts("Customer Items")?></h2>
+          </div>
+          <div class="bone_date_des" style="padding-bottom:16px;">
+              
+              
+              <table class="from_table" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right" class="form_tab_lebel" valign="top"><?php echo $this->puts("Date:")?></td>
+    <td align="left" class="form_tab_input" valign="top"><div class="bone_date_bx2">
+                      <input type="text" id="datepicker">
+                    </div></td>
+    <td align="right"  class="form_tab_lebel" valign="top"><?php echo $this->puts("P.O.Number:")?></td>
+    <td align="left" class="form_tab_input" valign="top"><input type="text" value=""></td>
+    <td align="left" class="form_tab_input" valign="top"><input style="margin:0;" class="darkblue" type="button" value="" src="/images/verbal_img.gif"></td>
+    
+  </tr>
+ <tr>
+    <td align="right"  class="form_tab_lebel" valign="top"><?php echo $this->puts("Select Customer:")?></td>
+    <td align="left" class="form_tab_input" valign="top"><select>
+                    <option>-- Select --</option>
+                    <option>Mark Vincy</option>
+                    <option>Nathan Lee</option>
+                    <option>Stephan Ronald</option>
+                  </select></td>
+    <td align="right"  class="form_tab_lebel" valign="top"></td>
+    <td align="left" class="form_tab_input" valign="top"></td>
+    <td align="right"  class="form_tab_lebel" valign="top"></td>
+   
+  </tr>
+  
+  <table width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="left" style="padding: 23px 0 4px 0;"><input type="button" value="<?php echo $this->puts("Remove All Items")?>" class="gray_button_dark"></td>
+    <td align="right" style="padding: 23px 0 4px 0;"><input type="button"  value="<?php echo $this->puts("Finish & Print Picklist")?>" class="yellow_button"></td>
+  </tr>
+</table>
+ 
+    
+</table>
+              
+   <script>
+				$(function() {
+					$( "#datepicker" ).datepicker({
+						showOn: "button",
+						buttonImage: "<?php echo $this->cdnUri()?>/images/calendar_icon.png",
+						buttonText: "Calendar",
+						buttonImageOnly: true
+					});
+				});
+	</script>           
+              
+         
+          </div>
+          <!-- <div class="print_div"><a href="#" title="Print"><img src="<?php echo $this->cdnUri()?>/images/print_icon.png" alt=""><span>Print</span></a></div> -->
+          <div class="bane_data">
+            <div class="gird_box">
+              <div class="scroll_pane_bone">
+                <table class="grid_table" style="margin: 0 0 15px 0" border="0"  cellspacing="0" cellpadding="0">
+                  <tr>
+                    <th align="left" width="78"><?php echo $this->puts("Product ID")?></th>
+                    <th align="left" width="198"><?php echo $this->puts("Product Name")?><img src="<?php echo $this->cdnUri()?>/images/arrow.gif" align="right" alt=""></th>
+                    <th align="left" width="81"><?php echo $this->puts("Unit")?><img src="<?php echo $this->cdnUri()?>/images/arrow.gif" align="right" alt=""></th>
+                    <th align="left" width="121"><?php echo $this->puts("Avg. Case Wt.")?><img src="<?php echo $this->cdnUri()?>/images/arrow.gif" align="right" alt=""></th>
+                    <th align="right" width="105"><?php echo $this->puts("Price/lb ($)")?><img src="<?php echo $this->cdnUri()?>/images/arrow.gif" align="right" alt=""></th>
+                    <th align="left" width="101"><?php echo $this->puts("Lbs to Order")?></th>
+                    <th align="left" width="136"><?php echo $this->puts("Action")?></th>
+                  </tr>
+                  <tr class="package_row1">
+                    <td align="left">002</td>
+                    <td align="left">Ground EyeRound</td>
+                    <td align="left" class="image"><input type="text" name="" value="0" class="spinbutton spin-button" id="id1" /></td>
+                    <td align="left" class="image"><input type="text" value="" name=""></td>
+                    <td align="right">$631.00</td>
+                    <td align="left">631.00</td>
+					<td align="left" class="image"><a href=" " style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/edit.png" border="0" title="Edit"/></a><a href=" "  style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/accept.png" border="0" title="Accept"/></a><a href=" "  style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/del.png" border="0" title="Delete"/></a></td>
+                  </tr>
+                  <tr class="package_row1">
+                    <td align="left">002</td>
+                    <td align="left">Ground EyeRound</td>
+                    <td align="left" class="image"><input type="text" name="" value="0" class="spinbutton spin-button" id="id2" /></td>
+                    <td align="left" class="image"><input type="text" value="" name=""></td>
+                    <td align="right">$631.00</td>
+                    <td align="left">631.00</td>
+					<td align="left" class="image"><a href=" " style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/edit.png" border="0" title="Edit"/></a><a href=" "  style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/accept.png" border="0" title="Accept"/></a><a href=" "  style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/del.png" border="0" title="Delete"/></a></td>
+                  </tr>
+                  <tr class="package_row1">
+                    <td align="left">002</td>
+                    <td align="left">Ground EyeRound</td>
+                    <td align="left" class="image"><input type="text" name="" value="0" class="spinbutton spin-button" id="id3" /></td>
+                    <td align="left" class="image"><input type="text" value="" name=""></td>
+                    <td align="right">$631.00</td>
+                    <td align="left">631.00</td>
+					<td align="left" class="image"><a href=" " style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/edit.png" border="0" title="Edit"/></a><a href=" "  style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/accept.png" border="0" title="Accept"/></a><a href=" "  style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/del.png" border="0" title="Delete"/></a></td>
+                  </tr>
+                  <tr class="package_row1">
+                    <td align="left">002</td>
+                    <td align="left">Ground EyeRound</td>
+                    <td align="left" class="image"><input type="text" name="" value="0" class="spinbutton spin-button" id="id4" /></td>
+                    <td align="left" class="image"><input type="text" value="" name=""></td>
+                    <td align="right">$631.00</td>
+                    <td align="left">631.00</td>
+					<td align="left" class="image"><a href=" " style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/edit.png" border="0" title="Edit"/></a><a href=" "  style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/accept.png" border="0" title="Accept"/></a><a href=" "  style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/del.png" border="0" title="Delete"/></a></td>
+                  </tr>
+                  <tr class="package_row1">
+                    <td align="left">002</td>
+                    <td align="left">Ground EyeRound</td>
+                    <td align="left" class="image"><input type="text" name="" value="0" class="spinbutton spin-button" id=""></td>
+                    <td align="left" class="image"><input type="text" value="" name=""></td>
+                    <td align="right">$631.00</td>
+                    <td align="left">631.00</td>
+					<td align="left" class="image"><a href=" " style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/edit.png" border="0" title="Edit"/></a><a href=" "  style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/accept.png" border="0" title="Accept"/></a><a href=" "  style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/del.png" border="0" title="Delete"/></a></td>
+                  </tr>
+                  <tr class="package_row1">
+                    <td align="left">002</td>
+                    <td align="left">Ground EyeRound</td>
+                    <td align="left" class="image"><input type="text" name="" value="0" class="spinbutton spin-button" id=""></td>
+                    <td align="left" class="image"><input type="text" value="" name=""></td>
+                    <td align="right">$631.00</td>
+                    <td align="left">631.00</td>
+					<td align="left" class="image"><a href=" " style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/edit.png" border="0" title="Edit"/></a><a href=" "  style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/accept.png" border="0" title="Accept"/></a><a href=" "  style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/del.png" border="0" title="Delete"/></a></td>
+                  </tr>
+                  <tr class="package_row1">
+                    <td align="left">002</td>
+                    <td align="left">Ground EyeRound</td>
+                    <td align="left" class="image"><input type="text" name="" value="0" class="spinbutton spin-button" id=""></td>
+                    <td align="left" class="image"><input type="text" value="" name=""></td>
+                    <td align="right">$631.00</td>
+                    <td align="left">631.00</td>
+					<td align="left" class="image"><a href=" " style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/edit.png" border="0" title="Edit"/></a><a href=" "  style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/accept.png" border="0" title="Accept"/></a><a href=" "  style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/del.png" border="0" title="Delete"/></a></td>
+                  </tr>
+                  <tr class="package_row1">
+                    <td align="left">002</td>
+                    <td align="left">Ground EyeRound</td>
+                    <td align="left" class="image"><input type="text" name="" value="0" class="spinbutton spin-button" id=""></td>
+                    <td align="left" class="image"><input type="text" value="" name=""></td>
+                    <td align="right">$631.00</td>
+                    <td align="left">631.00</td><td align="left" class="image"><a href=" " style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/edit.png" border="0" title="Edit"/></a><a href=" "  style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/accept.png" border="0" title="Accept"/></a><a href=" "  style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/del.png" border="0" title="Delete"/></a></td>
+                  </tr>
+                  <tr class="package_row1">
+                    <td align="left">002</td>
+                    <td align="left">Ground EyeRound</td>
+                    <td align="left" class="image"><input type="text" name="" value="0" class="spinbutton spin-button" id=""></td>
+                    <td align="left" class="image"><input type="text" value="" name=""></td>
+                    <td align="right">$631.00</td>
+                    <td align="left">631.00</td><td align="left" class="image"><a href=" " style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/edit.png" border="0" title="Edit"/></a><a href=" "  style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/accept.png" border="0" title="Accept"/></a><a href=" "  style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/del.png" border="0" title="Delete"/></a></td>
+                  </tr>
+                  <tr class="package_row1">
+                    <td align="left">002</td>
+                    <td align="left">Ground EyeRound</td>
+                    <td align="left" class="image"><input type="text" name="" value="0" class="spinbutton spin-button" id=""></td>
+                    <td align="left" class="image"><input type="text" value="" name=""></td>
+                    <td align="right">$631.00</td>
+                    <td align="left">631.00</td><td align="left" class="image"><a href=" " style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/edit.png" border="0" title="Edit"/></a><a href=" "  style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/accept.png" border="0" title="Accept"/></a><a href=" "  style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/del.png" border="0" title="Delete"/></a></td>
+                  </tr>
+                  <tr class="package_row1">
+                    <td align="left">002</td>
+                    <td align="left">Ground EyeRound</td>
+                    <td align="left" class="image"><input type="text" name="" value="0" class="spinbutton spin-button" id=""></td>
+                    <td align="left" class="image"><input type="text" value="" name=""></td>
+                    <td align="right">$631.00</td>
+                    <td align="left">631.00</td><td align="left" class="image"><a href=" " style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/edit.png" border="0" title="Edit"/></a><a href=" "  style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/accept.png" border="0" title="Accept"/></a><a href=" "  style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/del.png" border="0" title="Delete"/></a></td>
+                  </tr>
+                  <tr class="package_row1">
+                    <td align="left">002</td>
+                    <td align="left">Ground EyeRound</td>
+                    <td align="left" class="image"><input type="text" name="" value="0" class="spinbutton spin-button" id=""></td>
+                    <td align="left" class="image"><input type="text" value="" name=""></td>
+                    <td align="right">$631.00</td>
+                    <td align="left">631.00</td><td align="left" class="image"><a href=" " style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/edit.png" border="0" title="Edit"/></a><a href=" "  style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/accept.png" border="0" title="Accept"/></a><a href=" "  style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/del.png" border="0" title="Delete"/></a></td>
+                  </tr>
+                  <tr class="package_row1">
+                    <td align="left">002</td>
+                    <td align="left">Ground EyeRound</td>
+                    <td align="left" class="image"><input type="text" name="" value="0" class="spinbutton spin-button" id=""></td>
+                    <td align="left" class="image"><input type="text" value="" name=""></td>
+                    <td align="right">$631.00</td>
+                    <td align="left">631.00</td><td align="left" class="image"><a href=" " style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/edit.png" border="0" title="Edit"/></a><a href=" "  style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/accept.png" border="0" title="Accept"/></a><a href=" "  style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/del.png" border="0" title="Delete"/></a></td>
+                  </tr>
+                  <tr class="package_row1">
+                    <td align="left">002</td>
+                    <td align="left">Ground EyeRound</td>
+                    <td align="left" class="image"><input type="text" name="" value="0" class="spinbutton spin-button" id=""></td>
+                    <td align="left" class="image"><input type="text" value="" name=""></td>
+                    <td align="right">$631.00</td>
+                    <td align="left">631.00</td><td align="left" class="image"><a href=" " style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/edit.png" border="0" title="Edit"/></a><a href=" "  style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/accept.png" border="0" title="Accept"/></a><a href=" "  style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/del.png" border="0" title="Delete"/></a></td>
+                  </tr>
+                  <tr class="package_row1">
+                    <td align="left">002</td>
+                    <td align="left">Ground EyeRound</td>
+                    <td align="left" class="image"><input type="text" name="" value="0" class="spinbutton spin-button" id=""></td>
+                    <td align="left" class="image"><input type="text" value="" name=""></td>
+                    <td align="right">$631.00</td>
+                    <td align="left">631.00</td><td align="left" class="image"><a href=" " style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/edit.png" border="0" title="Edit"/></a><a href=" "  style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/accept.png" border="0" title="Accept"/></a><a href=" "  style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/del.png" border="0" title="Delete"/></a></td>
+                  </tr>
+                  <tr class="package_row1">
+                    <td align="left">002</td>
+                    <td align="left">Ground EyeRound</td>
+                    <td align="left" class="image"><input type="text" name="" value="0" class="spinbutton spin-button" id=""></td>
+                    <td align="left" class="image"><input type="text" value="" name=""></td>
+                    <td align="right">$631.00</td>
+                    <td align="left">631.00</td><td align="left" class="image"><a href=" " style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/edit.png" border="0" title="Edit"/></a><a href=" "  style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/accept.png" border="0" title="Accept"/></a><a href=" "  style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/del.png" border="0" title="Delete"/></a></td>
+                  </tr>
+				   <tr class="package_row1">
+                    <td align="left">002</td>
+                    <td align="left">Ground EyeRound</td>
+                    <td align="left" class="image"><input type="text" name="" value="0" class="spinbutton spin-button" id=""></td>
+                    <td align="left" class="image"><input type="text" value="" name=""></td>
+                    <td align="right">$631.00</td>
+                    <td align="left">631.00</td><td align="left" class="image"><a href=" " style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/edit.png" border="0" title="Edit"/></a><a href=" "  style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/accept.png" border="0" title="Accept"/></a><a href=" "  style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/del.png" border="0" title="Delete"/></a></td>
+                  </tr>
+                  <tr class="package_row1">
+                    <td align="left">002</td>
+                    <td align="left">Ground EyeRound</td>
+                    <td align="left" class="image"><input type="text" name="" value="0" class="spinbutton spin-button" id=""></td>
+                    <td align="left" class="image"><input type="text" value="" name=""></td>
+                    <td align="right">$631.00</td>
+                    <td align="left">631.00</td><td align="left" class="image"><a href=" " style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/edit.png" border="0" title="Edit"/></a><a href=" "  style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/accept.png" border="0" title="Accept"/></a><a href=" "  style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/del.png" border="0" title="Delete"/></a></td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <script type="text/javascript">
+		
+		
+        // Script For Grid Starts //
+		$(document).ready(function(){
+			//row click
+			$('tr.package_row1').click(function (event) {
+								$('tr.package_row1').toggleClass('active', false);
+								$(this).toggleClass('active', true);
+								});
+			// table Width
+			var tblWidth=0;
+			$('.grid_table tr:first').children().each(function(index) {
+									tblWidth = tblWidth + parseInt($(this).attr('width'));
+									});
+			$(".grid_table").css("width", tblWidth);
+		});
+
+		$('.grid_table tr').find('td:last').addClass('last')
+		$('.grid_table tr').find('th:last').addClass('last')
+		
+		// Script For Grid Ends //
+
+
+
+		// Script For Scroll Panel Starts //
+		$(function(){
+		$('.scroll_pane_bone').jScrollPane({showArrows: true});
+		});
+		// Script For Scroll Panel Ends //
+
+
+		// Script For Tabs Panel Starts //
+			$(function(){
+				$('#tabs').tabs();
+			});
+		// Script For Tabs Panel Ends //
+        
+     </script>
+          </div>
+        </div>
+        <div class="bone_right">
+          <div id="tabs">
+            <ul>
+              <li><a href="#tabs-1"><?php echo $this->puts("All Items")?></a></li>
+            </ul>
+            <div id="tabs-1">
+              <div class="gird_box">
+                <div class="scroll_pane_product">
+                  <table class="grid_table product_table" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                      <th align="left" width="120"><?php echo $this->puts("Product ID")?> </th>
+                      <th align="left" width="250"><?php echo $this->puts("Product Name")?></th>
+                    </tr>
+                    <tr class="package_row1">
+                      <td>002</td><td>Ground EyeRound</td>
+                    </tr>
+                    <tr class="package_row1"><td>002</td><td>Ground EyeRound</td>
+                    </tr>
+                    <tr class="package_row1">
+                      <td>002</td><td>Ground EyeRound</td>
+                    </tr>
+                    <tr class="package_row1">
+                      <td>002</td>
+                      <td>Ground EyeRound</td>
+                    </tr>
+                    <tr class="package_row1">
+                      <td>002</td>
+                      <td>Ground EyeRound</td>
+                    </tr>
+                    <tr class="package_row1">
+                      <td>002</td>
+                      <td>Ground EyeRound</td>
+                    </tr>
+                    <tr class="package_row1">
+                      <td>002</td>
+                      <td>Ground EyeRound</td>
+                    </tr>
+                    <tr class="package_row1">
+                      <td>002</td>
+                      <td>Ground EyeRound</td>
+                    </tr>
+                    <tr class="package_row1">
+                      <td>002</td>
+                      <td>Ground EyeRound</td>
+                    </tr>
+                    <tr class="package_row1">
+                      <td>002</td>
+                      <td>Ground EyeRound</td>
+                    </tr>
+                    <tr class="package_row1">
+                      <td>002</td>
+                      <td>Ground EyeRound</td>
+                    </tr>
+                    <tr class="package_row1">
+                      <td>002</td>
+                      <td>Ground EyeRound</td>
+                    </tr>
+                    <tr class="package_row1">
+                      <td>002</td>
+                      <td>Ground EyeRound</td>
+                    </tr>
+                    <tr class="package_row1">
+                      <td>002</td>
+                      <td>Ground EyeRound</td>
+                    </tr>
+                    <tr class="package_row1">
+                      <td>002</td>
+                      <td>Ground EyeRound</td>
+                    </tr>
+                    <tr class="package_row1">
+                      <td>002</td>
+                      <td>Ground EyeRound</td>
+                    </tr>
+                    <tr class="package_row1">
+                      <td>002</td>
+                      <td>Ground EyeRound</td>
+                    </tr>
+                    <tr class="package_row1">
+                      <td>002</td>
+                      <td>Ground EyeRound</td>
+                    </tr>
+                    <tr class="package_row1">
+                      <td>002</td>
+                      <td>Ground EyeRound</td>
+                    </tr>
+                    <tr class="package_row1">
+                      <td>002</td>
+                      <td>Ground EyeRound</td>
+                    </tr> <tr class="package_row1">
+                      <td>002</td>
+                      <td>Ground EyeRound</td>
+                    </tr>
+                    <tr class="package_row1">
+                      <td>002</td>
+                      <td>Ground EyeRound</td>
+                    </tr>
+                    <tr class="package_row1">
+                      <td>002</td>
+                      <td>Ground EyeRound</td>
+                    </tr>
+                    <tr class="package_row1">
+                      <td>002</td>
+                      <td>Ground EyeRound</td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+              <script type="text/javascript">
+			$(document).ready(function(){
+			// table Width
+			var tblWidth=0;
+			$('.product_table tr:first').children().each(function(index) {
+									tblWidth = tblWidth + parseInt($(this).attr('width'));
+									});
+			$(".product_table").css("width", tblWidth);
+		});
+		
+		// Script For Scroll Panel Starts //
+		$(function(){
+		$('.scroll_pane_product').jScrollPane({showArrows: true});
+		});
+		// Script For Scroll Panel Ends //
+
+            </script>
+            
+            <script type="text/javascript">
+	       
+                var nocows = $('#id1').spinit({ height: 16, width: 60, min: 0, initValue: 0, max: 100});
+                 var nocows = $('#id2').spinit({ height: 16, width: 60, min: 0, initValue: 0, max: 100});
+                  var nocows = $('#id3').spinit({ height: 16, width: 60, min: 0, initValue: 0, max: 100});
+                   var nocows = $('#id4').spinit({ height: 16, width: 60, min: 0, initValue: 0, max: 100});
+        
+     </script>
+            </div>
+          </div>
+        </div>
+      </div>

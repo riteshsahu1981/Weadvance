@@ -1,0 +1,138 @@
+<div> <?php echo $this->flashMessages()?> </div>
+
+<?php if (count($this->widgets)): ?>
+       
+
+<form method="post" action="<?php echo $this->seoUrl("/admin/widget/edit-widget")?>">
+
+    <div class="gird_box">
+        <div class="scroll-pane">
+          <table class="grid_table" border="0"  cellspacing="0" cellpadding="0" width="100%">
+		  
+		<tr>
+                <th align="left" width="10%">Master ID</th>
+                <th align="left" width="25%">Widget Title</th>
+                <th align="left" width="10%">Display</th>
+                <th align="left" width="10%">Order</th>
+            </tr>
+        <?php 
+        foreach ($this->widgets as $item): ?>
+        <?php $mID=$item->master_id;?>
+        
+            <tr class="package_row1">
+                <td align="left"><?php echo $item->master_id; ?></td>
+                <td align="left"><?php echo $item->master_value;?></td>
+                <td align="center">
+                <?php 
+                if ($item->intval1!=0)
+                   $checked="checked";
+                else
+                    $checked="";
+                ?>
+                    <input type="checkbox" name="display<?php echo $mID; ?>" <?php echo $checked; ?> />
+                </td>
+                <td class="image" align="center"> <input type="text" name="order<?php echo $mID; ?>" value="<?php echo $item->intval2;  ?>" size="3" maxlength="4" /> </td>
+            </tr>
+            <?php endforeach; ?>
+          </table>
+        </div>
+      </div>
+     <p align="right"> <input type="submit" name="save" value="Save"/></p>
+</form>
+      <br/>
+       
+<?php else :
+echo "<p>No result found.</p>";
+endif; ?>
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+function deleteMaster(DURL)
+{
+    var c=confirm("Are you sure to delete");
+    if (c==true)
+     window.location.href=DURL;   
+}
+
+ function changeMasterStatus(master_code,master_status)
+    {
+        
+       $("#changeStatus_"+master_code).html('<img height="25px" alt="In process..." src="/images/loading.gif"/>');
+       $.post(
+            "/security/privilege/change-status", 
+            { 
+               "masterCode" : master_code,
+               "status" : master_status
+            }, 
+            function (data) {
+                
+                if(data.result==1)
+                {
+                    if(master_status==1)
+                        master_status=0;
+                    else
+                        master_status=1;
+                    
+                    if( master_status==1) 
+                    {
+                    
+                        var title="Click here to make inactive!";
+                        var image="/images/icons/active-1.png";
+                    }
+                    else
+                    {
+                        var title="Click here to make active!";
+                        var image="/images/icons/deactive.png";
+                    }
+                
+                    $("#changeStatus_"+master_code).html('<a onclick="changeMasterStatus(\''+ master_code + '\',' + master_status + ')" href="javascript:void(0);" title="'+ title +'" ><img alt="'+ title +'" src="'+ image +'"/></a>');
+                }
+                    
+            },"json"
+        );
+    }
+		
+		
+           // Script For Grid Starts //
+		$(document).ready(function(){
+			//row click
+			$('tr.package_row1').click(function (event) {
+								$('tr.package_row1').toggleClass('active', false);
+								$(this).toggleClass('active', true);
+								});
+			// table Width
+			var tblWidth=0;
+			$('.grid_table tr:first').children().each(function(index) {
+									tblWidth = tblWidth + parseInt($(this).attr('width'));
+									});
+			//$(".grid_table").css("width", tblWidth);
+		});
+
+		$('.grid_table tr').find('td:last').addClass('last')
+		$('.grid_table tr').find('th:last').addClass('last')
+		// Script For Grid Ends //
+
+
+
+		// Script For Scroll Panel Starts //
+		$(function(){
+		//$('.scroll-pane').jScrollPane({showArrows: true});
+		});
+		// Script For Scroll Panel Ends //
+
+
+		// Script For Tabs Panel Starts //
+			$(function(){
+				$('#tabs').tabs();
+			});
+		// Script For Tabs Panel Ends //
+        
+     </script>

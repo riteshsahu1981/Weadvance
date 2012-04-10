@@ -1,0 +1,234 @@
+<div><?php echo $this->flashMessages(); ?></div>
+<div class="left_con" style="width:100%">
+<form method="post" id="weight" action="<?php echo $this->seoUrl("/mps/production/weighing")?>">
+  <table width="100%">
+    <tr>
+      <td>
+          
+          <div class="idsection">
+          <div class="idsection_bx1">
+            <input name="cowid" id="cowid" type="text" placeholder="Enter Cow ID" value="<?php echo $this->cowid; ?>" class="hex required"/>
+          </div>
+          <div class="idsection_bx2"><a href="#"><img id="hex" src="<?php echo $this->cdnUri()?>/images/keyboard.png" alt="" border="0" /></a></div>
+          
+          </div>
+        
+        <div class="idsection">
+          <div class="idsection_bx1" style=" padding: 10px 0 0 0px;">
+            <input name="weight" type="text" placeholder="Last Hot Weight" class="required" value=""/>
+          </div>
+          <div class="idsection_bx2">
+              <img id="editweight" style="display:none;" height="24px" alt="In process..." src="/images/loading.gif"/>
+              <input type="submit" name="submit" id="submit" class="gray_button activegray" value="Submit"  /></div>
+          
+        </div>
+         <span id="idStatus" class="error"></span> 
+        </td>
+    </tr>
+    <tr>
+      <td>      
+       <div style="padding: 20px 0 0 0px;">
+          <?php 
+          foreach($this->condumnValue as $key => $value) { ?> 
+          <input type="submit" name="condumnStatus" class="gray_button" value="<?php echo $value; ?>" />
+           <?php } ?>
+       </div>
+      </td> 
+    </tr>
+  </table>
+</form>    
+<?php if (count($this->paginator)): ?>
+ <?php
+        $sno=0;
+        $page=$this->paginator->getCurrentPageNumber();
+        $items_per_page=$this->paginator->getItemCountPerPage(); 
+        if($page>1)
+        {
+                $sno=$items_per_page*$page - $items_per_page ; 	
+        }
+        ?>
+        <?php 
+            
+           echo $this->paginationControl($this->paginator, 'Sliding', 'pagination-ext.phtml',array("linkArray"=>$this->linkArray));
+              
+        ?>    
+  <div class="touch_gird_box">
+    <div class="scroll_pane_tab" style="height: auto;" >
+      <table class="grid_table touch_table" width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <th align="left" width="7%"><?php echo $this->puts('Seq. No.');?></th>
+          <th align="left" width="8%"><?php echo $this->puts('Cow ID');?> <?php echo $this->sort("id", $this->sortOptions);?></th>
+          <th align="left" width="13%"><?php echo $this->puts('Knocked Date');?> <?php echo $this->sort("knocked_date", $this->sortOptions);?></th>
+          <th align="left" width="12%"><?php echo $this->puts('Cow Weight');?></th>
+          <th align="left" width="12%"><?php echo $this->puts('Supplier');?> <?php echo $this->sort("first_name", $this->sortOptions);?></th>
+          <th align="left" width="8%"><?php echo $this->puts('Condumn Status');?></th>
+          <th align="left" width="7%"><?php echo $this->puts('Edit');?> </th>
+          <th align="left" width="7%"><?php echo $this->puts('Reprint');?> </th>
+        </tr>
+          <?php 
+        reset($this->condumnValue);
+        foreach ($this->paginator as $item): ?>
+        <?php $sno++; $id=$item->id;?>
+        
+        <tr class="package_row1">
+          <td rel="<?php echo $id; ?>"><?php echo $item->sequence_no; ?></td>
+          <td rel="<?php echo $id; ?>"><?php echo $id; ?></td>
+          <td rel="<?php echo $id; ?>"><?php echo (strtotime($item->knocked_date)) ? date('m/d/Y',  strtotime($item->knocked_date)) : ''; ?></td>
+          <td rel="<?php echo $id; ?>" id="weight_<?php echo $id; ?>" class="image weight"><?php echo $item->weight; ?></td>
+
+          <td rel="<?php echo $id; ?>"><?php echo $item->first_name; ?></td>
+          <td rel="<?php echo $id; ?>" align="left" valign="middle">
+          <?php 
+          if ($item->status_on==1)
+          {
+                $str=$item->condumn_sub_status;
+                $strArr = explode(",", $str);
+
+                foreach($this->condumnSubValue as $inp=>$value) {
+                     if (in_array($inp,$strArr))
+                      echo $value.',';
+                }
+                        
+          //echo $item->condumn_sub_status; 
+          }
+          else
+          echo $this->condumnValue[$item->status_on]; 
+              
+          ?>
+          </td>
+          <td class="image"><a rel="<?php echo $id; ?>" class="weight" href="javascript:void(0)"><img src="<?php echo $this->cdnUri()?>/images/icons/edit_large.png" alt="Edit" border="0" title="Edit"></a> </td>
+       
+          <td class="image"><a href="#"><img src="<?php echo $this->cdnUri()?>/images/icons/print_large.png" alt="Reprint" title="Reprint" border="0"></a> </td>
+          </tr>
+        <?php endforeach; ?>
+      </table>
+    </div>
+  </div>
+ <?php 
+      echo $this->paginationControl($this->paginator, 'Sliding', 'pagination-ext.phtml',array("linkArray"=>$this->linkArray));
+      ?>
+    <?php else : ?>
+    <p>No result found</p>
+    <?php endif;?>
+    
+    <script type="text/javascript">
+
+
+ $(document).ready(function(){
+           $("#weight").validate(); 
+           
+           $(".package_row1 td").click(function(){
+           var t=$(this).attr("class"); 
+           var val=$(this).attr('rel');
+            if (t!="image weight")
+            {
+                $("#cowid").val(val);  
+            }
+           });
+           
+           $(".cowrow").click(function(){
+               var id=$(this).attr("rel");
+              $("#cowid").val(id);  
+           });
+           
+           $("#cowid").blur(function(){
+               var val=$(this).val();
+               if (val!="")
+                   {
+                          $.post(
+                            "/mps/production/check-cowid", 
+                            { 
+                               "id":val,
+                               "process_status" : 'Weighing'
+                              
+                            }, 
+                            function (data) {
+                                 if(data.result==0)
+                                     {
+                                         $("#idStatus").html("Cow id does not exist.");
+                                         setTimeout('$("#idStatus").html("")',4000);
+                                     }
+                                     else
+                                         {
+                                              //$("#weight_"+id).html(val);
+                                         }
+
+
+                            },"json"
+                        );
+                   
+                   }
+           });
+        });
+        
+
+
+
+      
+   
+    function creatTextBox(id,prefix)
+    {
+        var txtname="weight_"+prefix+"_"+id;
+        
+        var tdvalue=$('#'+prefix+'_'+id).html();
+        var len=$("#loading_"+id).length;
+     
+        
+        if (($("#"+txtname).length==0) && ( len==0))
+         {
+            $('#'+prefix+'_'+id).html("<input type='text' id='"+txtname+"' name='"+txtname+"' class='text_"+prefix+"' rel='"+id+"'>");
+            $("#"+txtname).val(tdvalue);
+            $("#"+txtname).focus();
+         }
+        
+    }
+        
+$(function () {
+    
+    $(".weight").click(function(){
+        creatTextBox($(this).attr("rel"), "weight");
+        
+    });
+     $(".text_weight").live("blur",function(){
+      
+        $("#weight_"+$(this).attr("rel")).html('');
+        saveValues(this);
+    });
+    $(".text_weight").live("keypress",function(event){
+        if ( event.which == 13 ) 
+        {
+            saveValues(this);
+        }
+    });
+});
+
+ function saveValues(objTxt)
+{
+     var id=$(objTxt).attr("rel");
+    var val=$(objTxt).val();
+    $("#weight_"+id).html('<img id="loading_'+id+'" height="22px" alt="In process..." src="/images/loading.gif"/>');
+    $.post(
+            "/mps/production/save-weighing-value", 
+            { 
+               "value":val,
+               "id" : id
+            }, 
+            function (data) {
+                 if(data.result==0)
+                     {
+                         alert("Invalid Request");
+                         $("#weight_"+id).html(val);
+                     }
+                     else
+                         {
+                              $("#weight_"+id).html(val);
+                         }
+                             
+                
+            },"json"
+        );
+    
+}
+    //$(".s1").dropdownchecklist({ firstItemChecksAll: true, explicitClose: '...close' , width: 110 }); //Jitendra
+  </script>
+</div>

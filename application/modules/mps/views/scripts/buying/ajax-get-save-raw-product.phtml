@@ -1,0 +1,69 @@
+<div class='gird_box'>
+    <div class='scroll-pane' style='max-height:500px'>
+        <table class='grid_table' width='101%' border='0' cellspacing='0' cellpadding='0'>
+            <TR>
+                <th style='text-align:left'>Count</th>
+                <th style='text-align:left'>Cow ID</th>
+                <th style='text-align:left'>Tag No.</th>
+                <th style='text-align:left'>Action.</th>
+            </TR>
+            <input type="hidden" name="min_cowID" id="min_cowID" value="<?php echo $this->arrIds[0];?>">
+            <?php $sno=0;?>
+            <?php foreach($this->arrIds as $cowId){?>
+            <tr class='package_row1'>
+                <td><?php echo (++$sno);?></td>
+                <td><?php echo $cowId?></td>
+                
+                <td rel="<?php echo $cowId; ?>" id="tag_<?php echo $cowId; ?>" class="image tag_num"></td>
+                
+                <td align='left' class='image'>
+                    <a class="edit_tag_num" href="javascript:void(0);" style='color:#555d6a' rel="<?php echo $cowId; ?>" id="<?php echo $cowId; ?>">
+                        <img alt='' src='<?php echo $this->cdnUri()?>/images/icons/edit.png' border='0' title='Edit'/>
+                    </a>
+                    <a href=' '  style='color:#555d6a'>
+                        <img alt='' src='<?php echo $this->cdnUri()?>/images/icons/accept.png' border='0' title='Accept'/>
+                    </a>
+                </td>
+            </tr>
+            <?php }?>
+        </table>
+    </div>
+</div>
+<div style='padding-top:10px;'>
+    <input type='button' value='Cancel' id="cancel_button">
+    <span style='padding-left:10px;'>
+        <img id='saveLoading_grid' src='/images/loading.gif' width='35px' style='display:none' />
+        <input type='button' value='Continue' id='continue_grid' style='display:' onclick='return save_grid()'>
+    </span>
+</div>
+
+<script>
+    
+    function creatTextBox(cowId)
+    {
+        var txtname="text_"+cowId;
+        if($('#tag_'+cowId).html()==""){
+            $('#tag_'+cowId).html("<input type='text' id='"+txtname+"' name='"+txtname+"'>");
+            $("#text_"+cowId).focus();
+        }
+    }
+    
+ $(function () {
+    $(".edit_tag_num").click(function(){
+        creatTextBox($(this).attr("rel"));
+    });
+    
+     $(".tag_num").click(function(){
+        creatTextBox($(this).attr("rel"));
+    });
+    
+    $("#cancel_button").click(function(){
+        $("#supplierId").val('');
+        $("#noCows").val('0');
+        $("#description").val('');
+        $("#auction_tr").hide();
+        
+    });
+                     
+ })
+</script>

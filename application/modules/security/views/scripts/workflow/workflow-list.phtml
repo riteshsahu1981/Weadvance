@@ -1,0 +1,193 @@
+<?php //echo $this->totalItemCount; ?>
+
+<form method="post" action="<?php echo $this->seoUrl("/security/workflow/workflow-list")?>">
+    
+    <table class="from_table" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right" class="form_tab_lebel" valign="top"><?php echo $this->puts("Name:")?></td>
+    <td align="left" class="form_tab_input" valign="top"><input type="text" name="search" id="search" class="text-input small-input" value="<?php echo $this->search?>" /></td>
+    
+    <td align="left" class="form_tab_input" valign="top"><input type="submit" class="search" value="<?php echo $this->puts("Search")?>"><img class="search_img" src="<?php echo $this->cdnUri()?>/images/search_img.png" alt=""></td>
+  </tr>
+</table>
+    
+       
+</form>
+
+
+<?php echo  $this->flashMessages()?>
+  
+  
+  
+<?php if (count($this->paginator)): ?>
+
+
+        <?php
+        $sno=0;
+        $page=$this->paginator->getCurrentPageNumber();
+        $items_per_page=$this->paginator->getItemCountPerPage(); 
+        if($page>1)
+        {
+                $sno=$items_per_page*$page - $items_per_page ; 	
+        }
+        ?>
+        <?php 
+            
+           echo $this->paginationControl($this->paginator, 'Sliding', 'pagination-ext.phtml',array("linkArray"=>$this->linkArray));
+              
+        ?>
+
+
+    <div class="gird_box">
+        <div class="scroll-pane">
+          <table style="margin: 0 0 15px 0" class="grid_table" border="0"  cellspacing="0" cellpadding="0">
+            <tr>
+              <th align="left" width="60"><?php echo $this->puts("S.No.")?></th>
+              <th align="left" width="100"><?php echo $this->puts("Workflow Id")?></th>
+              <th align="left" width="600"><?php echo $this->puts("Workflow Name")?>
+                  <?php echo $this->sort("workflow_name", $this->sortOptions);?>
+              </th>
+	      <th align="left" width="500"><?php echo $this->puts("Action")?></th>
+            </tr>
+            <?php 
+        foreach ($this->paginator as $item): ?>
+        <?php $sno++?>
+          
+            <tr class="package_row1">
+              <td align="left"><?php echo $sno?>.</td>
+              <td align="left"><?php echo $item->id;?></td>
+              <td align="left"><?php echo $item->workflow_name;?></td>
+      	      <td class="image" align="left">
+                  
+                  <?php if($this->checkAcl("/security/workflow/edit-workflow")){?>
+                    <a href="<?php echo $this->seoUrl("/security/workflow/edit-workflow/id/".$item->id."/guid/".$item->row_guid)?>"><img title="Edit" alt="Edit"src="<?php echo $this->cdnUri()?>/images/icons/edit.png" /></a>  
+                  <?php } ?>
+                  
+                  <?php 
+                    
+                    $image="/images/icons/del.png";
+                    $title="Click here to delete!";
+                  ?>
+                  <?php if($this->checkAcl("/security/workflow/delete-workflow")){?>
+                  <span id="changeStatus_<?php echo $item->id?>">
+                      <a onclick="return confirm('Are you sure you want to delete?');" href="<?php echo $this->seoUrl("/security/workflow/delete-workflow/id/".$item->id."/guid/".$item->row_guid)?>">
+                          <img title="<?php echo $title?>" alt="<?php echo $title?>" src="<?php echo $image?>" />
+                      </a>
+                  </span>
+                  <?php } ?>
+                    
+              </td>
+           
+            </tr>
+            <?php endforeach; ?>
+          </table>
+        </div>
+      </div>
+        <?php 
+           
+            echo $this->paginationControl($this->paginator, 'Sliding', 'pagination-ext.phtml',array("linkArray"=>$this->linkArray));
+             
+        ?>
+
+<?php endif; ?>
+
+
+
+
+
+<script type="text/javascript">
+function changeUserStatus(user_id,guid,status)
+    {
+        
+       $("#changeStatus_"+user_id).html('<img height="25px" alt="In process..." src="/images/loading.gif"/>');
+       $.post(
+            "/security/user/change-user-status", 
+            { 
+               "id" : user_id,
+               "guid" : guid
+            }, 
+            function (data) {
+                
+                if(data.result==1)
+                {
+                    if(status==1)
+                        status=0;
+                    else
+                        status=1;
+                    
+                    
+                
+                    
+                }
+                if(data.result==0)
+                {
+                    alert("Failed");
+                    
+                }
+                if(data.result==2)
+                {
+                    alert("You cann't change your status");
+                    
+                }
+                
+                if( status==1) 
+                {
+
+                    var title="Click here to make user inactive!";
+                    var image="/images/icons/accept.png";
+                }
+                else
+                {
+                    var title="Click here to make user active!";
+                    var image="/images/icons/del.png";
+                }
+                
+                $("#changeStatus_"+user_id).html('<a onclick="changeUserStatus(\''+ user_id + '\', \'' + guid + '\',' + status + ')" href="javascript:void(0);" title="'+ title +'" ><img alt="'+ title +'" src="'+ image +'"/></a>');
+                
+                
+                
+            },"json"
+        );
+    }
+
+   </script>
+   
+   
+<script type="text/javascript">
+		
+		
+        // Script For Grid Starts //
+		$(document).ready(function(){
+			//row click
+			$('tr.package_row1').click(function (event) {
+								$('tr.package_row1').toggleClass('active', false);
+								$(this).toggleClass('active', true);
+								});
+			// table Width
+			var tblWidth=0;
+			$('.grid_table tr:first').children().each(function(index) {
+									tblWidth = tblWidth + parseInt($(this).attr('width'));
+									});
+			$(".grid_table").css("width", tblWidth);
+		});
+
+		$('.grid_table tr').find('td:last').addClass('last')
+		$('.grid_table tr').find('th:last').addClass('last')
+		// Script For Grid Ends //
+
+
+
+		// Script For Scroll Panel Starts //
+		$(function(){
+		$('.scroll-pane').jScrollPane({showArrows: true});
+		});
+		// Script For Scroll Panel Ends //
+
+
+		// Script For Tabs Panel Starts //
+			$(function(){
+				$('#tabs').tabs();
+			});
+		// Script For Tabs Panel Ends //
+        
+     </script>

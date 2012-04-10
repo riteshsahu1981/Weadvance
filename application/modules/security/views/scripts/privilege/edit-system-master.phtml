@@ -1,0 +1,35 @@
+<script>
+  $(document).ready(function(){
+    $("#editSystemMaster").validate();
+  });
+ </script>
+  
+<form id="editSystemMaster" name="editSystemMaster" action="" method="post">
+<div> <?php echo $this->flashMessages()?> </div>
+
+<div class="form_row">
+    <div class="form_label">
+      <?php echo $this->puts($this->form->masterCode->getLabel()); ?> <span class="required1">*</span>
+    </div>
+    <div class="form_field">
+      <?php echo $this->form->masterCode; ?>
+    </div>
+</div>	
+
+ <div class="form_row">	
+    <div class="form_label">
+      <?php echo $this->puts($this->form->status->getLabel()); ?> <span class="required1">*</span>
+    </div>
+    <div class="form_field_same">
+	<?php echo $this->form->status; ?>
+    </div>
+</div>	
+
+<div class="form_row">  
+    <div class="form_label"><input type="hidden" name="guid" value="<?php echo $this->escape($this->guid); ?>" /></div>
+    <div class="form_field">
+    <input type="button" value="List" name="list" onclick="window.location.href='<?php echo $this->seoUrl('/security/privilege/list-system-master'); ?>'" /> &nbsp;&nbsp; <input type="submit" value="Submit" name="editMaster" />    
+    
+     </div>
+</div>
+</form>

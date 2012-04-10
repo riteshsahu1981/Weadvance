@@ -1,0 +1,236 @@
+
+<script language="javascript">
+
+
+function customMenu(node) {
+    
+    var items = {   
+        renameItem: { 
+            label: "Rename",
+            action: function (node) { this.rename(node);}
+        },
+        deleteItem: { 
+            label: "Delete",
+            action: function (node) {   if(this.is_selected(node)) { this.remove(); } else { this.remove(node); }  }
+        },
+        createItem: { 
+            label: "Create",
+            action: function (node) {this.create(node);}
+        }
+    };
+//alert ($(node).attr( 'rel' ));
+    if ($(node).attr( 'rel' )=="root") {
+        
+        items.deleteItem._disabled = true;
+        items.renameItem._disabled = true ;      
+        items.createItem.label= "Create Animal"; 
+
+    }else if ($(node).attr( 'rel' )=="animal") {
+        
+        items.createItem.label= "Create Animal Type"; 
+    }
+    else if ($(node).attr( 'rel' )=="animal-type") {
+        items.createItem.label= "Create Animal Color"; 
+    }
+    else if ($(node).attr( 'rel' )=="animal-color") {
+        delete items.createItem; 
+    }
+    else if ($(node).attr( 'rel' )=="s-animal") {
+        
+        items.createItem.label= "Create Animal Type"; 
+        items.deleteItem._disabled = true;
+        items.renameItem._disabled = true ;      
+    }
+    else if ($(node).attr( 'rel' )=="s-animal-type") {
+        items.createItem.label= "Create Animal Color"; 
+        items.deleteItem._disabled = true;
+        items.renameItem._disabled = true ;      
+    }
+    else if ($(node).attr( 'rel' )=="s-animal-color") {
+        delete items.createItem; 
+        items.deleteItem._disabled = true;
+        items.renameItem._disabled = true ;      
+        
+    }
+    else
+    {
+        items.createItem.label= "Create Animal Type"; 
+    }
+
+    return items;
+}
+ 
+
+$(function () {
+	$("#privilege_tree").jstree({ 
+                "core" : { "initially_open" : [ "noderoot_0" ] },
+
+		"plugins" : [ "themes", "html_data", "ui", "crrm", "contextmenu", "types" ,"hotkeys"],
+                //"plugins" : [ "themes", "html_data", "ui", "crrm", "contextmenu", "types" ],
+                'contextmenu' : { 'items' : customMenu    },
+                
+                "types" : {
+                        // I set both options to -2, as I do not need depth and children count checking
+                        // Those two checks may slow jstree a lot, so use only when needed
+                        "max_depth" : -2,
+                        "max_children" : -2,
+                        // I want only 'root' nodes to be root nodes
+                        // This will prevent moving or creating any other type as a root node
+                        "valid_children" : [ "root" ],
+			"types" : {
+				"root" : {
+					"icon" : {"image" : "/js/tree/themes/default/_drive.png" },
+					"valid_children" : [ "default" ],
+					"max_depth" : 2,
+					"hover_node" : false,
+                                        'rename_node' :false,
+                                        'select_node' :false
+				},
+                                "animal" : {
+                                        "icon" : {"image" : "/js/tree/themes/default/folder.png" },
+					"valid_children" : [ "animal-type" ],
+					"max_depth" : 2,
+					"hover_node" : false					
+				},
+                                "animal-type" : {
+					"icon" : {"image" : "/js/tree/themes/default/folder.png" },
+					"valid_children" : [ "animal-color" ],
+					"max_depth" : 2,
+					"hover_node" : false
+				},
+                                "animal-color" : {
+                                        "icon" : {"image" : "/js/tree/themes/default/file.png" },
+					"max_depth" : 2,
+					"hover_node" : false,
+                                        "valid_children" : "none"
+                                       
+				},
+                                "s-animal-color" : {
+                                        "icon" : {"image" : "/js/tree/themes/default/file.png" },
+					"max_depth" : 2,
+					"hover_node" : false,
+                                        "valid_children" : "none"
+                                       
+				},
+				"default" : {
+					"icon" : {"image" : "/js/tree/themes/default/folder.png" },
+					"valid_children" : [ "animal-type" ],
+					"max_depth" : 2,
+					"hover_node" : false
+				}
+			}
+		}
+               
+	})
+        .bind("create.jstree", function (e, data) {
+                
+                //alert (data.rslt.parent.attr("id"));
+                if(data.rslt.parent.attr("id") != ''){
+                    $.post(
+                            "/security/animal/create", 
+                            { 
+                                "parent_node_id" : data.rslt.parent.attr("id"), 
+                                "node_title" : data.rslt.name
+                            }, 
+                            function (r) {
+                                    if(r.status) 
+                                        $(data.rslt.obj).attr("id", r.node_id);
+                                    else 
+                                        $.jstree.rollback(data.rlbk);
+
+                            },"json"
+                    );
+                }
+                else{
+                    $.jstree.rollback(data.rlbk);
+                    //alert ('Already exists');
+                }
+	})
+	.bind("rename.jstree", function (e, data) {
+            
+		$.post(
+			"/security/animal/rename", 
+			{ 
+				"node_id" : data.rslt.obj.attr("id"), 
+                                "node_title" : data.rslt.new_name
+			}, 
+			function (r) {
+				if(!r.status) {
+					$.jstree.rollback(data.rlbk);
+				}
+			},"json"
+		);
+	})
+       .bind("remove.jstree", function (e, data) {
+           
+		data.rslt.obj.each(function () {                  
+			$.ajax({
+				async : false,
+				type: 'POST',
+				url: "/security/animal/remove", 
+				data : { 
+					"child_node_id" : this.id,
+                                        "parent_node_id" : data.rslt.parent.attr('id')
+				}, 
+				success : function (r) {
+					if(!r.status) {
+						data.inst.refresh();
+					}
+				}
+			});
+		});
+	})
+        ;
+});
+
+</script>
+<?php $model=new Base_Security_Animal();?>
+<div class="form_field_tree">
+<div id="privilege_tree" class="demo">
+    <ul>
+        <li id="noderoot_0" rel="root">
+            <a href="#" >Animal Profile</a>
+            <?php
+            $animals=$model->getAnimals();
+            
+            if(count($animals)>0){
+            ?>
+            <ul>
+                <?php foreach($animals as $_animal){?>
+                <li id="<?php echo $_animal->getMasterCode()."_".$_animal->getMasterId()?>"  <?php if($_animal->getMasterId()=="dfdfdf" ){echo "rel='s-animal'";}else {echo "rel='animal'";} ?>><a href="#"><?php echo $_animal->getMasterValue()?></a>
+                    
+                    <?php
+                    $animal_types=$model->getAnimalTypes($_animal->getMasterId());
+                    
+                    if(count($animal_types)>0){
+                    ?>        
+                    <ul>
+                        <?php foreach($animal_types as $_animal_type){?>
+                        <li id="<?php echo $_animal_type->master_code."_".$_animal_type->animal_type_id."_".$_animal->getMasterId()?>" <?php if($_animal_type->animal_type_id=="sdsdsd" ){echo "rel='s-animal-type'";}else {echo "rel='animal-type'";} ?> ><a href="#"><?php echo $_animal_type->animal_type_title?> </a>
+                            
+                            <?php
+                            $animal_colors=$model->getAnimalColors($_animal->getMasterId(),$_animal_type->animal_type_id);
+                            if(count($animal_colors)>0){
+                            ?>        
+                            <ul>
+                                <?php foreach($animal_colors as $_animal_color){?>
+                                <li id="<?php echo $_animal_color->master_code."_".$_animal_color->animal_color_id."_".$_animal_type->animal_type_id."_".$_animal->getMasterId()?>"  <?php if($_animal_color->animal_color_id=="dfdfd" ){echo "rel='s-animal-color'";}else {echo "rel='animal-color'";} ?> ><a href="#"><?php echo $_animal_color->animal_color_title?></a>
+                                </li>
+                                <?php }//end of animal-colors foreach loop ?>
+                            </ul>    
+                            <?php } //end of animal-colors if?>
+                        </li>
+                        <?php }//end of animal-types foreach loop ?>
+                    </ul>
+                    <?php } // end of animal-type if?>        
+                </li>
+                <?php }//end of animals foreach loop ?>
+            </ul>
+            <?php }//end of animal if?>
+        </li>
+    </ul>
+</div>
+
+
+
+</div>

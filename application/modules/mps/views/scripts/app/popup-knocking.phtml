@@ -1,0 +1,313 @@
+
+<div class="popwrap">
+    <div class="popup_full_img"> <a href="<?php echo $this->seoUrl("/mps/app/knocking-box")?>"><img src="<?php echo $this->cdnUri()?>/images/full_screen_out.png" align="right"  title="Back to Knocking"> </a></div>
+ <div class="popwrap_con">
+      <div class="left_con">
+        <div class="left_con_button">
+          <input type="button" class="gray_button" value="Smith">
+          <input type="button" class="gray_button" value="WBS">
+          <input type="button" class="gray_button" value="DB">
+          <input type="button" class="gray_button" value="Tacco">
+          <input type="button" class="gray_button" value="Blain">
+          <input type="button"  class="gray_button" value="Cuff">
+          <input type="button" class="gray_button" value="Smith1">
+        </div>
+        <div class="idsection">
+          <div class="idsection_bx1">
+            <input name="" type="text" class="hex" value="" placeholder="Enter ID#:" style="color:#b1a7a7">
+          </div>
+          <div class="idsection_bx2"><a href="#"><img id="hex" src="<?php echo $this->cdnUri()?>/images/keyboard.png" alt="" border="0"></a></div>
+        </div>
+        <div class="idsection">
+          <p>Choose from list or enter ID or Select from above Suppliers</p>
+        </div>
+        <div class="sep_left">&nbsp;</div>
+       
+        
+        <div class="product_sec">
+          <div class="product_breadcrum">
+            <ul id="breadCrumb">
+              <li><a href="#" id="bcSelectProduct">Select Product</a></li>
+            </ul>
+          </div>
+            
+          <div class="product_levelone" id="level1">
+            
+          </div>
+          
+          
+          <div class="product_leveltwo" id="level2"></div>
+          
+        </div>
+        
+       <script type="text/javascript">
+          
+            function cmdBreedClick()
+            {
+               $("#level1").html('<h5 class="blue_button">Breed</h5>');
+               
+                
+                $("#level2").html('<input type="button" class="bluesm_button" value="Cow" id="cmdCow" >');
+                $("#level2").append('<input type="button" class="bluesm_button" value="Bull" id="cmdBull">');
+                $("#level2").append('<input type="button" class="bluesm_button" value="Hefer" id="cmdHefer">');
+                
+                $("#breadCrumb").html('<li><a href="#" id="bcSelectProduct">Select Product</a></li>');
+                
+            }
+            $("#cmdBreed").live('click', cmdBreedClick);
+            
+            
+            $("#bcSelectProduct").live('click', cmdBreedClick);
+            
+            function cmdCowClick()
+            {
+                cmdTypeClick();
+//                $("#level1").html('<input type="button" class="green_button" value="Type" id="cmdType">');
+//                
+//                $("#level2").html('');
+//
+//
+                 $("#breadCrumb").html('<li><a href="#" id="bcSelectProduct">Select Product</a></li>');
+                 
+                 $("#breadCrumb").append('<li>Cow</li>');
+                 
+            }
+            $('#cmdCow').live('click', cmdCowClick);
+            
+            $("#bcBreed").live('click', cmdBreedClick);
+            $("#bcCow").live('click', cmdBreedClick);
+            function cmdTypeClick()
+            {
+                $("#level1").html('<h5 class="green_button">Type</h5>');
+                $("#level2").html('<input type="button" class="green_button" value="Holstein" id="cmdHolstein" >');
+                $("#level2").append('<input type="button" class="green_button" value="Jersey" id="cmdJersey">');
+                $("#level2").append('<input type="button" class="green_button" value="Angus" id="cmdAngus">');
+                $("#level2").append('<input type="button" class="green_button" value="Herford" id="cmdHerford">');
+                $("#level2").append('<input type="button" class="green_button" value="Other" id="cmdOther">');
+                
+            }
+            $("#cmdType").live('click', cmdTypeClick);
+            $("#bcType").live('click', cmdCowClick);
+            function cmdHolsteinClick()
+            {
+                $("#level1").html('<h5 class="red_button">Color</h5>');
+                $("#level2").html('<input type="button" class="red_light_button" value="Red" id="cmdRed" >');
+                $("#level2").append('<input type="button" class="red_light_button" value="Black" id="cmdBlack">');
+                $("#level2").append('<input type="button" class="red_light_button" value="White" id="cmdWhite">');
+                
+                 $("#breadCrumb").html('<li><a href="#" id="bcSelectProduct">Select Product</a></li>');
+                 
+                 $("#breadCrumb").append('<li><a href="#" id="bcCow">Cow</a></li>');
+                 
+                 $("#breadCrumb").append('<li>Holstein</li>');
+            }
+            $("#cmdHolstein").live('click', cmdHolsteinClick);
+            
+            function cmdRedClick()
+            {
+                $("#level1").html('');
+                $("#level2").html('<input type="button" class="gray_button activegray" value="Cancel" id="cmdCancel" >');
+                $("#level2").append('<input type="button" class="gray_button activegray" value="Continue" id="cmdContinue">');
+                
+                $("#breadCrumb").html('<li><a href="#" id="bcSelectProduct">Select Product</a></li>');
+                $("#breadCrumb").append('<li><a href="#" id="bcCow">Cow</a></li>');
+                $("#breadCrumb").append('<li><a href="#" id="bcHolstein">Holstein</a></li>');
+                $("#breadCrumb").append('<li>Red</li>');
+                
+            }
+            $("#bcHolstein").live('click', cmdHolsteinClick);
+            $("#cmdRed").live('click', cmdRedClick);
+            
+            
+            
+        </script>
+        
+      </div>
+      <div class="right_con">
+        <div id="tabs">
+          <ul>
+            <li><a href="#tabs-1">In Yard</a></li>
+            <li><a href="#tabs-2">Killed</a></li>
+          </ul>
+          <div id="tabs-1">
+            <div class="touch_gird_box">
+              <div class="scroll_pane_tab">
+                <table class="grid_table touch_table grid_tabs1" width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <th align="left" width="150">Supplier <img src="<?php echo $this->cdnUri()?>/images/arrow.gif" align="right" alt=""></th>
+                    <th align="left" width="150">Cow ID</th>
+                    <th align="left" width="150">Lot <img src="<?php echo $this->cdnUri()?>/images/arrow.gif" align="right" alt=""></th>
+                    <th align="left" width="150">Lot</th>
+                    <th align="left" width="150">Date In <img src="<?php echo $this->cdnUri()?>/images/arrow.gif" align="right" alt=""></th>
+                  </tr>
+                  <tr class="package_row1">
+                    <td>Smith</td>
+                    <td>235698</td>
+                    <td>1526</td>
+                    <td>01/15/2012</td>
+                    <td>01/15/2012</td>
+                  </tr>
+                  <tr class="package_row1">
+                    <td>Smith</td>
+                    <td>235698</td>
+                    <td>1526</td>
+                    <td>01/15/2012</td>
+                    <td>01/15/2012</td>
+                  </tr>
+                  <tr class="package_row1">
+                    <td>Smith</td>
+                    <td>235698</td>
+                    <td>1526</td>
+                    <td>&nbsp;</td>
+                    <td>01/15/2012</td>
+                  </tr>
+                  <tr class="package_row1">
+                    <td>Smith</td>
+                    <td>235698</td>
+                    <td>1526</td>
+                    <td>&nbsp;</td>
+                    <td>01/15/2012</td>
+                  </tr>
+                  <tr class="package_row1">
+                    <td>Smith</td>
+                    <td>235698</td>
+                    <td>1526</td>
+                    <td>&nbsp;</td>
+                    <td>01/15/2012</td>
+                  </tr>
+                  <tr class="package_row1">
+                    <td>Smith</td>
+                    <td>235698</td>
+                    <td>1526</td>
+                    <td>&nbsp;</td>
+                    <td>01/15/2012</td>
+                  </tr>
+                  <tr class="package_row1">
+                    <td>Smith</td>
+                    <td>235698</td>
+                    <td>1526</td>
+                    <td>&nbsp;</td>
+                    <td>01/15/2012</td>
+                  </tr>
+                  <tr class="package_row1">
+                    <td>Smith</td>
+                    <td>235698</td>
+                    <td>1526</td>
+                    <td>&nbsp;</td>
+                    <td>01/15/2012</td>
+                  </tr>
+                  <tr class="package_row1">
+                    <td>Smith</td>
+                    <td>235698</td>
+                    <td>1526</td>
+                    <td>&nbsp;</td>
+                    <td>01/15/2012</td>
+                  </tr>
+                  <tr class="package_row1">
+                    <td>Smith</td>
+                    <td>235698</td>
+                    <td>1526</td>
+                    <td>&nbsp;</td>
+                    <td>01/15/2012</td>
+                  </tr>
+                  <tr class="package_row1">
+                    <td>Smith</td>
+                    <td>235698</td>
+                    <td>1526</td>
+                    <td>&nbsp;</td>
+                    <td>01/15/2012</td>
+                  </tr>
+                  <tr class="package_row1">
+                    <td>Smith</td>
+                    <td>235698</td>
+                    <td>1526</td>
+                    <td>&nbsp;</td>
+                    <td>01/15/2012</td>
+                  </tr>
+                  <tr class="package_row1">
+                    <td>Chiranjeev</td>
+                    <td>235698</td>
+                    <td>1526</td>
+                    <td>&nbsp;</td>
+                    <td>01/15/2012</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div id="tabs-2">
+            <div class="touch_gird_box">
+              <div class="scroll_pane_tab">
+                <table class="grid_table touch_table" width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <th align="left" width="150">Supplier <img src="<?php echo $this->cdnUri()?>/images/arrow.gif" align="right" alt=""></th>
+                    <th align="left" width="150">Cow ID</th>
+                    <th align="left" width="150">Lot <img src="<?php echo $this->cdnUri()?>/images/arrow.gif" align="right" alt=""></th>
+                    <th align="left" width="150">Date In <img src="<?php echo $this->cdnUri()?>/images/arrow.gif" align="right" alt=""></th>
+                  </tr>
+                  <?php for($i=0;$i<25;$i++):?>
+                  <tr class="package_row1">
+                    <td>Smith</td>
+                    <td>235698</td>
+                    <td>1526</td>
+                    <td>01/15/2012</td>
+                  </tr>
+                  <?php endfor;?>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript">
+		
+		
+        // Script For Grid Starts //
+		$(document).ready(function(){
+			//row click
+			$('tr.package_row1').click(function (event) {
+								$('tr.package_row1').toggleClass('active', false);
+								$(this).toggleClass('active', true);
+								});
+			// table Width
+			var tblWidth=0;
+			$('.grid_tabs1 tr:first').children().each(function(index) {
+									tblWidth = tblWidth + parseInt($(this).attr('width'));
+									});
+			$(".grid_tabs1").css("width", tblWidth);
+			
+						var tb2Width=0;
+			$('.grid_tabs2 tr:first').children().each(function(index) {
+									tb2Width = tb2Width + parseInt($(this).attr('width'));
+									});
+			$(".grid_tabs2").css("width", tb2Width);
+			
+		});
+
+		$('.grid_table tr').find('td:last').addClass('last')
+		$('.grid_table tr').find('th:last').addClass('last')
+		// Script For Grid Ends //
+
+
+
+		// Script For Scroll Panel Starts //
+		$(function(){
+		$('.scroll_pane_tab').jScrollPane({showArrows: true});
+		});
+		// Script For Scroll Panel Ends //
+
+
+		// Script For Tabs Panel Starts //
+			$(function(){
+				$('#tabs').tabs();
+			});
+		// Script For Tabs Panel Ends //
+        
+     </script>
+      </div>
+    </div> 
+  
+</div>
+
+<script>
+$('input[placeholder], textarea[placeholder]').placeholder();
+</script>

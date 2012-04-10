@@ -1,0 +1,257 @@
+<script language="javascript">
+     $(function() {
+    $("#empCmb").change(function(){
+    
+    $("#custText").val(this.value)    ;
+    });
+   });
+</script>
+
+<script type="text/javascript">
+    $(function() {
+            
+            $("#dialog-modal").hide();
+
+    $("#addon").click(function() {
+            $("#dialog-modal").dialog({
+                    height: 260,
+                    width: 400,
+                    modal: true,
+                    resizable: false,
+                    buttons: {
+				'Ok': function() {
+					$(this).dialog('close');
+				},
+				Cancel: function() {
+					$(this).dialog('close');
+				}
+			}
+
+
+            });
+    });
+    });
+    
+</script>
+
+
+<div id="dialog-modal" title="Add On">
+        <form name="create_customer">
+
+           
+        <div class="form_row">
+            <div class="form_label"><?php echo $this->puts("Des. of Add-on:")?> <span class="required">*</span></div>
+            <div class="form_field">
+            <input type="text" name="shipping_f_name" >
+            </div>
+
+        </div>
+
+        <div class="form_row">
+            <div class="form_label"><?php echo $this->puts("Quantity:")?> <span class="required">*</span></div>
+            <div class="form_field">
+              <input type="text" value="0" class="spinbutton_input"  name="num_of_cows"/>
+                <!--<input type="text" value="0" class="spinbutton spin-button"  name="" style="width:30px;">-->
+            </div>
+
+        </div>
+
+                <div class="form_row">
+            <div class="form_label"><?php echo $this->puts("Price ($):")?> <span class="required">*</span></div>
+            <div class="form_field">
+            <input type="text" name="shipping_state" >
+            </div>          
+        </div>
+
+        </form>
+</div>
+
+
+<form>
+   
+    
+    
+    <table class="from_table" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right" class="form_tab_lebel" valign="top"><?php echo $this->puts("Select Order ID:")?> </td>
+    <td align="left" class="form_tab_input" valign="top"><select id="empCmb">
+                <option value="-- Select --">-- Select --</option>
+      <option value="-- Select --">0012</option>
+      <option value="-- Select --">0013</option>
+      <option value="-- Select --">0014</option>
+      
+              
+            </select></td>
+    <td align="right"  class="form_tab_lebel" valign="top"><?php echo $this->puts("Seal ID:")?></td>
+    <td align="left" class="form_tab_input" valign="top"><input type="text" value=""></td>
+     <td align="right"  class="form_tab_lebel" valign="top"><?php echo $this->puts("Carrier:")?></td>
+    <td align="left" class="form_tab_input" valign="top"><input type="text" value=""></td>
+    
+  </tr>
+ <tr>
+    <td align="right" class="form_tab_lebel" valign="top"><?php echo $this->puts("Enter Order ID:")?> </td>
+    <td align="left" class="form_tab_input" valign="top"><input type="text" value=""></td>
+   
+     <td align="right" class="form_tab_lebel" valign="top"></td>
+    <td align="left" class="form_tab_input" valign="top" colspan="3"><div class="rework_tab_bx1">
+            <input name="" type="checkbox" value="">
+             <?php echo $this->puts("Tax this Invoice")?></div></td>
+    
+  </tr>
+  
+   
+  <tr>
+    <td align="left" class="form_tab_lebel" valign="top" colspan="6" style="padding:23px 0 0 0;"><input type="button" id="addon" class="gray_button_dark" value="<?php echo $this->puts("Add On")?>"></td>
+  
+    
+  </tr>
+  
+</table>
+
+</form>
+<div class="result_box">Results: 1-20 of 50</div>
+<div class="paging">
+        <ul>
+          <li>
+            <a href="#" class="arrow-first" title="First">
+              <img src="<?php echo $this->cdnUri()?>/images/arrow-first.png" alt="">
+            </a>
+          </li>
+          <li>
+            <a href="#" class="arrow-prev" title="Previous">
+              <img src="<?php echo $this->cdnUri()?>/images/arrow-prev.png" alt="">
+            </a>
+          </li>
+          <li>
+            <a href="#" class="active" title="Page 1">1</a>
+          </li>
+          <li>
+            <a href="#" title="Page 2">2</a>
+          </li>
+          <li>
+            <a href="#" title="Page 3">3</a>
+          </li>
+          <li>
+            <a href="#" class="arrow-next" title="Next">
+              <img src="<?php echo $this->cdnUri()?>/images/arrow-next.png" alt="">
+            </a>
+          </li>
+          <li>
+            <a href="#" class="arrow-last" title="Last">
+              <img src="<?php echo $this->cdnUri()?>/images/arrow-last.png" alt="">
+            </a>
+          </li>
+        </ul>
+      </div><div class="print_div print_div_1"><a title="Print" href="#"><img src="<?php echo $this->cdnUri()?>/images/icons/print.png" alt="Print" title="Print" border="0"><span><?php echo $this->puts("Print")?></span></a></div>
+ 
+
+       
+      <div class="gird_box">
+        <div class="scroll-pane">
+          <table width="100%" class="grid_table" border="0" cellpadding="0" cellspacing="0">
+            <tbody><tr>
+              <th width="60" align="left"><?php echo $this->puts("S. No.")?></th>
+              <th width="90" align="left"><?php echo $this->puts("Product ID")?></th>
+	           <th align="left"><?php echo $this->puts("Product Name")?></th>
+              <th width="90" align="left"><?php echo $this->puts("Total Weight")?><img src="<?php echo $this->cdnUri()?>/images/arrow.gif" alt="" align="right"></th>
+              <th width="90" align="left"><?php echo $this->puts("Acc. Weight")?><img src="<?php echo $this->cdnUri()?>/images/arrow.gif" alt="" align="right"></th>
+              <th width="110" align="left"><?php echo $this->puts("Cases Ordered")?><img src="<?php echo $this->cdnUri()?>/images/arrow.gif" alt="" align="right"></th>
+              <th width="90" align="left"><?php echo $this->puts("Price/lb ($)")?></th>
+			  
+            </tr>
+            <?php for($i=1;$i<21;$i++){?> 
+            <tr class="package_row1">
+              <td align="left"><?php echo $i; ?></td>
+              <td align="left">00<?php echo $i; ?></td>
+              <td align="left">Ground Beef</td>
+              <td align="left">500</td>
+              <td align="left">498</td>
+              <td align="left">5</td>
+	      <td align="left">$89</td>
+			  
+            </tr>
+            <?php } ?>
+
+	</tbody></table>
+        </div>
+      </div>
+      <div class="result_box">Results: 1-20 of 50</div>
+      <div class="paging">
+        <ul>
+          <li>
+            <a href="#" class="arrow-first" title="First">
+              <img src="<?php echo $this->cdnUri()?>/images/arrow-first.png" alt="">
+            </a>
+          </li>
+          <li>
+            <a href="#" class="arrow-prev" title="Previous">
+              <img src="<?php echo $this->cdnUri()?>/images/arrow-prev.png" alt="">
+            </a>
+          </li>
+          <li>
+            <a href="#" class="active" title="Page1">1</a>
+          </li>
+          <li>
+            <a href="#" title="Page2">2</a>
+          </li>
+          <li>
+            <a href="#" title="Page3">3</a>
+          </li>
+          <li>
+            <a href="#" class="arrow-next" title="Next">
+              <img src="<?php echo $this->cdnUri()?>/images/arrow-next.png" alt="">
+            </a>
+          </li>
+          <li>
+            <a href="#" class="arrow-last" title="Last">
+              <img src="<?php echo $this->cdnUri()?>/images/arrow-last.png" alt="">
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      
+    <script type="text/javascript">
+		
+		
+        // Script For Grid Starts //
+		$(document).ready(function(){
+			//row click
+			$('tr.package_row1').click(function (event) {
+								$('tr.package_row1').toggleClass('active', false);
+								$(this).toggleClass('active', true);
+								});
+			// table Width
+			var tblWidth=0;
+			$('.grid_table tr:first').children().each(function(index) {
+									tblWidth = tblWidth + parseInt($(this).attr('width'));
+									});
+			$(".grid_table").css("width", tblWidth);
+		});
+
+		$('.grid_table tr').find('td:last').addClass('last')
+		$('.grid_table tr').find('th:last').addClass('last')
+		// Script For Grid Ends //
+
+
+
+		// Script For Scroll Panel Starts //
+		$(function(){
+		$('.scroll-pane').jScrollPane({showArrows: true});
+		});
+		// Script For Scroll Panel Ends //
+
+
+		// Script For Tabs Panel Starts //
+			$(function(){
+				$('#tabs').tabs();
+			});
+		// Script For Tabs Panel Ends //
+                
+                $(function(){
+
+			var nocows = $('.spinbutton_input').spinit({ height: 16, width: 40, min: 0, initValue: 0, max: 100});
+
+		});
+        
+     </script>

@@ -1,0 +1,39 @@
+<?php 
+ 
+ ?>
+<header>
+    <div class="logo"><a href="<?php echo $this->seoUrl("/")?>"><img alt="" src="<?php echo $this->cdnUri()?>/images/logo_inner.png"></a></div>
+    <!--<div class="login_info">
+        
+        Last Logged in : <strong><?php echo date("m/d/Y h:i a")?></strong> 
+        &nbsp;&nbsp;&nbsp; Welcome : <strong> <a href="<?php echo $this->seoUrl("/security/user/change-password")?>">Administrator</a></strong> |  
+
+         <a href="<?php echo $this->seoUrl("/mps/auth/logout")?>" class="logout_page">Logout</a> 
+        
+    </div> 
+        -->
+<div class="login_info">
+    <p class="log_txt">Last Logged in : <strong><?php echo date("m/d/Y h:i a")?></strong></p>
+    <p class="user_txt">Welcome : <a tabindex="0" href="javascript:void(0)" class="ui-state-default" id="user_dd">Administrator</a></p>
+    |
+    <p class="login_txt"><a href="<?php echo $this->seoUrl("/mps/auth/logout")?>">Logout</a></p>
+ </div>
+ <div id="user_dd_div" style="display:none;">
+    <ul>
+      <li><a href="<?php echo $this->seoUrl("/security/user/change-password")?>">Change Profile</a></li>
+      <li><a href="<?php echo $this->seoUrl("/security/user/change-password")?>">Change Password</a></li>
+    </ul>
+  </div>
+    <script type="text/javascript">    
+    $(function(){
+  
+    	// MENU	
+		$('#user_dd').menu({ 
+			content: $('#user_dd_div').html(), // grab content from this page
+			showSpeed: 400 
+		});
+		
+    });
+</script>
+    
+    </header>

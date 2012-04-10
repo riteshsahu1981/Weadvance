@@ -1,0 +1,236 @@
+<?php $this->headLink()->appendStylesheet('/js/jqueryui/themes/ui-lightness/jquery-ui-1.8.17.custom.css'); ?>
+<script type="text/javascript">
+function button_validate(obj){
+	var form_dom = document.incoming_cows;
+	if(form_dom.select_supplier.value == ''){
+		alert ('Please select supplier');
+		form_dom.select_supplier.focus();
+		document.getElementById('auction_tr').style.display = 'none';
+		return false;
+	}
+	if(form_dom.num_of_cows.value == ''){
+		alert ('Please Select number of cows');
+		form_dom.num_of_cows.focus();
+		document.getElementById('auction_tr').style.display = 'none';
+		return false;
+	}
+	if(isNaN(form_dom.num_of_cows.value) || (parseFloat(form_dom.num_of_cows.value) != parseInt(form_dom.num_of_cows.value)) || form_dom.num_of_cows.value < 1){
+		alert ('Please Select Positive integer only');
+		form_dom.num_of_cows.focus();
+		document.getElementById('auction_tr').style.display = 'none';
+		return false;
+	}
+	if(obj.value == 'Print Tags'){
+		//alert ('Make sure Printer is on-Line and ready to go');
+		document.getElementById('auction_tr').style.display = 'none';
+		//print_tags_fun();
+		window.open('<?php echo $this->seoUrl("/mps/app/print-tags")?>','windowname1','width=382, height=485');
+	}
+	 else if(obj.value == 'Auction House'){
+		var count = form_dom.num_of_cows.value;
+		var i=1;
+		var cow_id = form_dom.cow_id.value;
+		var multiple_tr = '';
+		while(count>0){
+			multiple_tr += "<tr class='package_row1'><td>"+i+"</td><td>"+cow_id+"</td><td></td><td align='left' class='image'><a href=' ' style='color:#555d6a'><img alt='' src='<?php echo $this->cdnUri()?>/images/icons/edit.png' border='0' title='Edit'/></a><a href=' '  style='color:#555d6a'><img alt='' src='<?php echo $this->cdnUri()?>/images/icons/accept.png' border='0' title='Accept'/></a></td></tr>";
+			cow_id++;
+			i++;
+			count--;
+		}
+		document.getElementById('auction_tr').innerHTML="<div class='gird_box'><div class='scroll-pane' style='max-height:500px'><table class='grid_table' width='101%' border='0' cellspacing='0' cellpadding='0'><TR><th style='text-align:left'>Count</th><th style='text-align:left'>Cow ID</th><th style='text-align:left'>Tag No.</th><th style='text-align:left'>Action.</th></TR>"+multiple_tr+"</table></div></div><div style='padding-top:10px;'><input type='button' value='Cancel' onclick='document.getElementById(\"auction_tr\").style.display = \"none\";'><span style='padding-left:10px;'><input type='button' value='Continue' onclick='window.open(\"<?php echo $this->seoUrl("/mps/app/print-tags")?>\",\"windowname1\",\"width=382, height=485\");'></span></div>"; 
+		document.getElementById('auction_tr').style.display = '';
+                  // Script For Grid Starts //
+		//$(document).ready(function(){
+			//row click
+			//$('tr.package_row1').click(function (event) {
+								$('tr.package_row1').toggleClass('active', false);
+								$(this).toggleClass('active', true);
+								//});
+			// table Width
+			var tblWidth=0;
+			$('.grid_table tr:first').children().each(function(index) {
+									tblWidth = tblWidth + parseInt($(this).attr('width'));
+									});
+			$(".grid_table").css("width", tblWidth);
+		//});
+
+		$('.grid_table tr').find('td:last').addClass('last')
+		$('.grid_table tr').find('th:last').addClass('last')
+		// Script For Grid Ends //
+
+
+
+		// Script For Scroll Panel Starts //
+		
+		$('.scroll-pane').jScrollPane({showArrows: true});
+		
+		// Script For Scroll Panel Ends //
+
+
+	} 
+}
+
+//$.fx.speeds._default = 1000;
+//	$(function() {
+//		$( "#dialog" ).dialog({
+//			autoOpen: false,
+//			show: "blind",
+//			hide: "explode"
+//		});
+//	});
+
+function print_tags_fun(){
+	var form_dom = document.incoming_cows;
+	document.getElementById('owner').innerHTML = form_dom.select_supplier.value;
+
+	var currentTime = new Date()
+	var month = currentTime.getMonth() + 1
+	var day = currentTime.getDate()
+	var year = currentTime.getFullYear()
+	
+	document.getElementById('date').innerHTML = (month + "/" + day + "/" + year);
+	document.getElementById('number_of_head').innerHTML = form_dom.num_of_cows.value;
+
+	var hours = currentTime.getHours()
+	var minutes = currentTime.getMinutes()
+	if (minutes < 10){
+		minutes = "0" + minutes
+	}
+	if(hours > 11){
+		meridean = "PM";
+	} else {
+		meridean = "AM";
+	}
+	document.getElementById('time').innerHTML = hours + ":" + minutes + " " +meridean;
+	document.getElementById('brands_ear_tag_number').innerHTML = form_dom.antimortum_information.value;	
+
+	
+		
+			$( "#dialog" ).dialog( "open" );
+			 
+		
+	
+
+}
+</script>
+
+<div class="left_con">
+   <form name="incoming_cows">
+        <div class="form_row">
+         	
+        <div class="form_row">
+          <div class="form_label form_label_150">Select Supplier: <span class="required">*</span></div>
+          <div class="form_field">
+            <select name="select_supplier">
+              <option value="">-- Select --</option>
+			  <option value="Test Supplier">Test Supplier</option>
+			  <option value="Test 1 Supplier">Test 1 Supplier</option>
+            </select>
+          </div>
+          
+        </div>
+       
+		<div class="form_row">
+          <div class="form_label form_label_150">Select Number of Cows: <span class="required">*</span></div>
+          <div class="form_field">
+              <input type="text" value="0" class="spinbutton_input" name="num_of_cows">
+          </div>
+          
+        </div>
+		
+		<div class="form_row">
+          <div class="form_label form_label_150">Antimortum Information:</div>
+          <div class="form_field">
+            <input type="text" name="antimortum_information">
+          </div>
+          
+        </div>
+	<input type="hidden" name="cow_id" value="1932">
+        <div class="form_row">
+          <div class="form_label form_label_150">
+            
+          </div>
+
+	  <div class="form_field" style="padding:10px 0  0 0">
+            <input type="button" class="yellow_button yellow_button_cow" value="Print Tags" onclick="return button_validate(this);"> <input type="button" class="yellow_button yellow_button_cow" value="Auction House" onclick="return button_validate(this);">
+          </div>
+        </div>
+		</div></div>
+
+  <div class="right_con" id="auction_tr" style="display:none;"> </div>
+</form>
+      <!-- <div id="dialog" title="Dale T. Smith's Indentification Log">
+	
+    <div class="content_area" style="min-height:200px;">
+     	
+        <div class="form_row">
+          <div class="form_label">Owner</div>
+          <div class="form_field" id="owner">
+            
+          </div>
+          <div class="form_label">Date</div>
+          <div class="form_field" id="date">
+            
+          </div>
+        </div>
+       
+		<div class="form_row">
+          <div class="form_label">Number of Head:</div>
+          <div class="form_field" id="number_of_head">
+            
+          </div>
+          <div class="form_label">Time</div>
+          <div class="form_field" id="time">
+            
+          </div>
+        </div>
+
+		<div class="form_row">
+          <div class="form_label">Brands Ear Tag Number</div>
+          <div class="form_field" id="brands_ear_tag_number">
+            
+          </div>
+          
+        </div>
+
+        <div class="form_row">
+          <div class="form_label">Employee Signature</div>
+          <div class="form_field" id="employee_signature">
+            
+          </div>
+         
+        </div>
+
+		<div class="form_row form_separate">
+          <div class="form_label">Lot Number</div>
+          <div class="form_field" id="lot_number">
+            
+          </div>
+        </div>
+		
+
+
+        <div class="form_row">
+          <div class="form_label">Antemortum</div>
+          <div class="form_field" id="antemortum">
+            
+          </div>
+        
+        </div>
+        
+		
+        <div class="form_row">
+          <div class="form_label">&nbsp;</div>
+          <div class="form_field">
+            <input type="button" value="Print" onclick="javascript:print();">
+          </div>
+        </div>
+    </div>
+	
+	</div>
+-->
+      <script type="text/javascript">
+        $(document).ready(function() {
+            var nocows = $('.spinbutton_input').spinit({ height: 16, width: 40, min: 0, initValue: 0, max: 100});
+        });
+    </script>

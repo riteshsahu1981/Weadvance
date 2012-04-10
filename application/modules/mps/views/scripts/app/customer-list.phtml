@@ -1,0 +1,184 @@
+    <form>
+        
+        
+         <table class="from_table" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right" class="form_tab_lebel" valign="top">Name:</td>
+    <td align="left" class="form_tab_input" valign="top"><input type="text" value=""></td>
+    <td align="right"  class="form_tab_lebel" valign="top">City:</td>
+    <td align="left" class="form_tab_input" valign="top"><input type="text" value=""></td>
+    <td align="right" class="form_tab_lebel" valign="top">Phone: </td>
+    <td align="left" class="form_tab_input" valign="top"><input type="text" value=""></td>
+    
+  </tr>
+ <tr>
+    <td align="right"  class="form_tab_lebel" valign="top">Email:</td>
+    <td align="left" class="form_tab_input" valign="top"><input type="text" value=""></td>
+    <td align="right"  class="form_tab_lebel" valign="top"></td>
+    <td align="left" class="form_tab_input" valign="top"></td>
+    <td align="right"  class="form_tab_lebel" valign="top"></td>
+    <td align="left" class="form_tab_input" valign="top"></td>
+    
+  </tr>
+  <tr>
+    <td align="right" class="form_tab_lebel" valign="top"></td>
+    <td align="left" class="form_tab_input search_button" valign="top"><input class="search" value="Search" type="button">
+            <img class="search_img" src="<?php echo $this->cdnUri()?>/images/search_img.png" alt=""></td>
+    <td align="right"  class="form_tab_lebel" valign="top"></td>
+    <td align="left" class="form_tab_input" valign="top"></td>
+    <td align="right"  class="form_tab_lebel" valign="top"></td>
+    <td align="left" class="form_tab_input" valign="top"></td>
+
+    
+  </tr>
+    
+</table>
+        
+
+      </form>
+      <div class="result_box">Results: 1-20 of 50</div>
+      <div class="paging">
+        <ul>
+          <li>
+            <a href="#" class="arrow-first" title="First">
+              <img src="<?php echo $this->cdnUri()?>/images/arrow-first.png" alt="">
+            </a>
+          </li>
+          <li>
+            <a href="#" class="arrow-prev" title="Previous">
+              <img src="<?php echo $this->cdnUri()?>/images/arrow-prev.png" alt="">
+            </a>
+          </li>
+          <li>
+            <a href="#" class="active" title="Page 1">1</a>
+          </li>
+          <li>
+            <a href="#" title="Page 2">2</a>
+          </li>
+          <li>
+            <a href="#" title="Page 3">3</a>
+          </li>
+          <li>
+            <a href="#" class="arrow-next" title="Next">
+              <img src="<?php echo $this->cdnUri()?>/images/arrow-next.png" alt="">
+            </a>
+          </li>
+          <li>
+            <a href="#" class="arrow-last" title="Last">
+              <img src="<?php echo $this->cdnUri()?>/images/arrow-last.png" alt="">
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="gird_box">
+        <div class="scroll-pane">
+          <table style="margin: 0 0 15px 0" class="grid_table" border="0" cellpadding="0" cellspacing="0">
+            <tbody><tr>
+              <th width="60" align="left">S. No</th>
+              <th width="130" align="left">First Name</th>
+			        <th width="130" align="left">Last Name</th>
+              <th width="130" align="left">Organization Name</th>
+              <th width="130" align="left">Phone Number<img src="<?php echo $this->cdnUri()?>/images/arrow.gif" alt="" align="right"></th>
+              <th width="120" align="left">Fax<img src="<?php echo $this->cdnUri()?>/images/arrow.gif" alt="" align="right"></th>
+              <th width="180" align="left">Email<img src="<?php echo $this->cdnUri()?>/images/arrow.gif" alt="" align="right"></th>
+              <th width="120" align="left">City</th>
+			  <th width="120" align="left">State</th>
+			  <th width="100" align="left">Zip</th>
+			  <th class="last" width="120" align="left">Action</th>
+            </tr>
+            <?php for($i=1;$i<21;$i++){?> 
+            <tr class="package_row1">
+              <td align="left"><?php echo $i; ?></td>
+              <td align="left">Mark</td>
+              <td align="left">Vincy</td>
+              <td align="left">Markvincy Group</td>
+              <td align="left">222-676-999</td>
+              <td align="left">222-676-999</td>
+              <td align="left">test@test.com</td>
+	      <td align="left">DC</td>
+		<td align="left">Washington</td>
+		<td align="left">11005</td> 
+		<td class="last image" align="left">
+                    
+                    <a href="<?php echo $this->seoUrl("/mps/app/create-customer")?>"><img src="<?php echo $this->cdnUri();?>/images/icons/edit.png" title="Edit"/></a>
+		<a href="javascript:void(0);" onclick="if(confirm('Are you sure to delete this customer?')){ alert('OK, deleted') } else { alert ('Not deleted')}"><img src="<?php echo $this->cdnUri();?>/images/icons/del.png" title="Delete" /></a>
+                
+                </td>
+            </tr>
+            <?php } ?>
+              
+          </tbody></table>
+        </div>
+      </div>
+      <div class="result_box">Results: 1-20 of 50</div>
+      <div class="paging">
+        <ul>
+          <li>
+            <a href="#" class="arrow-first" title="First">
+              <img src="<?php echo $this->cdnUri()?>/images/arrow-first.png" alt="">
+            </a>
+          </li>
+          <li>
+            <a href="#" class="arrow-prev" title="Previous">
+              <img src="<?php echo $this->cdnUri()?>/images/arrow-prev.png" alt="">
+            </a>
+          </li>
+          <li>
+            <a href="#" class="active" title="Page 1">1</a>
+          </li>
+          <li>
+            <a href="#" title="Page 2">2</a>
+          </li>
+          <li>
+            <a href="#" title="Page 3">3</a>
+          </li>
+          <li>
+            <a href="#" class="arrow-next" title="Next">
+              <img src="<?php echo $this->cdnUri()?>/images/arrow-next.png" alt="">
+            </a>
+          </li>
+          <li>
+            <a href="#" class="arrow-last" title="Last">
+              <img src="<?php echo $this->cdnUri()?>/images/arrow-last.png" alt="">
+            </a>
+          </li>
+        </ul>
+      </div>
+    <script type="text/javascript">
+		
+		
+        // Script For Grid Starts //
+		$(document).ready(function(){
+			//row click
+			$('tr.package_row1').click(function (event) {
+								$('tr.package_row1').toggleClass('active', false);
+								$(this).toggleClass('active', true);
+								});
+			// table Width
+			var tblWidth=0;
+			$('.grid_table tr:first').children().each(function(index) {
+									tblWidth = tblWidth + parseInt($(this).attr('width'));
+									});
+			$(".grid_table").css("width", tblWidth);
+		});
+
+		$('.grid_table tr').find('td:last').addClass('last')
+		$('.grid_table tr').find('th:last').addClass('last')
+		// Script For Grid Ends //
+
+
+
+		// Script For Scroll Panel Starts //
+		$(function(){
+		$('.scroll-pane').jScrollPane({showArrows: true});
+		});
+		// Script For Scroll Panel Ends //
+
+
+		// Script For Tabs Panel Starts //
+			$(function(){
+				$('#tabs').tabs();
+			});
+		// Script For Tabs Panel Ends //
+        
+     </script>

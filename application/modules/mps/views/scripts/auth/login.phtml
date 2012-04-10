@@ -1,0 +1,106 @@
+
+
+
+
+<form id="login_form" action="<?php echo $this->seoUrl("/mps/auth/login")?>" method="post">
+    
+    <?php echo $this->form->email;?>
+    
+    <img class="keyboard" id="email_l"  src="<?php echo $this->cdnUri()?>/images/keyboard.png" alt="" >
+   
+    <?php echo $this->form->password;?>
+    <input type="text" class="pass_word pass" value="Password" id="password-close">
+    <img  class="keyboard" id="password_l"   src="<?php echo $this->cdnUri()?>/images/keyboard.png" alt="">
+    <div class="submit_button"><div class="submit_button_left"><input id="btnLogin" name="btnLogin" type="submit" value="Login"></div>
+	<div class="submit_button_right"><p>
+<!--                <a href="<?php echo $this->seoUrl("/mps/auth/forgot-password")?>">Forgot your Password?</a>-->
+            
+            </p>
+        
+        </div>
+	</div>
+</form>
+
+<script type="text/javascript">
+//$('input[placeholder], textarea[placeholder]').placeholder();
+
+    
+    jQuery(function($) {
+	
+	// Username Login
+	// ********************
+	$('.email').keyboard({
+		layout   : 'qwerty',
+		 openOn : null,
+         stayOpen : true,
+		lockInput: true // prevent manual keyboard entry
+	});
+	$('#email_l').click(function(){
+		$('.email').getkeyboard().reveal();
+	});
+
+	// Password Login
+	// ********************
+	$('.password').keyboard({
+		layout   : 'qwerty',
+		 openOn : null,
+                stayOpen : true,
+                accepted    : function(e, keyboard, el) {
+                $('#password-close').focus();
+                },
+		lockInput: true // prevent manual keyboard entry
+	});
+	$('#password_l').click(function(){
+                    $('#password-close').hide();
+                    $('.password').show();
+                    $('.password').focus();
+                    $('.password').getkeyboard().reveal();
+	});
+	});
+</script>
+
+
+<script type="text/javascript">
+function clearText(thefield)
+{
+	if (thefield.defaultValue==thefield.value)
+	{
+		thefield.value = "";
+	}
+}
+function replaceText(thefield)
+{
+	if (thefield.value=="")
+	{
+		thefield.value = thefield.defaultValue;
+	}
+}
+
+function restoreTextPwdField(pwdVal)
+{
+	if(pwdVal=="")
+	{
+		$("#password-close").show();
+		$("#password").hide();
+	}	
+}
+
+
+$('#password-close').focus(function() {
+    $('#password-close').hide();
+    $('#password').show();
+    $('#password').focus();
+});
+
+$('#password').blur(function() {
+    if($('#password').val() == '') {
+$('#password-close').show();
+        $('#password').hide();
+    }
+});
+
+	
+	
+
+
+</script>

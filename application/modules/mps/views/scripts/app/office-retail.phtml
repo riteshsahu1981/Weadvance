@@ -1,0 +1,239 @@
+<script language="javascript">
+     $(function() {
+    $("#empCmb").change(function(){
+    
+    $("#custText").val(this.value)    ;
+    });
+   });
+</script>
+
+<script type="text/javascript">
+    $(function() {
+            
+            $("#dialog-modal").hide();
+
+    $("#addon").click(function() {
+            $("#dialog-modal").dialog({
+                    height: 260,
+                    width: 500,
+                    modal: true,
+                    resizable: false,
+                    buttons: {
+				'Ok': function() {
+					$(this).dialog('close');
+				},
+				Cancel: function() {
+					$(this).dialog('close');
+				}
+			}
+
+
+            });
+    });
+    });
+    
+</script>
+
+<div id="dialog-modal" title="Add On">
+        <form name="addon_form">
+
+           
+        <div class="form_row">
+            <div class="form_label"><?php echo $this->puts("Des. of Add-on:")?> <span class="required">*</span></div>
+            <div class="form_field">
+            <input type="text" name="shipping_f_name" >
+            </div>
+
+        </div>
+
+        <div class="form_row">
+            <div class="form_label"><?php echo $this->puts("Quantity:")?> <span class="required">*</span></div>
+            <div class="form_field">
+            <input type="text" value="0" class="spinbutton_input" name="num_of_cows" style="width:30px;" />
+            </div>
+
+        </div>
+
+                <div class="form_row">
+            <div class="form_label"><?php echo $this->puts("Price ($):")?> <span class="required">*</span></div>
+            <div class="form_field">
+            <input type="text" name="shipping_state" >
+            </div>          
+        </div>
+
+        </form>
+</div>
+
+<form>
+
+    
+ <table class="from_table" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right" class="form_tab_lebel" valign="top"><?php echo $this->puts("Select Employee:")?></td>
+    <td align="left" class="form_tab_input" valign="top"><select id="empCmb">
+                <option value="-- Select --">-- Select --</option>
+                <option value="Smith">Smith</option>
+                <option value="John">John</option>
+                <option value="Mike">Mike</option>
+                <option value="Smith">Smith</option>
+                <option value="John">John</option>
+                <option value="Mike">Mike</option>
+                <option value="Smith">Smith</option>
+                <option value="John">John</option>
+                <option value="Mike">Mike</option>
+                <option value="Smith">Smith</option>
+                <option value="John">John</option>
+                <option value="Mike">Mike</option>
+            </select></td>
+    <td align="right"  class="form_tab_lebel" valign="top"><?php echo $this->puts("Name on Receipt:")?></td>
+    <td align="left" class="form_tab_input" valign="top"><input type="text" value=""></td>
+    <td align="right"  class="form_tab_lebel" valign="top"><?php echo $this->puts("Customer Name:")?></td>
+    <td align="left" class="form_tab_input" valign="top"><input type="text" value=""></td>
+  </tr>
+ <tr>
+    <td align="right" class="form_tab_lebel" valign="top"><?php echo $this->puts("Barcode:")?> </td>
+    <td align="left" class="form_tab_input" valign="top"><input type="text" value=""></td>
+    <td align="right"  class="form_tab_lebel" valign="top">&nbsp;</td>
+    <td align="left" class="form_tab_input" valign="top"><div class="rework_tab_bx1">
+            <input name="" type="checkbox" value="">
+            <?php echo $this->puts("Tax this Invoice")?> </div>
+        </div></td>
+    <td align="right"  class="form_tab_lebel" valign="top">&nbsp;</td>
+    <td align="left" class="form_tab_input" valign="top">&nbsp;</td>
+  </tr>
+  
+  
+  
+  
+</table>
+    <table width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="left" class="form_tab_lebel" valign="top" style="padding:23px 0 12px 0;"><input type="button" id="addon" value="<?php echo $this->puts("Add On")?>" class="gray_button_dark"><input type="button" value="<?php echo $this->puts("Remove All Items")?>" class="gray_button_dark"></td>
+    
+    <td align="right" class="form_tab_lebel" valign="top" style="padding:23px 0 12px 0;"><table  cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right" class="running_text" valign="middle"><table cellspacing="0" cellpadding="0">
+  <tr>
+    <td class="running_text"><p><?php echo $this->puts("Running Total:")?></p></td>
+    <td align="left" class="running_text_bold"><h4>$1,785.00</h4></td>
+  </tr>
+</table></td>
+    <td align="right"><input type="button" style="margin:0 10px 19px 0;" value="<?php echo $this->puts("Finish & Print Picklist")?>" class="yellow_button"></td>
+  </tr>
+</table></td>
+  </tr>
+</table>
+
+
+
+    
+    
+
+    <div class="form_row">
+    
+    
+    
+    </div>
+
+
+      </form>
+
+
+      <div class="gird_box">
+        <div class="scroll-pane">
+          <table  class="grid_table" width="100%" border="0" cellpadding="0" cellspacing="0">
+            <tbody><tr>
+              <th width="8%" align="left"><?php echo $this->puts("S.No.")?></th>
+              <th width="12%" align="left"><?php echo $this->puts("Product ID")?></th>
+              <th width="15%" align="left"><?php echo $this->puts("Product Name")?></th>
+              <th width="12%" align="left"><?php echo $this->puts("Case Weight")?></th>
+              <th width="15%" align="left"><?php echo $this->puts("Barcode")?></th>
+              <th width="12%" align="left"><?php echo $this->puts("Price/lb ($)")?></th>
+              <th width="10%" align="left"><?php echo $this->puts("Quantity")?></th>
+              <th width="15%" align="left"><?php echo $this->puts("Action")?></th>
+            </tr>
+            <?php for($i=1;$i<21;$i++):?>
+            <tr class="package_row1">
+              <td align="left"><?php echo $i?></td>
+              <td align="left"><?php echo rand(100, 100000) ?></td>
+              <td align="left">Description</td>
+              <td align="left" class="image"><?php if($i == 6) { echo '<input class="" type="text" value="6">'; } else { echo rand(10, 25); } ?></td>
+              <td align="left"><?php echo rand(1000000, 10000000) ?></td>
+              <td align="left" class="image">$ <?php if($i == 6) {echo '<input class="" type="text" value="195.21">'; } else { echo rand(100, 200); echo '.' ;echo rand(10, 50); } ?>
+	      </td>
+	      <td align="left"><?php echo rand(10, 50) ?></td>
+              <td align="left" class="image">
+                  <a href="javascript:void(0);" style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/edit.png" border="0" title="Edit"/></a>
+                 <a href="javascript:void(0);"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/accept.png" border="0" title="Accept"/></a>
+                  <a href="javascript:void(0);" ><img src="<?php echo $this->cdnUri()?>/images/icons/del.png" alt="Delete" title="Delete"></a>
+	      </td>
+            </tr>
+            <?php endfor;?>
+
+          </tbody></table>
+        </div>
+      </div>
+<!--      <div class="result_box">Results: 1-7 of 7</div>
+      <div class="paging">
+        <ul>
+          <li><a href="#" class="arrow-first"><img src="<?php echo $this->cdnUri()?>/images/arrow-first.png" alt=""></a></li>
+          <li><a href="#" class="arrow-prev"><img src="<?php echo $this->cdnUri()?>/images/arrow-prev.png" alt=""></a></li>
+          <li><a href="#" class="active">1</a></li>
+          <li><a href="#">2</a></li>
+          <li><a href="#">3</a></li>
+          <li><a href="#" class="arrow-next"><img src="<?php echo $this->cdnUri()?>/images/arrow-next.png" alt=""></a></li>
+          <li><a href="#" class="arrow-last"><img src="<?php echo $this->cdnUri()?>/images/arrow-last.png" alt=""></a></li>
+        </ul>
+      </div>-->
+
+             
+     <script type="text/javascript">
+        $(document).ready(function() {
+            var nocows = $('.spinbutton_input').spinit({ height: 16, width: 40, min: 0, initValue: 0, max: 100});
+        });
+    </script>
+    <script type="text/javascript">
+		
+		
+        // Script For Grid Starts //
+		$(document).ready(function(){
+			//row click
+			$('tr.package_row1').click(function (event) {
+								$('tr.package_row1').toggleClass('active', false);
+								$(this).toggleClass('active', true);
+								});
+			// table Width
+			var tblWidth=0;
+			$('.grid_table tr:first').children().each(function(index) {
+									tblWidth = tblWidth + parseInt($(this).attr('width'));
+									});
+			//$(".grid_table").css("width", tblWidth);
+		});
+
+		$('.grid_table tr').find('td:last').addClass('last')
+		$('.grid_table tr').find('th:last').addClass('last')
+		// Script For Grid Ends //
+
+
+
+		// Script For Scroll Panel Starts //
+		$(function(){
+	//	$('.scroll-pane').jScrollPane({showArrows: true});
+		});
+		// Script For Scroll Panel Ends //
+
+
+		// Script For Tabs Panel Starts //
+			$(function(){
+				$('#tabs').tabs();
+			});
+		// Script For Tabs Panel Ends //
+                
+                $(function(){
+
+			//$("INPUT.spinbutton").SpinButton({min:0});
+			//$("INPUT.spinbutton_input").SpinButton({min:0});
+
+		});
+        
+     </script>

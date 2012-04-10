@@ -1,0 +1,304 @@
+<script type="text/javascript">
+function print_tags_fun(){
+	var form_dom = document.incoming_cows;
+	document.getElementById('owner').innerHTML = form_dom.select_supplier.value;
+
+	var currentTime = new Date()
+	var month = currentTime.getMonth() + 1
+	var day = currentTime.getDate()
+	var year = currentTime.getFullYear()
+	
+	document.getElementById('date').innerHTML = (month + "/" + day + "/" + year);
+	document.getElementById('number_of_head').innerHTML = form_dom.noCows.value;
+
+	var hours = currentTime.getHours()
+	var minutes = currentTime.getMinutes()
+	if (minutes < 10){
+		minutes = "0" + minutes
+	}
+	if(hours > 11){
+		meridean = "PM";
+	} else {
+		meridean = "AM";
+	}
+	document.getElementById('time').innerHTML = hours + ":" + minutes + " " +meridean;
+	document.getElementById('brands_ear_tag_number').innerHTML = form_dom.antimortum_information.value;	
+		
+	$( "#dialog" ).dialog( "open" );
+			 
+}
+</script>
+
+<div class="left_con">
+    
+    <div id="success_box" style="display:none" class="success_box"><img alt="" src="<?php echo $this->cdnUri()?>/images/success_box_img.png" class="error"> <p>Menu information has been updated successfully!</p><img alt="" src="<?php echo $this->cdnUri()?>/images/success_box_close.png" class="close"></div>
+    <div id="error_box" style="display:none" class="error_box"><img alt="" src="<?php echo $this->cdnUri()?>/images/error_box_img.png" class="error"> <p>Invalid request! Please try again.</p><img alt="" src="<?php echo $this->cdnUri()?>/images/error_box_close.png" class="close"></div>
+
+   <form name="incoming_cows" id="incoming_cows" action="" method="post">
+        <div> <?php echo $this->flashMessages()?> </div>
+        <div class="form_row">
+         	
+        <div class="form_row">
+          <div class="form_label form_label_150">
+              <?php echo $this->puts($this->form->supplierId->getLabel()); ?>
+              <span class="required">*</span>
+          </div>
+          <div class="form_field">
+            <?php echo $this->form->supplierId; ?>
+          </div>
+          
+        </div>
+       
+		<div class="form_row">
+          <div class="form_label form_label_150">
+              <?php echo $this->puts($this->form->noCows->getLabel()); ?>
+              
+              <span class="required">*</span>
+          </div>
+          <div class="form_field">
+              <?php echo $this->form->noCows; ?>
+          </div>
+          
+        </div>
+		
+		<div class="form_row">
+          <div class="form_label form_label_150"><?php echo $this->puts($this->form->description->getLabel()); ?></div>
+          <div class="form_field">
+           <?php echo $this->form->description; ?>
+          </div>
+          
+        </div>
+	<input type="hidden" name="cow_id" value="1932">
+        <div class="form_row">
+          <div class="form_label form_label_150">
+            
+          </div>
+
+	  <div class="form_field" style="padding:10px 0  0 0">
+            <img id="saveLoadingprint" src="/images/loading.gif" width="35px" style="display:none" />
+            <input type="button" class="yellow_button yellow_button_cow" value="<?php echo $this->puts("Print Tags")?>" id="cmdPrint">
+            <img id="saveLoading" src="/images/loading.gif" width="35px" style="display:none" />
+            <input type="button" class="yellow_button yellow_button_cow" value="<?php echo $this->puts("Auction House")?>" id="cmdSave">
+          </div>
+        </div>
+		</div></div>
+
+  <div class="right_con" id="auction_tr" style="display:none;"> 
+  
+  </div>
+</form>
+      
+<script type="text/javascript">
+    $(document).ready(function() {
+        var nocows = $('.spinbutton_input').spinit({ height: 16, width: 40, min: 0, initValue: 0, max: 100});
+    });
+</script>
+    
+ <script type="text/javascript">  
+     
+     
+ function save_grid(){
+    var count = $("#noCows").val();
+    
+    var min_cowID = $("#min_cowID").val();
+    
+    var tag_edited_str = '';
+    var i = 0;
+    var str_tag = '';
+    while(i<count){
+        n_id = parseInt(min_cowID) + i;
+        if(($("#text_"+n_id).val()) == undefined){
+            //alert ('Please enter Tag No.');
+            //return false;
+            str_tag = '';
+        } 
+        else if(($("#text_"+n_id).val()) == ''){
+            //alert ('Please enter Tag No.');
+            //return false;
+            str_tag = '';
+        }
+        else{
+            
+            str_tag = $("#text_"+n_id).val();
+        }
+        tag_edited_str += str_tag + ",";
+        i++;
+    }
+    $("#continue_grid").hide();
+    $("#saveLoading_grid").show();
+    
+    $.post(
+            "/mps/buying/ajax-save-raw-product", 
+            { 
+                "supplierId" : $("#supplierId").val(),
+                "num_cows" : $("#noCows").val(),
+                "tag_edited_str" : tag_edited_str,
+                "description" : $("#description").val()
+            }, 
+
+            function (data) {
+                $(".error").css("display","none");
+                //alert (data);
+                if(data){
+                    $("#auction_tr").hide();
+                    $("#saveLoading_grid").hide(); 
+                    
+                    $("#supplierId").val('');
+                    $("#noCows").val('0');
+                    $("#description").val('');
+                    
+                    alert ('OK. Print Page');
+                    //window.open("<?php echo $this->seoUrl('/mps/app/print-tags')?>","windowname1","width=382, height=485");
+                }
+                else{
+
+                }
+                },"json"
+    );
+     
+ }
+ 
+
+$(function () {
+
+    $("#cmdSave").click(function(){
+        if($("#supplierId").val() == ''){
+            $("#error_box p").html("Please select Supplier!");
+            $("#error_box").show();
+            Flash_DelayedHide("error_box");
+            return false;
+        }
+        if(isNaN($("#noCows").val())){
+            $("#error_box p").html("Please select number of cows!");
+            $("#error_box").show();
+            Flash_DelayedHide("error_box");
+            return false;
+        }
+        var form_dom = document.incoming_cows;
+        
+        if(form_dom.noCows.value == ''){
+                alert ('Please Select number of cows');
+                form_dom.noCows.focus();
+                document.getElementById('auction_tr').style.display = 'none';
+                return false;
+        }
+        if(isNaN(form_dom.noCows.value) || (parseFloat(form_dom.noCows.value) != parseInt(form_dom.noCows.value)) || form_dom.noCows.value < 1){
+                alert ('Please Select Positive integer only');
+                form_dom.noCows.focus();
+                document.getElementById('auction_tr').style.display = 'none';
+                return false;
+        }
+        
+        var count = $("#noCows").val();
+        $("#cmdSave").hide();
+        $("#saveLoading").show();
+        $.post(
+                "/mps/buying/ajax-get-save-raw-product", 
+                { 
+                    "num_cows" : $("#noCows").val()
+                }, 
+
+                function (data) {
+                    $(".error").css("display","none");
+
+                    if(data == "0")
+                    {
+                        alert("error");
+                    }
+                    else
+                    {
+                        $("#auction_tr").html(data);
+                        $("#auction_tr").show();
+                        $('.scroll-pane').jScrollPane({showArrows: true});
+
+                    }
+                    $("#cmdSave").show();
+                    $("#saveLoading").hide();
+
+                    },"html"
+        );
+    }
+    )
+    // Print tags 
+     
+
+
+    $("#cmdPrint").click(function(){
+        
+        
+          if($("#supplierId").val() == ''){
+            $("#error_box p").html("Please select Supplier!");
+            $("#error_box").show();
+            Flash_DelayedHide("error_box");
+            return false;
+        }
+        if(isNaN($("#noCows").val())){
+            $("#error_box p").html("Please select number of cows!");
+            $("#error_box").show();
+            Flash_DelayedHide("error_box");
+            return false;
+        }
+        var form_dom = document.incoming_cows;
+        
+        if(form_dom.noCows.value == ''){
+                alert ('Please Select number of cows');
+                form_dom.noCows.focus();
+                document.getElementById('auction_tr').style.display = 'none';
+                return false;
+        }
+        if(isNaN(form_dom.noCows.value) || (parseFloat(form_dom.noCows.value) != parseInt(form_dom.noCows.value)) || form_dom.noCows.value < 1){
+                alert ('Please Select Positive integer only');
+                form_dom.noCows.focus();
+                document.getElementById('auction_tr').style.display = 'none';
+                return false;
+        }
+          var count = $("#noCows").val();
+            $("#cmdPrint").hide();
+            $("#saveLoadingprint").show();
+            $.post(
+                    "/mps/buying/ajax-get-save-print-raw-product", 
+                    { 
+                        "supplierId" : $("#supplierId").val(),
+                        "num_cows" : $("#noCows").val(),
+                        "description" : $("#description").val()
+                    }, 
+
+                    function (data) {
+                    $(".error").css("display","none");
+                    //alert (data);
+                    if(data){
+                        $("#cmdPrint").show();
+                        $("#saveLoadingprint").hide(); 
+                        
+                        
+                        $("#supplierId").val('');
+                        $("#noCows").val('0');
+                        $("#description").val('');
+                        
+                        
+                        alert ('OK. Print page');
+                    }
+                    else{
+
+                    }
+                    },"json"
+            );
+ 
+})
+
+
+
+
+$(".edit_tag_num").click(function(){
+
+    alert ('vikash');
+
+
+
+
+}
+)
+
+})
+
+</script>

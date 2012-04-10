@@ -1,0 +1,243 @@
+/*
+ * CSS Styles that are needed by jScrollPane for it to operate correctly.
+ *
+ * Include this stylesheet in your site or copy and paste the styles below into your stylesheet - jScrollPane
+ * may not operate correctly without them.
+ */
+
+.jspContainer {
+	overflow: hidden;
+	position: relative;
+}
+.jspPane {
+	position: absolute;
+}
+.jspVerticalBar {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 15px;
+	height: 100%;/*background: red;*/
+}
+.jspHorizontalBar {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 15px;/*background: red;*/
+}
+.touch_gird_box .jspHorizontalBar {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 23px;/*background: red;*/
+}
+.touch_gird_box .jspVerticalBar {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 23px;
+	height: 100%;/*background: red;*/
+}
+.jspVerticalBar *, .jspHorizontalBar * {
+	margin: 0;
+	padding: 0;
+}
+.jspCap {
+	display: none;
+}
+.jspHorizontalBar .jspCap {
+	float: left;
+}
+.jspTrack {
+	background: #f2f2f2;
+	position: relative;
+}
+.jspDrag {
+	background:url(../images/jspVerticalBar_bg.gif) no-repeat left center;
+	position: relative;
+	top: 0;
+	left: 0;
+	cursor: pointer;
+}
+.jspDragTop {
+	background:url(../images/jspVerticalDragTop_bg.gif) left top;
+	width:15px;
+	height:3px;
+	top:0;
+}
+.jspDragBottom {
+	background:url(../images/jspVerticalDragBottom_bg.gif) left top;
+	width:15px;
+	height:3px;
+	bottom:0;
+	position:absolute;
+}
+.touch_gird_box .jspDrag {
+	background:url(../images/right_scroll_bar.gif) no-repeat left center;
+	position: relative;
+	top: 0;
+	left: 0;
+	cursor: pointer;
+}
+.touch_gird_box .jspDragTop {
+	background:url(../images/jspDragTop_bg.gif) left top;
+	width:23px;
+	height:3px;
+	top:0;
+}
+.touch_gird_box .jspDragBottom {
+	background:url(../images/jspDragBottom_bg.gif) left top;
+	width:23px;
+	height:3px;
+	bottom:0;
+	position:absolute;
+}
+.jspHorizontalBar .jspTrack, .jspHorizontalBar .jspDrag {
+	float: left;
+	height: 100%;
+	background:#f2f2f2 url(../images/jspTrack_bg.gif) repeat-x left top;
+}
+.jspHorizontalBar .jspDrag {
+	float: left;
+	height: 100%;
+	background:url(../images/jspHorizontalBar_bg.gif) no-repeat center top;
+}
+.jspHorizontalBar .jspDrag .jspDragRight {
+	background:url(../images/jspDragRight_bg.gif) no-repeat center top;
+	width:3px;
+	height:15px;
+	float:right;
+}
+.jspHorizontalBar .jspDrag .jspDragLeft {
+	background:url(../images/jspDragLeft_bg.gif) no-repeat center top;
+	width:3px;
+	height:15px;
+	float:left;
+}
+.touch_gird_box .jspHorizontalBar .jspDrag {
+	float: left;
+	height: 100%;
+	background:url(../images/jspHorizontalBar_ver_bg.gif) no-repeat center top;
+}
+.touch_gird_box .jspHorizontalBar .jspDrag .jspDragRight {
+	background:url(../images/jsp_ver_DragRight_bg.gif) no-repeat center top;
+	width:3px;
+	height:23px;
+	float:right;
+}
+.touch_gird_box .jspHorizontalBar .jspDrag .jspDragLeft {
+	background:url(../images/jsp_ver_DragLeft_bg.gif) no-repeat center top;
+	width:3px;
+	height:23px;
+	float:left;
+}
+.touch_gird_box .jspHorizontalBar .jspTrack, .touch_gird_box .jspHorizontalBar .jspDrag {
+	float: left;
+	height: 100%;
+	background:#f2f2f2 url(../images/jspTrack_bg.gif) repeat-x left top;
+}
+.touch_gird_box .jspHorizontalBar .jspDrag {
+	float: left;
+	height: 100%;
+	background:url(../images/jspHorizontalBar_ver_bg.gif) no-repeat center top;
+}
+.touch_gird_box .jspHorizontalBar .jspDrag .jspDragRight {
+	background:url(../images/jsp_ver_DragRight_bg.gif) no-repeat center top;
+	width:3px;
+	height:23px;
+	float:right;
+}
+.touch_gird_box .jspHorizontalBar .jspDrag .jspDragLeft {
+	background:url(../images/jsp_ver_DragLeft_bg.gif) no-repeat center top;
+	width:3px;
+	height:23px;
+	float:left;
+}
+.jspArrow {
+	background: #50506d;
+	text-indent: -20000px;
+	display: block;
+	cursor: pointer;
+}
+.jspArrow.jspDisabled {
+	cursor: default;
+	background: #80808d;
+}
+.jspVerticalBar .jspArrow {
+	height: 16px;
+}
+.touch_gird_box .jspVerticalBar .jspArrow {
+	height: 19px;
+}
+.jspHorizontalBar .jspArrow {
+	width: 16px;
+	float: left;
+	height: 100%;
+}
+.touch_gird_box .jspHorizontalBar .jspArrow {
+	width: 19px;
+	float: left;
+	height: 100%;
+}
+.jspVerticalBar .jspArrow:focus {
+	outline: none;
+}
+.jspCorner {
+	background: #eeeef4;
+	float: left;
+	height: 100%;
+}
+.jspArrowDown {
+	background:url(../images/jspVerticalarrow.gif) no-repeat right top;
+}
+.jspArrowDown.jspDisabled {
+	background:url(../images/jspVerticalarrow.gif) no-repeat left top;
+}
+.jspArrowUp {
+	background:url(../images/jspVerticalarrow.gif) no-repeat right bottom;
+}
+.jspArrowUp.jspDisabled {
+	background:url(../images/jspVerticalarrow.gif) no-repeat left bottom;
+}
+.jspArrowLeft {
+	background:url(../images/jspHorizontalarrow.gif) no-repeat right top;
+}
+.jspArrowLeft.jspDisabled {
+	background:url(../images/jspHorizontalarrow.gif) no-repeat right bottom;
+}
+.jspArrowRight {
+	background:url(../images/jspHorizontalarrow.gif) no-repeat left top;
+}
+.jspArrowRight.jspDisabled {
+	background:url(../images/jspHorizontalarrow.gif) no-repeat left bottom;
+}
+.touch_gird_box .jspArrowDown {
+	background:url(../images/jspverarrow.gif) no-repeat right top;
+}
+.touch_gird_box .jspArrowDown.jspDisabled {
+	background:url(../images/jspverarrow.gif) no-repeat right bottom;
+}
+.touch_gird_box .jspArrowUp {
+	background:url(../images/jspverarrow.gif) no-repeat left top;
+}
+.touch_gird_box .jspArrowUp.jspDisabled {
+	background:url(../images/jspverarrow.gif) no-repeat left bottom;
+}
+.touch_gird_box .jspArrowLeft {
+	background:url(../images/jsphorarrow.gif) no-repeat right bottom;
+}
+.touch_gird_box .jspArrowLeft.jspDisabled {
+	background:url(../images/jsphorarrow.gif) no-repeat left bottom;
+}
+.touch_gird_box .jspArrowRight {
+	background:url(../images/jsphorarrow.gif) no-repeat right top;
+}
+.touch_gird_box .jspArrowRight.jspDisabled {
+	background:url(../images/jsphorarrow.gif) no-repeat left top;
+}
+/* Yuk! CSS Hack for IE6 3 pixel bug :( */
+* html .jspCorner {
+	margin: 0 -3px 0 0;
+}

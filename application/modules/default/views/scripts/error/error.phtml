@@ -1,0 +1,27 @@
+<form id="login_form" >
+    <span id="forget_error_message"><h2 class="main-heading4">Oops!! </h2>We encountered some problem, our tech team has been informed of this, you can visit our <a href="/">Homepage</a> for further navigation.</span>
+</form>
+
+<div class="error_panel">
+<?php if($this->error_flag=="1"){?>
+
+  
+
+  <?php if (isset($this->exception)): ?>
+
+  <h3>Exception information:</h3>
+  <span id="forget_message">
+      <b>Message:</b> <?php echo $this->exception->getMessage() ?>
+</span>
+
+  <h3>Stack trace:</h3>
+  <?php echo str_replace("#", "<br>\n #", $this->exception->getTraceAsString()) ?>
+  
+
+  <h3>Request Parameters:</h3>
+  <pre><?php echo var_export($this->request->getParams(), true) ?>
+  </pre>
+  <?php endif ?>
+
+<?php }?>
+</div>

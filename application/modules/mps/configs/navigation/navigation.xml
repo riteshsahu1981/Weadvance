@@ -1,0 +1,691 @@
+<?xml version="1.0" encoding="UTF-8"?>           
+<configdata>
+<weight>500</weight>    
+<nav>
+<menu-options>
+<label>Menu Options</label>
+<module>mps</module>
+<controller>app</controller>       
+<action>menu-options</action>
+<resource>mps:app</resource>
+<privilege>app</privilege>
+<pages>
+<dashboard>
+    <label>Dashboard</label>
+    <module>mps</module>
+    <controller>app</controller>       
+    <action>dashboard</action>
+    <resource>mps:app</resource>
+    <privilege>app</privilege>
+    
+</dashboard>
+<buying>
+    <label>Buying</label>
+    <module>mps</module>
+    <controller>app</controller>       
+    <action>buying</action>
+    <resource>mps:app</resource>
+    <privilege>app</privilege> 
+    <pages>
+        <incoming-cows>
+            <label>Incoming Cows</label>
+            <module>mps</module>
+            <controller>app</controller>       
+            <action>incoming-cows</action>
+            <resource>mps:app</resource>
+            <privilege>app</privilege>   
+        </incoming-cows>
+    </pages>
+</buying>
+<production>
+    <label>Production</label>
+    <module>mps</module>
+    <controller>app</controller>       
+    <action>production</action>
+    <resource>mps:app</resource>
+    <privilege>app</privilege> 
+    <pages>
+        <knocking>
+            <label>Knocking</label>
+            <module>mps</module>
+            <controller>app</controller>       
+            <action>knocking-box</action>
+            <resource>mps:app</resource>
+            <privilege>app</privilege>   
+        </knocking>
+        <compliance>
+            <label>Compliance</label>
+            <module>mps</module>
+            <controller>app</controller>       
+            <action>compliance</action>
+            <resource>mps:app</resource>
+            <privilege>app</privilege>   
+        </compliance>
+        <blood-station>
+            <label>Blood Station</label>
+            <module>mps</module>
+            <controller>app</controller>       
+            <action>blood-station</action>
+            <resource>mps:app</resource>
+            <privilege>app</privilege>   
+        </blood-station>
+        <weighing>
+            <label>Weighing</label>
+            <module>mps</module>
+            <controller>app</controller>       
+            <action>weighing</action>
+            <resource>mps:app</resource>
+            <privilege>app</privilege>   
+        </weighing>
+    </pages>
+</production>
+<accounts>
+    <label>Accounts</label>
+    <module>mps</module>
+    <controller>app</controller>       
+    <action>accounts</action>
+    <resource>mps:app</resource>
+    <privilege>app</privilege> 
+    <pages>
+        <pricing>
+            <label>Pricing</label>
+            <module>mps</module>
+            <controller>app</controller>       
+            <action>pricing</action>
+            <resource>mps:app</resource>
+            <privilege>app</privilege>   
+        </pricing>
+        <billing>
+            <label>Billing</label>
+            <module>mps</module>
+            <controller>app</controller>       
+            <action>billing</action>
+            <resource>mps:app</resource>
+            <privilege>app</privilege>   
+        </billing>
+        <invoicing>
+            <label>Invoicing</label>
+            <module>mps</module>
+            <controller>app</controller>       
+            <action>invoicing</action>
+            <resource>mps:app</resource>
+            <privilege>app</privilege>   
+        </invoicing>  
+    </pages>
+</accounts>
+<inventory>
+    <label>Inventory</label>
+    <module>mps</module>
+    <controller>app</controller>       
+    <action>inventory</action>
+    <resource>mps:app</resource>
+    <privilege>app</privilege> 
+    <pages>
+        <bone>
+            <label>Bone</label>
+            <module>mps</module>
+            <controller>app</controller>       
+            <action>bone</action>
+            <resource>mps:app</resource>
+            <privilege>app</privilege>   
+        </bone>
+        <tripe>
+            <label>Tripe</label>
+            <module>mps</module>
+            <controller>app</controller>       
+            <action>tripe</action>
+            <resource>mps:app</resource>
+            <privilege>app</privilege>   
+        </tripe>
+        <combo>
+            <label>Combo</label>
+            <module>mps</module>
+            <controller>app</controller>       
+            <action>combo</action>
+            <resource>mps:app</resource>
+            <privilege>app</privilege>   
+        </combo>  
+        <retail-production>
+            <label>Retail Production</label>
+            <module>mps</module>
+            <controller>app</controller>       
+            <action>retail-inventory</action>
+            <resource>mps:app</resource>
+            <privilege>app</privilege>   
+        </retail-production>
+    </pages>
+</inventory>
+<office-retail>
+    <label>Office Retail</label>
+    <module>mps</module>
+    <controller>app</controller>       
+    <action>office-retail</action>
+    <resource>mps:app</resource>
+    <privilege>app</privilege> 
+</office-retail>
+
+<order-processing>
+    <label>Order Processing</label>
+    <module>mps</module>
+    <controller>app</controller>       
+    <action>order-processing</action>
+    <resource>mps:app</resource>
+    <privilege>app</privilege> 
+    <pages>
+        <order-capture>
+            <label>Order Capture</label>
+            <module>mps</module>
+            <controller>app</controller>       
+            <action>order-capture</action>
+            <resource>mps:app</resource>
+            <privilege>app</privilege>   
+        </order-capture>
+        <order-list>
+            <label>Order List</label>
+            <module>mps</module>
+            <controller>app</controller>       
+            <action>order-list</action>
+            <resource>mps:app</resource>
+            <privilege>app</privilege>   
+        </order-list>
+    </pages>
+</order-processing>
+
+<shipping>
+    <label>Shipping</label>
+    <module>mps</module>
+    <controller>app</controller>       
+    <action>shipping</action>
+    <resource>mps:app</resource>
+    <privilege>app</privilege> 
+    <pages>
+        <pick-order>
+            <label>Pick Order</label>
+            <module>mps</module>
+            <controller>app</controller>       
+            <action>pick-order</action>
+            <resource>mps:app</resource>
+            <privilege>app</privilege>   
+        </pick-order>
+    </pages>
+</shipping>
+
+<reports>
+    <label>Reports</label>
+    <module>mps</module>
+    <controller>app</controller>       
+    <action>reports</action>
+    <resource>mps:app</resource>
+    <privilege>app</privilege> 
+    <pages>
+        <scan-production>
+            <label>Scan Production</label>
+            <module>mps</module>
+            <controller>app</controller>       
+            <action>scan-production</action>
+            <resource>mps:app</resource>
+            <privilege>app</privilege>   
+        </scan-production>
+        <cow-status>
+            <label>Cow Status</label>
+            <module>mps</module>
+            <controller>app</controller>       
+            <action>cow-status</action>
+            <resource>mps:app</resource>
+            <privilege>app</privilege>   
+        </cow-status>
+        <order-status>
+            <label>Order Status</label>
+            <module>mps</module>
+            <controller>app</controller>       
+            <action>order-status</action>
+            <resource>mps:app</resource>
+            <privilege>app</privilege>   
+        </order-status>
+        <production-reports>
+            <label>Production Reports</label>
+            <module>mps</module>
+            <controller>app</controller>       
+            <action>production-reports</action>
+            <resource>mps:app</resource>
+            <privilege>app</privilege>   
+        </production-reports>
+    </pages>
+</reports>
+</pages>
+</menu-options>
+
+<system-settings>
+<label>System Settings</label>
+<module>mps</module>
+<controller>app</controller>       
+<action>system-settings</action>
+<resource>mps:app</resource>
+<privilege>app</privilege>
+<pages>
+
+<manage-staff>
+    <label>Manage User</label>
+    <module>mps</module>
+    <controller>app</controller>       
+    <action>manage-staff</action>
+    <resource>mps:app</resource>
+    <privilege>app</privilege> 
+    <pages>
+        <add-staff>
+            <label>Add User</label>
+            <module>security</module>
+            <controller>user</controller>       
+            <action>add-new-user</action>
+            <resource>security:user</resource>
+            <privilege>user</privilege>   
+        </add-staff>
+        <staff-list>
+            <label>User List</label>
+            <module>security</module>
+            <controller>user</controller>       
+            <action>index</action>
+            <resource>security:user</resource>
+            <privilege>user</privilege>   
+            <pages>
+                <edit-user>
+                <label>Edit User</label>
+                <module>security</module>
+                <controller>user</controller>       
+                <action>edit-user</action>
+                <resource>security:user</resource>
+                <privilege>user</privilege>
+                </edit-user>
+            </pages>
+        </staff-list>
+        <change-password>
+            <label>Change Password</label>
+            <module>security</module>
+            <controller>user</controller>       
+            <action>change-password</action>
+            <resource>security:user</resource>
+            <privilege>user</privilege>   
+        </change-password>
+    </pages>
+</manage-staff>
+
+
+<manage-supplier>
+    <label>Manage Supplier</label>
+    <module>mps</module>
+    <controller>app</controller>       
+    <action>manage-supplier</action>
+    <resource>mps:app</resource>
+    <privilege>app</privilege> 
+    <pages>
+        <add-supplier>
+            <label>Add Supplier</label>
+            <module>admin</module>
+            <controller>supplier</controller>       
+            <action>create-supplier</action>
+            <resource>admin:supplier</resource>
+            <privilege>supplier</privilege>   
+        </add-supplier>
+        <supplier-list>
+            <label>Supplier List</label>
+            <module>admin</module>
+            <controller>supplier</controller>       
+            <action>index</action>
+            <resource>admin:supplier</resource>
+            <privilege>supplier</privilege>   
+        </supplier-list>
+    </pages>
+</manage-supplier>
+
+
+<manage-customer>
+    <label>Manage Customer</label>
+    <module>mps</module>
+    <controller>app</controller>       
+    <action>manage-customer</action>
+    <resource>mps:app</resource>
+    <privilege>app</privilege> 
+    <pages>
+        <add-customer>
+            <label>Add Customer</label>
+            <module>admin</module>
+            <controller>customer</controller>       
+            <action>create-customer</action>
+            <resource>admin:customer</resource>
+            <privilege>customer</privilege>   
+        </add-customer>
+        <customer-list>
+            <label>Customer List</label>
+            <module>admin</module>
+            <controller>customer</controller>       
+            <action>index</action>
+            <resource>admin:customer</resource>
+            <privilege>customer</privilege>   
+        </customer-list>
+    </pages>
+</manage-customer>
+
+
+<manage-product>
+    <label>Manage Product</label>
+    <module>mps</module>
+    <controller>app</controller>       
+    <action>manage-product</action>
+    <resource>mps:app</resource>
+    <privilege>app</privilege> 
+    <pages>
+        <add-product>
+            <label>Add Product</label>
+            <module>admin</module>
+            <controller>product</controller>       
+            <action>create-product</action>
+            <resource>admin:product</resource>
+            <privilege>product</privilege>   
+        </add-product>
+        <product-list>
+            <label>Product List</label>
+            <module>admin</module>
+            <controller>product</controller>       
+            <action>index</action>
+            <resource>admin:product</resource>
+            <privilege>product</privilege>   
+        </product-list>
+    </pages>
+</manage-product>
+
+
+
+<manage-menu>
+    <label>Manage Menu</label>
+    <module>mps</module>
+    <controller>app</controller>       
+    <action>manage-menu</action>
+    <resource>mps:app</resource>
+    <privilege>app</privilege> 
+    <pages>
+        <add-menu-item>
+            <label>Add Menu</label>
+            <module>security</module>
+            <controller>menu</controller>       
+            <action>add-menu-item</action>
+            <resource>security:menu</resource>
+            <privilege>menu</privilege>   
+        </add-menu-item>
+        
+        <menu-list>
+            <label>Menu List</label>
+            <module>security</module>
+            <controller>menu</controller>       
+            <action>index</action>
+            <resource>security:menu</resource>
+            <privilege>menu</privilege>   
+            <pages>
+                <edit-menu-item>
+                    <label>Edit Menu</label>
+                    <module>security</module>
+                    <controller>menu</controller>       
+                    <action>edit-menu-item</action>
+                    <resource>security:menu</resource>
+                    <privilege>menu</privilege>   
+                </edit-menu-item>
+            </pages>
+        </menu-list>
+        <permission-setup>
+            <label>Permission Setup</label>
+            <module>security</module>
+            <controller>menu</controller>       
+            <action>permission-setup</action>
+            <resource>security:menu</resource>
+            <privilege>menu</privilege>   
+        </permission-setup>
+    </pages>
+</manage-menu>
+
+
+<manage-location>
+    <label>Manage Location</label>
+    <module>mps</module>
+    <controller>app</controller>       
+    <action>manage-location</action>
+    <resource>mps:app</resource>
+    <privilege>app</privilege> 
+    <pages>
+        <add-location>
+            <label>Add Location</label>
+            <module>admin</module>
+            <controller>location</controller>       
+            <action>create-location</action>
+            <resource>admin:location</resource>
+            <privilege>location</privilege>   
+        </add-location>
+        <location-list>
+            <label>Location List</label>
+            <module>admin</module>
+            <controller>location</controller>       
+            <action>index</action>
+            <resource>admin:location</resource>
+            <privilege>location</privilege>   
+                <pages>
+                    <edit-location>
+                    <label>Edit Location</label>
+                    <module>admin</module>
+                    <controller>location</controller>       
+                    <action>edit-location</action>
+                    <resource>admin:location</resource>
+                    <privilege>location</privilege>           
+                </edit-location>
+                </pages>
+        </location-list>
+    </pages>
+</manage-location>
+
+
+<group-role-setup>
+    <label>Group/Role Setup</label>
+    <module>security</module>
+    <controller>privilege</controller>       
+    <action>index</action>
+    <resource>security:privilege</resource>
+    <privilege>privilege</privilege> 
+</group-role-setup>
+
+<manage-actions>
+    <label>Manage Actions</label>
+    <module>security</module>
+    <controller>action</controller>       
+    <action>manage</action>
+    <resource>security:action</resource>
+    <privilege>action</privilege> 
+</manage-actions>
+
+<manage-legends>
+    <label>Manage Legends</label>
+    <module>security</module>
+    <controller>legend</controller>       
+    <action>index</action>
+    <resource>security:legend</resource>
+    <privilege>legend</privilege> 
+</manage-legends>
+
+
+<manage-cow-profile>
+    <label>Manage Cow Profile</label>
+    <module>security</module>
+    <controller>animal</controller>       
+    <action>index</action>
+    <resource>security:animal</resource>
+    <privilege>animal</privilege> 
+</manage-cow-profile>
+
+
+<manage-organization>
+    <label>Manage Organization</label>
+    <module>admin</module>
+    <controller>organization</controller>       
+    <action>create-organization</action>
+    <resource>admin:organization</resource>
+    <privilege>organization</privilege> 
+</manage-organization>
+
+
+
+<manage-database-configs>
+    <label>Database Config</label>
+    <module>security</module>
+    <controller>db-config</controller>       
+    <action>index</action>
+    <resource>security:db-config</resource>
+    <privilege>db-config</privilege> 
+    <pages>
+        <add-database>
+            <label>Add Database</label>
+            <module>security</module>
+            <controller>db-config</controller>       
+            <action>add-new-db-config</action>
+            <resource>security:db-config</resource>
+            <privilege>db-config</privilege> 
+        </add-database>
+        <database-list>
+            <label>Database List</label>
+                <module>security</module>
+                <controller>db-config</controller>       
+                <action>database-configs</action>
+                <resource>security:db-config</resource>
+                <privilege>db-config</privilege> 
+                <pages>
+                    <edit-database>
+                        <label>Edit Database</label>
+                    <module>security</module>
+                        <controller>db-config</controller>       
+                        <action>edit-config</action>
+                        <resource>security:db-config</resource>
+                        <privilege>db-config</privilege> 
+                    </edit-database>
+                </pages>
+        </database-list>
+    </pages>
+</manage-database-configs>
+
+<sys-config>
+    <label>System Config</label>
+    <module>security</module>
+    <controller>db-config</controller>       
+    <action>index</action>
+    <resource>security:db-config</resource>
+    <privilege>db-config</privilege> 
+    <pages>
+        <add-config>
+            <label>Add Config</label>
+            <module>security</module>
+            <controller>sys-config</controller>       
+            <action>add-config</action>
+            <resource>security:sys-config</resource>
+            <privilege>sys-config</privilege> 
+        </add-config>
+        <database-list>
+            <label>Config List</label>
+                <module>security</module>
+                <controller>sys-config</controller>       
+                <action>index</action>
+                <resource>security:sys-config</resource>
+                <privilege>sys-config</privilege> 
+                <pages>
+                    <edit-config>
+                        <label>Edit Config</label>
+                        <module>security</module>
+                        <controller>sys-config</controller>       
+                        <action>edit-config</action>
+                        <resource>security:sys-config</resource>
+                        <privilege>sys-config</privilege> 
+                    </edit-config>
+                </pages>
+        </database-list>
+    </pages>
+</sys-config>
+
+<sys-message>
+    <label>System Messages</label>
+    <module>security</module>
+    <controller>sys-message</controller>       
+    <action>index</action>
+    <resource>security:sys-message</resource>
+    <privilege>sys-message</privilege> 
+    <pages>
+        <add-message>
+            <label>Add Messages</label>
+            <module>security</module>
+            <controller>sys-message</controller>       
+            <action>add-message</action>
+            <resource>security:sys-message</resource>
+            <privilege>sys-message</privilege> 
+        </add-message>
+        <message-list>
+            <label>Message List</label>
+                <module>security</module>
+                <controller>sys-message</controller>       
+                <action>messages</action>
+                <resource>security:sys-message</resource>
+                <privilege>sys-message</privilege> 
+                <pages>
+                    <edit-config>
+                        <label>Edit Message</label>
+                        <module>security</module>
+                        <controller>sys-message</controller>       
+                        <action>edit-message</action>
+                        <resource>security:sys-message</resource>
+                        <privilege>sys-message</privilege> 
+                    </edit-config>
+                </pages>
+        </message-list>
+    </pages>
+</sys-message>
+
+<manage-system-master>
+    <label>System Master</label>
+    <module>security</module>
+    <controller>privilege</controller>       
+    <action>index</action>
+    <resource>security:privilege</resource>
+    <privilege>privilege</privilege> 
+    <pages>
+        <add-system-master>
+            <label>Add/Edit System Master</label>
+            <module>security</module>
+            <controller>privilege</controller>       
+            <action>add-system-master</action>
+            <resource>security:privilege</resource>
+            <privilege>privilege</privilege> 
+        </add-system-master>
+        <list-system-master>
+            <label>List System Master</label>
+            <module>security</module>
+            <controller>privilege</controller>       
+            <action>list-system-master</action>
+            <resource>security:privilege</resource>
+            <privilege>privilege</privilege> 
+        </list-system-master>
+    </pages>
+</manage-system-master>
+
+<!-- <lot-price-list>
+    <label>Manage Lot Price</label>
+    <module>mps</module>
+    <controller>app</controller>       
+    <action>lot-price-list</action>
+    <resource>mps:app</resource>
+    <privilege>app</privilege> 
+</lot-price-list> -->
+
+
+</pages>
+</system-settings>
+
+
+
+
+
+ </nav>
+</configdata>
+
+
+            

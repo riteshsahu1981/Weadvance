@@ -1,0 +1,70 @@
+<?php echo $this->doctype() ?>
+<html lang="en">
+<head>
+    <meta http-equiv="content-language" content="en-us" />
+<?php echo $this->headTitle(); ?>   
+	<?php echo $this->headMeta(); ?>
+	 <?php 
+	  /*-------------- jquery ui----------------------*/
+	  if($this->jQuery()->isEnabled())
+		echo $this->jQuery();
+	  /*-----------------------------------------------*/
+	 ?>
+  <?php $this->headLink()->appendStylesheet('/style/calculator_hex.css'); ?>
+    <?php $this->headScript()->appendFile('/js/jquery.keyboard.js')   ;   ?>
+  <?php echo $this->headScript(); ?>
+  <?php echo $this->headLink(); ?>	
+    
+    <script type="text/javascript">
+// Script For All pages Starts //
+		$(document).ready(function(){
+		$(".menu_options p").first().addClass("first");
+		$("footer ul").find("li:last").css("background" , "none");
+		$(".right_section").css("width", $('.main_section').width()-218)
+		});
+		
+		$(window).resize(function(){
+		$(".right_section").css("width", $('.main_section').width()-218)
+		});
+		
+// Script For All Pages Ends //
+</script>
+<script>
+  $(function(){
+      
+      	  // Custom: Hex
+	// ********************
+		$('.hex').keyboard({		
+		layout: 'custom',
+		 openOn : null,
+         stayOpen : true,
+		customLayout: {
+			'default' : [
+				'1 2 3 {b}',
+				'4 5 6 {clear}',
+				'7 8 9 {c}',
+				'{zero} {accept}'
+			]
+		},
+		maxLength : 6,
+		restrictInput : true, // Prevent keys not in the displayed keyboard from being typed in
+		useCombos : false // don't want A+E to become a ligature
+	});
+	$('#hex').click(function(){
+		$('.hex').getkeyboard().reveal();
+	});
+  });
+	
+	
+</script>
+
+</head>
+<style>
+html, body{ height:100%;}
+</style>
+<body>
+   
+   <?php echo $this->layout()->content ?>
+    
+</body>
+</html>

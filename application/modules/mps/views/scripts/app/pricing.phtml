@@ -1,0 +1,144 @@
+<?php
+//$this->headScript()->appendFile("/js/ui.dropdownchecklist-1.4-min.js");
+//$this->headScript()->appendFile("/js/ui.dropdownchecklist.js");
+////$this->headScript()->appendFile("/js/jquery-1.6.1.min.js");
+//$this->headScript()->appendFile("/js/jquery-ui-1.8.13.custom.min.js");
+//$this->headLink()->appendStylesheet('/js/ui.dropdownchecklist.standalone.css');
+//$this->headLink()->appendStylesheet('/js/ui.dropdownchecklist.themeroller.css');
+//$this->headLink()->appendStylesheet('/js/smoothness-1.8.13/jquery-ui-1.8.13.custom.css');
+?>
+<form>
+ <table class="from_table" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right" class="form_tab_lebel" valign="top"><?php echo $this->puts("Select Supplier:")?></td>
+    <td align="left" class="form_tab_input" valign="top"><select>
+              <option value="-- Select --">-- Select --</option>
+                <option value="Smith">Smith</option>
+                <option value="John">John</option>
+                <option value="Mike">Mike</option>
+                <option value="Smith">Smith</option>
+                <option value="John">John</option>
+                <option value="Mike">Mike</option>
+                <option value="Smith">Smith</option>
+                <option value="John">John</option>
+                <option value="Mike">Mike</option>
+                <option value="Smith">Smith</option>
+                <option value="John">John</option>
+                <option value="Mike">Mike</option>
+            </select></td>
+    <td align="right"  class="form_tab_lebel" valign="top"><?php echo $this->puts("Trans ID:")?></td>
+    <td align="left" class="form_tab_input" valign="top"> <select>
+              <option value="-- Select --">-- Select --</option>
+              <option value="-- Select --">1254</option>
+              <option value="-- Select --">1266</option>
+              
+            </select></td>
+    <td align="right"  class="form_tab_lebel" valign="top"><?php echo $this->puts("Price/lb ($):")?></td>
+    <td align="left" class="form_tab_input" valign="top"><input type="text" value=""></td>
+  </tr>
+   <tr>
+     <td align="right" class="form_tab_lebel" valign="top">&nbsp;</td>
+     <td align="left" class="form_tab_input search_button" valign="top">
+         <input type="button" class="yellow_button yellow_button_cow" value="<?php echo $this->puts("Update")?>"></td>
+     <td align="right"  class="form_tab_lebel" valign="top">&nbsp;</td>
+     <td align="left" class="form_tab_input" valign="top">&nbsp;</td>
+     <td align="right"  class="form_tab_lebel" valign="top">&nbsp;</td>
+     <td align="left" class="form_tab_input" valign="top"></td>
+   </tr>
+  
+  <tr>
+   
+ <td align="left" style="padding:23px 0 0 0;" class="form_tab_input search_button" valign="top" colspan="6"><input type="button" class="gray_button_dark"  value="<?php echo $this->puts("Deduction")?>">
+<input type="button"  class="gray_button_dark" value="<?php echo $this->puts("Addition")?>">
+<input type="button" class="gray_button_dark"  value="<?php echo $this->puts("Tally")?>"></td>
+    
+  </tr>
+   <tr>
+     <td>&nbsp;</td>
+   </tr>
+</table>
+</form>
+    
+      <div class="gird_box">
+        <div class="scroll-pane">
+          <table class="grid_table" border="0"  cellspacing="0" cellpadding="0" style="margin-bottom:15px;">
+            <tr>
+              <th align="left" width="70"><?php echo $this->puts("Seq. No.")?></th>
+              <th align="left" width="80"><?php echo $this->puts("Lot No.")?></th>
+              <th align="left" width="80"><?php echo $this->puts("Cow ID")?></th>
+              <th align="left" width="100"><?php echo $this->puts("Knocked Date")?></th>
+              <th align="left" width="110"><?php echo $this->puts("Cow Weight")?></th>
+              <th align="left" width="90"><?php echo $this->puts("Price/lb ($)")?></th>
+              <th align="left" width="100"><?php echo $this->puts("Price/Cow ($)")?></th>
+              <th align="left" width="90"><?php echo $this->puts("Breed")?></th>
+              <th align="left" width="90"><?php echo $this->puts("Type")?></th>
+              <th align="left" width="110"><?php echo $this->puts("Condemn")?></th>
+              <th align="left" width="90"><?php echo $this->puts("Date In")?></th>
+              <th align="left" width="90"><?php echo $this->puts("Status")?></th>
+              <th align="left" width="120"><?php echo $this->puts("Action")?></th>
+              <?php for($i=1;$i<21;$i++){?> 
+            <tr class="package_row1">
+              <td align="left"><?php echo $i; ?>
+              </td>
+              <td align="left">1250<?php echo $i; ?></td>
+              
+              <td align="left">1907<?php echo $i; ?></td>
+              <td align="left">01/02/2012</td>
+              <td align="left">618.00</td>
+              <td align="left">$10.00</td>
+              <td align="left">$120.00</td>
+              <td align="left">Cow</td>
+              <td align="left">Holstein</td>
+              <td align="left">Head</td> <!-- Jitendra: 01-Mar-2012: Condemn information will also include status from Blood Station -->
+              <td align="left">01/09/2012 </td>
+              <td align="left">Weighed</td>
+              <td align="left" class="image">
+                <a href=" " style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/edit.png" border="0" title="Edit"/></a>
+                <a href=" "  style="color:#555d6a"><img alt="" src="<?php echo $this->cdnUri()?>/images/icons/accept.png" border="0" title="Accept"/></a>
+              </td>
+            </tr>
+            <?php } ?>
+            
+          </table>
+        </div>
+      </div>
+     
+    
+    <script type="text/javascript">
+		
+		
+        // Script For Grid Starts //
+		$(document).ready(function(){
+			//row click
+			$('tr.package_row1').click(function (event) {
+								$('tr.package_row1').toggleClass('active', false);
+								$(this).toggleClass('active', true);
+								});
+			// table Width
+			var tblWidth=0;
+			$('.grid_table tr:first').children().each(function(index) {
+									tblWidth = tblWidth + parseInt($(this).attr('width'));
+									});
+			$(".grid_table").css("width", tblWidth);
+		});
+
+		$('.grid_table tr').find('td:last').addClass('last')
+		$('.grid_table tr').find('th:last').addClass('last')
+		// Script For Grid Ends //
+
+
+
+		// Script For Scroll Panel Starts //
+		$(function(){
+		$('.scroll-pane').jScrollPane({showArrows: true});
+		});
+		// Script For Scroll Panel Ends //
+
+
+		// Script For Tabs Panel Starts //
+			$(function(){
+				$('#tabs').tabs();
+			});
+		// Script For Tabs Panel Ends //
+        
+     </script>

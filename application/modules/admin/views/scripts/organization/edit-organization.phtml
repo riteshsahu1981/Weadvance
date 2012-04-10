@@ -1,0 +1,192 @@
+
+
+
+<form method="post" id="frmRegistration" action="<?php //echo $this->seoUrl("/admin/organization/create-organization")?>" >
+    
+    <div> <?php echo $this->flashMessages()?> </div>
+  <div class="form_row form_separate">
+    <div class="form_label">
+      <?php echo $this->form->orgName->getLabel(); ?> <span class="required">*</span>
+    </div>
+    <div class="form_field">
+      <?php echo $this->form->orgName; ?>
+        </div>
+  </div>
+  
+    
+    <div class="form_row ">
+    <div class="form_row">
+      <div class="form_label" id="lbl" >
+        <h2> Add Organization </h2>
+      </div>
+    </div>
+  </div>
+    
+    <div class="form_row">
+      <div class="form_label">
+        <?php echo $this->form->organizationName->getLabel(); ?> <span class="required">*</span>
+      </div>
+      <div class="form_field">
+        <?php echo $this->form->organizationName; ?>
+        </div>
+    </div>
+    
+    
+  <div class="form_row">
+    <div class="form_label">
+      <?php echo $this->form->firstName->getLabel(); ?> <span class="required">*</span>
+    </div>
+    <div class="form_field">
+      <?php echo $this->form->firstName; ?>
+        </div>
+    <div class="form_label">
+      <?php echo $this->form->lastName->getLabel(); ?> <span class="required">*</span>
+    </div>
+    <div class="form_field">
+      <?php echo $this->form->lastName; ?>
+        </div>
+  </div>
+  <div class="form_row">
+    <div class="form_label">
+      <?php echo $this->form->address1->getLabel(); ?> <span class="required">*</span>
+    </div>
+    <div class="form_field">
+      <?php echo $this->form->address1; ?>
+        </div>
+    <div class="form_label">
+      <?php echo $this->form->address2->getLabel(); ?>
+    </div>
+    <div class="form_field">
+      <?php echo $this->form->address2; ?>
+        </div>
+  </div>
+  <div class="form_row">
+    <div class="form_label">
+      <?php echo $this->form->city->getLabel(); ?> <span class="required">*</span>
+    </div>
+    <div class="form_field">
+      <?php echo $this->form->city; ?>
+        </div>
+    <div class="form_label">
+      <?php echo $this->form->state->getLabel(); ?> <span class="required">*</span>
+    </div>
+    <div class="form_field">
+      <?php echo $this->form->state; ?>
+        </div>
+  </div>
+  <div class="form_row">
+    <div class="form_label">
+      <?php echo $this->form->zip->getLabel(); ?> <span class="required">*</span>
+    </div>
+    <div class="form_field">
+      <?php echo $this->form->zip; ?>
+        </div>
+  </div>
+  <div class="form_row">
+    <div class="form_label">
+      <?php echo $this->form->phone->getLabel(); ?> <span class="required">*</span>
+    </div>
+    <div class="form_field">
+      <?php echo $this->form->phone; ?>
+        </div>
+    <div class="form_label">
+      <?php echo $this->form->fax->getLabel(); ?> <span class="required">*</span>
+    </div>
+    <div class="form_field">
+      <?php echo $this->form->fax; ?>
+        </div>
+  </div>
+    
+  <div class="form_row">
+    <div class="form_label">
+      <?php echo $this->form->email->getLabel(); ?> <span class="required">*</span>
+    </div>
+    <div class="form_field">
+      <?php echo $this->form->email; ?>
+        </div>
+  </div>
+    
+    
+  <div class="form_row">
+    <div class="form_label">&nbsp;</div>
+    <div class="form_field">
+            <?php echo $this->form->submit;?>
+      
+        </div>
+  </div>
+</form>
+
+
+<script type="text/javascript">
+
+function getSubGroups(obj)
+{
+    //alert (obj);
+    $.post(
+            "/admin/organization/ajax-get-sub-group", 
+            { 
+               //"group_id" : $("#groupId").val()
+               "group_id" : obj
+            }, 
+            function (data) {
+                $(".error").css("display","none");
+                if(data){
+                    $.each(data, function(i, item){
+                    
+                    var textname = i.split('_');
+                    
+                    $('input[name$="'+textname[1]+'"]').val(item);
+                    if(textname[1] == 'id'){
+                       
+                         edit_id = item;
+                         
+                    }
+                    if(textname[1] == 'rowGuid'){
+                       
+                         edit_guid = item;
+                         
+                    }
+                    
+                    });
+                    
+                    $("#submit").val('Update');
+                    $("#action_type").val('edit-organization');
+                    $("#frmRegistration").attr("action", "/admin/organization/edit-organization/id/" + edit_id + "/guid/" + edit_guid);
+                    
+                }
+                else{
+                    
+                    //$('#frmRegistration')[0].reset();
+                    $("form input, form textarea, form select").each(function(i){
+                        $(this).val('');
+                    }); 
+                    
+                    
+                    $("#submit").val('Submit');
+                    $("#action_type").val('create-organization');
+                   
+                    $("#frmRegistration").attr("action", "/admin/organization/create-organization");
+
+                }
+                
+                    
+            },"json"
+    );
+}
+function getRoles()
+{
+    $.post(
+            "/security/privilege/ajax-get-role", 
+            { 
+               "sub_group_id" : $("#subGroupId").val()
+            }, 
+            function (data) {
+                $("#roleId").html("");
+                $.each(data, function(i, item){
+                    $("#roleId").append('<option value="' + i + '">' + item + '</option>');
+                });
+                    
+            },"json"
+    );
+}
+</script>

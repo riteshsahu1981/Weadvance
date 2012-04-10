@@ -1,0 +1,346 @@
+ <?php 
+
+ $this->headScript()->appendFile("/js/tree/_lib/jquery.cookie.js");
+ $this->headScript()->appendFile("/js/tree/_lib/jquery.hotkeys.js");
+ $this->headScript()->appendFile("/js/tree/jquery.jstree.js");
+ $this->headLink()->appendStylesheet('/js/tree/themes/default/style.css'); 
+
+ ?>
+
+<script language="javascript">
+
+
+$(function () {
+	$("#privilege_tree").jstree({ 
+                "core" : { "initially_open" : [ "noderoot_0", "noderoot_1", "noderoot_2"] },
+		"plugins" : [ "themes", "html_data", "ui", "crrm", , "types" ,"hotkeys", "checkbox"],
+                "types" : {
+                     "max_depth" : -2,
+                        "max_children" : -2,
+                        // I want only 'root' nodes to be root nodes
+                        // This will prevent moving or creating any other type as a root node
+                        "valid_children" : [ "root" ],
+                      "types" : {
+				"root" : {
+					"icon" : {"image" : "/js/tree/themes/default/_drive.png" },
+					"valid_children" : [ "default" ],
+					"max_depth" : 2,
+					"hover_node" : false,
+                                        'rename_node' :false,
+                                        'select_node' :false
+				},
+                                "group" : {
+                                        "icon" : {"image" : "/js/tree/themes/default/folder.png" },
+					"valid_children" : [ "subgroup" ],
+					"max_depth" : 2,
+					"hover_node" : false					
+				},
+                                "subgroup" : {
+					"icon" : {"image" : "/js/tree/themes/default/folder.png" },
+					"valid_children" : [ "role" ],
+					"max_depth" : 2,
+					"hover_node" : false
+				},
+                                "role" : {
+                                        "icon" : {"image" : "/js/tree/themes/default/file.png" },
+					"max_depth" : 2,
+					"hover_node" : false,
+                                        "valid_children" : "none"
+                                       
+				},
+                                "s-role" : {
+                                        "icon" : {"image" : "/js/tree/themes/default/file.png" },
+					"max_depth" : 2,
+					"hover_node" : false,
+                                        "valid_children" : "none"
+                                       
+				},
+				"default" : {
+					"icon" : {"image" : "/js/tree/themes/default/folder.png" },
+					"valid_children" : [ "subgroup" ],
+					"max_depth" : 2,
+					"hover_node" : false
+				}
+			}
+    }
+                
+                
+                    
+               
+	})
+        
+        ;
+        
+        
+        $("input[name='rdo']").change(function(){
+            var rdoval=$("input[name='rdo']:checked").val();
+            if(rdoval=="rdoGroup")
+            {
+                $("#cmbGroup").removeAttr('disabled');
+
+                $("#cmbSubGroup").attr('disabled', 'disabled');
+                $("#cmbRole").attr('disabled', 'disabled');
+                $("#cmbUser").attr('disabled', 'disabled');
+            }else if(rdoval=="rdoSubGroup")
+            {
+                $("#cmbGroup").attr('disabled', 'disabled');
+                $("#cmbSubGroup").removeAttr('disabled');
+
+                $("#cmbRole").attr('disabled', 'disabled');
+                $("#cmbUser").attr('disabled', 'disabled');
+            }
+            else if(rdoval=="rdoRole")
+            {
+                $("#cmbGroup").attr('disabled', 'disabled');
+                $("#cmbSubGroup").attr('disabled', 'disabled');
+                $("#cmbRole").removeAttr('disabled');
+
+                $("#cmbUser").attr('disabled', 'disabled');
+            }
+            else if(rdoval=="rdoUser")
+            {
+                $("#cmbGroup").attr('disabled', 'disabled');
+                $("#cmbSubGroup").attr('disabled', 'disabled');
+                $("#cmbRole").attr('disabled', 'disabled');
+                $("#cmbUser").removeAttr('disabled');
+
+            }
+        });
+});
+
+</script>
+<form>
+    <div class="bone_panel">
+        <div class="cus_order">
+            <table class="from_table" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right" class="form_tab_lebel" valign="top"><div class="rework_tab_bx1">
+            <input type="radio" name="rdo" id="rdo" checked="checked" value="rdoGroup">
+            Group: </div></td>
+    <td align="left" class="form_tab_input" valign="top"><select id="cmbGroup">
+                <option value="">-- Select --</option>
+                <?php for($i=1;$i<21;$i++):?>
+                <option value="Group<?php echo $i;?>">Group<?php echo $i;?></option>
+                <?php endfor;?>
+            </select></td>
+  </tr>
+  
+  <tr>
+    <td align="right" class="form_tab_lebel" valign="top"><div class="rework_tab_bx1">
+            <input type="radio" name="rdo" id="rdo" value="rdoSubGroup">
+            Sub Group: </div></td>
+    <td align="left" class="form_tab_input" valign="top"><select id="cmbSubGroup" disabled="disabled">
+                <option value="">-- Select --</option>
+                <?php for($i=1;$i<21;$i++):?>
+                <option value="SubGroup<?php echo $i;?>">SubGroup<?php echo $i;?></option>
+                <?php endfor;?>
+            </select></td>
+  </tr>
+ 
+  
+  <tr>
+    <td align="right" class="form_tab_lebel" valign="top"><div class="rework_tab_bx1">
+            <input type="radio" name="rdo" id="rdo" value="rdoRole">
+            Role: </div></td>
+    <td align="left" class="form_tab_input" valign="top"><select id="cmbRole" disabled="disabled">
+                <option value="">-- Select --</option>
+                <?php for($i=1;$i<21;$i++):?>
+                <option value="Role<?php echo $i;?>">Role<?php echo $i;?></option>
+                <?php endfor;?>
+            </select></td>
+  </tr>
+ 
+   <tr>
+    <td align="right" class="form_tab_lebel" valign="top"><div class="rework_tab_bx1">
+            <input type="radio" name="rdo"  id="rdo" value="rdoUser">
+            User: </div></td>
+    <td align="left" class="form_tab_input" valign="top"> <select id="cmbUser" disabled="disabled">
+                <option value="">-- Select --</option>
+                <?php for($i=1;$i<21;$i++):?>
+                <option value="User<?php echo $i;?>">User<?php echo $i;?></option>
+                <?php endfor;?>
+            </select></td>
+  </tr>
+  
+  
+  <tr>
+    <td align="right" class="form_tab_input" style="padding-top:10px;" valign="top"><input type="button" class="yellow_button" id="addon" value="Get Permission"></td>
+    <td align="left" class="form_tab_input" style="padding-top:10px;" valign="top"><input type="button" class="yellow_button" id="" value="Save Permission"></td>
+  </tr>
+  
+</table>
+          
+        </div>
+        <div class="pallet_order">
+      
+        <div class="form_field_tree">
+            
+                    <div id="privilege_tree" class="demo">
+                        <ul>
+                            <li id="noderoot_0" rel="root">
+                                <a href="#" >All</a>
+                                    <ul>
+                                        <li  id="noderoot_1">
+                                            <a href="#" >Menu Options</a>
+                                            <ul>
+                                                <li rel="group"><a href="#" >Dashboard</a></li>
+                                                <li rel="group"><a href="#" >Buying</a>
+                                                    <ul>
+                                                        <li rel="subgroup"><a href="#" >Incoming Cows</a></li>
+
+                                                    </ul>
+                                                </li>
+                                                <li rel="group"><a href="#" >Production</a>
+                                                    <ul>
+                                                        <li><a href="<?php echo $this->seoUrl("/mps/app/knocking-box")?>">Knocking</a></li>
+                                                        <li><a href="<?php echo $this->seoUrl("/mps/app/compliance")?>">Compliance</a></li>
+                                                        <li><a href="<?php echo $this->seoUrl("/mps/app/blood-station")?>">Blood Station</a></li>
+                                                        <li><a href="<?php echo $this->seoUrl("/mps/app/weighing")?>">Weighing</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li rel="group"><a href="#" >Accounts</a>
+                                                    <ul>
+                                                        <li><a href="<?php echo $this->seoUrl("/mps/app/pricing")?>">Pricing</a></li>
+                                                        <li><a href="<?php echo $this->seoUrl("/mps/app/billing")?>">Billing</a></li>
+                                                        <li><a href="<?php echo $this->seoUrl("/mps/app/invoicing")?>" >Invoicing</a></li>
+
+                                                    </ul>
+                                                </li>
+                                                <li rel="group"><a href="#" >Inventory</a>
+                                                    <ul>
+
+                                                        <li><a href="<?php echo $this->seoUrl("/mps/app/bone")?>">Bone</a></li>
+                                                        <li><a href="<?php echo $this->seoUrl("/mps/app/tripe")?>">Pack/Tripe</a></li>
+                                                        <li><a href="<?php echo $this->seoUrl("/mps/app/combo")?>">Combo</a></li>
+                                                        <li><a href="<?php echo $this->seoUrl("/mps/app/retail-inventory")?>">Retail Production</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li rel="group"><a href="#" >Office Retail</a>
+
+                                                </li>
+                                                <li rel="group"><a href="#" >Order Processing</a>
+                                                    <ul>
+                                                        <li><a href="<?php echo $this->seoUrl("/mps/app/order-capture")?>">Order Capture</a></li>
+                                                        <li><a href="<?php echo $this->seoUrl("/mps/app/order-list")?>">Order List</a></li>
+                                                    </ul>
+                                                </li>
+
+                                                <li rel="group"><a href="#" >Shipping</a>
+                                                    <ul>
+                                                        <li><a href="<?php echo $this->seoUrl("/mps/app/pick-order")?>">Pick Order</a></li>
+                                                    </ul>
+                                                </li>
+
+                                                <li rel="group"><a href="#" >Reports</a>
+                                                    <ul>
+                                                        <li><a href="<?php echo $this->seoUrl("/mps/app/scan-production")?>">Scan Production</a></li>
+                                                        <li><a href="<?php echo $this->seoUrl("/mps/app/cow-status")?>">Cow Status</a></li>
+
+                                                        <li><a href="<?php echo $this->seoUrl("/mps/app/reports")?>">Reports (will check and Rename)</a></li>
+                                                        <li><a href="<?php echo $this->seoUrl("/mps/app/month-end")?>">Month End</a></li>
+                                                        <li><a href="<?php echo $this->seoUrl("/mps/app/order-status")?>">Order Status</a></li>
+                                                        <li><a href="<?php echo $this->seoUrl("/mps/app/scan-inventory")?>">Scan Inventory</a></li>
+                                                        <li><a href="<?php echo $this->seoUrl("/mps/app/production-reports")?>">Production Reports</a></li>
+                                                        <li><a href="<?php echo $this->seoUrl("/mps/app/shipping-status")?>">Shipping Status</a></li>
+                                                    </ul>
+                                                </li>
+
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                <ul>
+                                    <li  id="noderoot_2"><a href="">System Settings</a>
+                                        <ul>
+                                        <li rel="group"><a href="#" >Manage Staff</a>
+                                            <ul>
+                                                <li><a href="<?php echo $this->seoUrl("/mps/app/create-user")?>">Add Staff</a> </li>
+                                                <li><a href="<?php echo $this->seoUrl("/mps/app/manage-user")?>">Staff List</a> </li>
+                                            </ul>
+                                        </li>
+                                        <li rel="group"><a href="#" >Manage Supplier</a>
+                                            <ul>
+                                                <li><a  href="<?php echo $this->seoUrl("/mps/app/create-supplier")?>">Add Supplier</a> </li>
+                                                <li><a href="<?php echo $this->seoUrl("/mps/app/supplier-list")?>">Supplier List</a></li>
+                                            </ul>
+                                        </li>
+                                        <li rel="group"><a href="#" >Manage Customer</a>
+                                            <ul>
+                                                    <li><a  href="<?php echo $this->seoUrl("/mps/app/create-customer")?>">Add Customer</a> </li>
+                                                    <li><a href="<?php echo $this->seoUrl("/mps/app/customer-list")?>">Customer List</a></li>
+                                            </ul>
+                                        </li>
+                                        <li rel="group"><a href="#" >Manage Product</a>
+                                            <ul>
+                                                <li><a  href="<?php echo $this->seoUrl("/mps/app/create-product")?>">Add Product</a> </li>
+                                                <li><a href="<?php echo $this->seoUrl("/mps/app/product-list")?>">Product List</a></li>
+                                            </ul>
+                                        </li>
+                                        <li rel="group"><a href="#" >Manage Menu</a>
+                                            <ul>
+                                                <li><a  href="<?php echo $this->seoUrl("/mps/app/menu-create")?>">Add Menu</a> </li>
+                                                <li><a href="<?php echo $this->seoUrl("/mps/app/menu-list")?>">Menu List</a></li>
+                                            </ul>
+                                        </li>
+                                        <li rel="group"><a href="#" >Manage Location</a>
+                                            <ul>
+                                                <li><a  href="<?php echo $this->seoUrl("/mps/app/create-inventory-location")?>">Add Location</a> </li>
+                                                <li><a href="<?php echo $this->seoUrl("/mps/app/inventory-location-list")?>">Location List</a></li>
+                                            </ul>
+                                        </li>
+                                        <li rel="group">
+                                            <a class="menuitem" href="<?php echo $this->seoUrl("/security/privilege/index")?>" >Group/Role Setup</a>
+                                        </li>
+                                        <li rel="group">
+                                            <a class="menuitem" href="<?php echo $this->seoUrl("/mps/app/manage-actions")?>" >Manage Actions</a>
+                                        </li>
+                                        <li rel="group">
+                                            <a class="menuitem" href="<?php echo $this->seoUrl("/mps/app/permission-setup")?>" >Menu Permission Setup</a>
+                                        </li>
+                                        <li rel="group">
+                                            <a class="menuitem" href="<?php echo $this->seoUrl("/mps/app/action-permission-setup")?>" >Action Permission Setup</a>
+                                        </li>
+                                        <li rel="group">
+                                            <a class="menuitem" href="<?php echo $this->seoUrl("/security/legend/index")?>" >Manage Legends</a>
+                                        </li>
+                                        <li rel="group">
+                                            <a class="menuitem" href="<?php echo $this->seoUrl("/mps/app/manage-cow-profile")?>" >Manage Cow Profile</a>
+                                        </li>
+                                        <li rel="group">
+                                            <a class="menuitem" href="<?php echo $this->seoUrl("/mps/app/manage-organization")?>" >Manage Organization</a>
+                                        </li>
+                                        <li rel="group">
+                                            <a class="menuitem" href="<?php echo $this->seoUrl("/mps/app/lot-price-list")?>" >Manage Lot Price</a>
+                                        </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+              
+              
+          </div>
+          
+          
+       
+        </div>    
+    
+  
+    </div>    
+   
+     
+       
+    
+        
+    
+   
+    
+
+
+
+      </form>
+   
+   
+    
+       
+

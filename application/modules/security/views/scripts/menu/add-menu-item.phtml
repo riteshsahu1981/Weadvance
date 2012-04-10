@@ -1,0 +1,130 @@
+<script type="text/javascript">
+    $(function() {
+            
+    $("#dialog-modal").hide();
+    $("#addon").click(function() {
+    $("#dialog-modal").dialog({
+                    width: 500,
+                    modal: true,
+                    resizable: false,
+                    buttons: {
+				/*'Ok': function() {
+					$(this).dialog('close');
+				},*/
+				Close: function() {
+					$(this).dialog('close');
+                                       // $("#menuIcon").val('');
+				}
+			}
+
+
+            });
+    });
+    });
+function fillIcon(icon)
+{
+$("#menuIcon").val(icon);
+$("#dialog-modal").dialog('close');
+}  
+</script>
+
+<style>
+    .ic:hover,.ic,#addon{
+        cursor: pointer;
+    }
+    .ic{
+        border:1px solid #CBCED7;
+        padding: 3px;
+    }
+    .ic:hover{
+        border:1px solid #FDDB5D;
+    }
+    #dialog-modal {
+    height: auto !important;
+    display: none;
+    padding: 0px !important;
+    }
+</style>
+
+
+<div id="dialog-modal" title="Select Menu Icon">
+        <form name="create_customer">
+            <table width="90%" cellspacing="0" cellpadding="4" border="0" align="center">
+                <tr><td colspan="4">List of Menu Icon&raquo;</td></tr>
+                 <tr align="center" valign="top">
+                    <?php
+                    $dir=$this->icons;
+                    if (count($dir)>0)
+                    {
+                        $imgPath=$this->cdnUri()."/media/menu-icons/";
+                        $size='width="65" height="60"';
+                        $col=4;
+                        $c=1;
+
+                        foreach($dir as $img) 
+                        {
+                            ?>
+                                <td><img class="ic ui-icon-closethick" src="<?php echo $imgPath; ?><?php echo $img; ?>" <?php echo $size; ?> onclick="fillIcon('<?php echo $img; ?>')" /></td>
+                            <?php
+                            if ($c==$col)
+                            {
+                                echo '</tr><tr align="center" valign="top">';
+                                $c=1;
+                            }
+                            else
+                                $c++;
+                        }
+                    }
+                    else
+                        echo "<td colspan='$col'>No icons</td>";
+                   
+                    ?>
+                 </tr>
+            </table>
+           
+       
+
+             
+
+        </form>
+</div>
+<?php echo  $this->flashMessages()?>
+
+<form method="post">
+    <div class="form_row">
+        <div class="form_label"><?php echo $this->puts($this->form->title->getLabel());?><span class="required">*</span></div>
+        <div class="form_field"><?php echo $this->form->title?></div>
+        <div class="form_label"><?php echo $this->puts($this->form->parentMenuId->getLabel());?></div>
+        <div class="form_field"><?php echo $this->form->parentMenuId?></div> 
+    </div>
+
+
+    <div class="form_row">
+        <div class="form_label"><?php echo $this->puts($this->form->path->getLabel());?><span class="required">*</span></div>
+        <div class="form_field"><?php echo $this->form->path?></div>
+        <div class="form_label"><?php echo $this->puts($this->form->toolTip->getLabel());?></div>
+        <div class="form_field"><?php echo $this->form->toolTip?></div>
+    </div>
+
+    <div class="form_row">
+        <div class="form_label"><?php echo $this->puts($this->form->isActive->getLabel());?></div>
+        <div class="form_field_same"><?php echo $this->form->isActive;?></div>
+         <div class="form_label" style="margin-left:21px;"><?php echo $this->puts($this->form->menuIcon->getLabel());?></div>
+        <div class="form_field"><?php echo $this->form->menuIcon;?> <img src="<?php echo $this->cdnUri();?>/images/choose-icons.jpg" id="addon" title="Select Menu Icons" border="0" align="absmiddle"/></div>
+    </div>
+    <div class="form_row">
+        <div class="form_label"><?php echo $this->puts($this->form->isChild->getLabel());?></div>
+        <div class="form_field_same"><?php echo $this->form->isChild?></div>
+        <div class="form_label"><?php echo$this->puts($this->form->isAction->getLabel());?></div>
+        <div class="form_field_same"><?php echo $this->form->isAction?></div>
+    </div>
+
+
+
+
+    <div class="form_row">
+        <div class="form_label">&nbsp;</div>
+        <div class="form_field"><?php echo $this->form->submit?></div>
+    </div>
+</form>
+

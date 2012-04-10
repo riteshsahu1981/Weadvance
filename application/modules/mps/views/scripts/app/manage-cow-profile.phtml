@@ -1,0 +1,213 @@
+ <?php 
+ $this->headScript()->appendFile("/js/tree/_lib/jquery.cookie.js");
+ $this->headScript()->appendFile("/js/tree/_lib/jquery.hotkeys.js");
+ $this->headScript()->appendFile("/js/tree/jquery.jstree.js");
+ $this->headLink()->appendStylesheet('/js/tree/themes/default/style.css'); 
+
+ ?>
+
+<script language="javascript">
+
+
+function customMenu(node) {
+    
+    var items = {   
+        renameItem: { 
+            label: "Rename",
+            action: function (node) { this.rename(node);}
+        },
+        deleteItem: { 
+            label: "Delete",
+            action: function (node) {   if(this.is_selected(node)) { this.remove(); } else { this.remove(node); }  }
+        },
+        createItem: { 
+            label: "Create",
+            action: function (node) {this.create(node);}
+        }
+    };
+
+    if ($(node).attr( 'rel' )=="root") {
+        
+        items.deleteItem._disabled = true;
+        items.renameItem._disabled = true ;      
+        items.createItem.label= "Create Type1"; 
+
+    }else if ($(node).attr( 'rel' )=="group") {
+        
+        items.createItem.label= "Create Type2"; 
+    }
+    else if ($(node).attr( 'rel' )=="subgroup") {
+        items.createItem.label= "Create Type3"; 
+    }
+    else if ($(node).attr( 'rel' )=="role") {
+        delete items.createItem; 
+        
+    }
+    else
+    {
+        items.createItem.label= "Create Type2"; 
+    }
+
+    return items;
+}
+ 
+
+$(function () {
+	$("#privilege_tree").jstree({ 
+                "core" : { "initially_open" : [ "noderoot_0" ] },
+
+		"plugins" : [ "themes", "html_data", "ui", "crrm", "contextmenu", "types" ,"hotkeys"],
+                //"plugins" : [ "themes", "html_data", "ui", "crrm", "contextmenu", "types" ],
+                'contextmenu' : { 'items' : customMenu    },
+                
+                "types" : {
+                        // I set both options to -2, as I do not need depth and children count checking
+                        // Those two checks may slow jstree a lot, so use only when needed
+                        "max_depth" : -2,
+                        "max_children" : -2,
+                        // I want only 'root' nodes to be root nodes
+                        // This will prevent moving or creating any other type as a root node
+                        "valid_children" : [ "root" ],
+			"types" : {
+				"root" : {
+					"icon" : {"image" : "/js/tree/themes/default/_drive.png" },
+					"valid_children" : [ "default" ],
+					"max_depth" : 2,
+					"hover_node" : false,
+                                        'rename_node' :false,
+                                        'select_node' :false
+				},
+                                "group" : {
+                                        "icon" : {"image" : "/js/tree/themes/default/folder.png" },
+					"valid_children" : [ "subgroup" ],
+					"max_depth" : 2,
+					"hover_node" : false					
+				},
+                                "subgroup" : {
+					"icon" : {"image" : "/js/tree/themes/default/folder.png" },
+					"valid_children" : [ "role" ],
+					"max_depth" : 2,
+					"hover_node" : false
+				},
+                                "role" : {
+                                        "icon" : {"image" : "/js/tree/themes/default/file.png" },
+					"max_depth" : 2,
+					"hover_node" : false,
+                                        "valid_children" : "none"
+                                       
+				},
+                                "s-role" : {
+                                        "icon" : {"image" : "/js/tree/themes/default/file.png" },
+					"max_depth" : 2,
+					"hover_node" : false,
+                                        "valid_children" : "none"
+                                       
+				},
+				"default" : {
+					"icon" : {"image" : "/js/tree/themes/default/folder.png" },
+					"valid_children" : [ "subgroup" ],
+					"max_depth" : 2,
+					"hover_node" : false
+				}
+			}
+		}
+               
+	})
+        
+        ;
+});
+
+</script>
+<div class="form_field_tree">
+<div id="privilege_tree" class="demo">
+    <ul>
+        <li id="noderoot_0" rel="root">
+            <a href="#" >Animal Profile</a>
+            <ul>
+                <li rel="group"><a href="#" >Cow</a>
+                    <ul>
+                        <li rel="subgroup"><a href="#" >Holstein</a></li>
+                        <li rel="subgroup"><a href="#" >Jersey</a></li>
+                        <li rel="subgroup"><a href="#" >Angus</a>
+                            <ul>
+                                <li rel="role"><a href="#" >Red</a></li>
+                                <li rel="role"><a href="#" >Black</a></li>
+                            </ul>
+                        </li>
+                        <li rel="subgroup"><a href="#" >Herford</a></li>
+                        <li rel="subgroup"><a href="#" >Other</a>
+                            <ul>
+                                <li rel="role"><a href="#" >Gray</a></li>
+                                <li rel="role"><a href="#" >Yellow</a></li>
+                                <li rel="role"><a href="#" >White</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li rel="group"><a href="#" >Bull</a>
+                    <ul>
+                        <li rel="subgroup"><a href="#" >Holstein</a></li>
+                        <li rel="subgroup"><a href="#" >Jersey</a></li>
+                        <li rel="subgroup"><a href="#" >Angus</a>
+                            <ul>
+                                <li rel="role"><a href="#" >Red</a></li>
+                                <li rel="role"><a href="#" >Black</a></li>
+                            </ul>
+                        </li>
+                        <li rel="subgroup"><a href="#" >Herford</a></li>
+                        <li rel="subgroup"><a href="#" >Other</a>
+                            <ul>
+                                <li rel="role"><a href="#" >Gray</a></li>
+                                <li rel="role"><a href="#" >Yellow</a></li>
+                                <li rel="role"><a href="#" >White</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li rel="group"><a href="#" >Hefer</a>
+                    <ul>
+                        <li rel="subgroup"><a href="#" >Holstein</a></li>
+                        <li rel="subgroup"><a href="#" >Jersey</a></li>
+                        <li rel="subgroup"><a href="#" >Angus</a>
+                            <ul>
+                                <li rel="role"><a href="#" >Red</a></li>
+                                <li rel="role"><a href="#" >Black</a></li>
+                            </ul>
+                        </li>
+                        <li rel="subgroup"><a href="#" >Herford</a></li>
+                        <li rel="subgroup"><a href="#" >Other</a>
+                            <ul>
+                                <li rel="role"><a href="#" >Gray</a></li>
+                                <li rel="role"><a href="#" >Yellow</a></li>
+                                <li rel="role"><a href="#" >White</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li rel="group"><a href="#" >Steer</a>
+                    <ul>
+                        <li rel="subgroup"><a href="#" >Holstein</a></li>
+                        <li rel="subgroup"><a href="#" >Jersey</a></li>
+                        <li rel="subgroup"><a href="#" >Angus</a>
+                            <ul>
+                                <li rel="role"><a href="#" >Red</a></li>
+                                <li rel="role"><a href="#" >Black</a></li>
+                            </ul>
+                        </li>
+                        <li rel="subgroup"><a href="#" >Herford</a></li>
+                        <li rel="subgroup"><a href="#" >Other</a>
+                            <ul>
+                                <li rel="role"><a href="#" >Gray</a></li>
+                                <li rel="role"><a href="#" >Yellow</a></li>
+                                <li rel="role"><a href="#" >White</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>
+</div>
+
+

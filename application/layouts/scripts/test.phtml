@@ -1,0 +1,89 @@
+<?php echo $this->doctype() ?>
+<html lang="en">
+<head>
+<?php echo $this->headTitle(); ?>   
+	<?php echo $this->headMeta(); ?>
+	 <?php 
+	  /*-------------- jquery ui----------------------*/
+	  if($this->jQuery()->isEnabled())
+		echo $this->jQuery();
+	  /*-----------------------------------------------*/
+	 ?>
+  <?php $this->headLink()->appendStylesheet('/style/calculator_hex.css'); ?>
+  <?php echo $this->headScript(); ?>
+  <?php echo $this->headLink(); ?>	
+    
+    <script type="text/javascript" src="/js/simpla.js"></script> 
+    
+    <link href="/style/test.css" media="screen" rel="stylesheet" type="text/css" >
+    
+    <script type="text/javascript">
+// Script For All pages Starts //
+		$(document).ready(function(){
+		$(".menu_options p").first().addClass("first");
+		$("footer ul").find("li:last").css("background" , "none");
+		$(".right_section").css("width", $('.main_section').width()-218)
+		});
+		
+		$(window).resize(function(){
+		$(".right_section").css("width", $('.main_section').width()-218)
+		});
+		
+// Script For All Pages Ends //
+</script>
+<script>
+  $(function(){
+      
+      	  // Custom: Hex
+	// ********************
+		$('.hex').keyboard({		
+		layout: 'custom',
+		 openOn : null,
+         stayOpen : true,
+		customLayout: {
+			'default' : [
+				'1 2 3 {b}',
+				'4 5 6 {clear}',
+				'7 8 9 {c}',
+				'{zero} {accept}'
+			]
+		},
+		maxLength : 6,
+		restrictInput : true, // Prevent keys not in the displayed keyboard from being typed in
+		useCombos : false // don't want A+E to become a ligature
+	});
+	$('#hex').click(function(){
+		$('.hex').getkeyboard().reveal();
+	});
+  });
+	
+	
+</script>
+
+
+</head>
+
+<body>
+    <?php echo $this->pageElement('header')?>
+    <div class="main_section">
+        <div class="outer_main_section">
+            <div class="inner_main_section">
+        <?php echo $this->pageElement('left-panel-test')?>
+        <section class="right_section">
+            <div class="heading_area">
+                <?php echo $this->pageHeading?>
+                <?php if($this->isFullScreen===true){?>
+                    <a title="Full Screen" href="<?php echo $this->seoUrl($this->fullScreenLink)?>"><img src="<?php echo $this->cdnUri()?>/images/full_screen.png" alt="" class="imgfull" border="0" align="right"></a>
+                <?php } ?>
+            
+            </div>
+            <div class="content_area">
+                <?php echo $this->layout()->content ?>
+            </div>
+        </section>
+         </div>
+        </div>
+    </div>
+    <?php echo $this->pageElement('footer')?>
+</body>
+</html>

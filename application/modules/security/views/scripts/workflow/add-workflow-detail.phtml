@@ -1,0 +1,82 @@
+<form method="post" action="" >
+  <div class="form_row">
+    <div class="form_label">
+      <?php echo $this->puts($this->form->workflowId->getLabel()); ?> <span class="required">*</span>
+    </div>
+    <div class="form_field">
+      <?php echo $this->form->workflowId; ?>
+        </div>
+  </div>
+  
+  
+  <div class="form_row">
+    <div class="form_label">
+      <?php echo $this->puts($this->form->groupId->getLabel()); ?> <span class="required">*</span>
+    </div>
+    <div class="form_field">
+       <?php echo $this->form->groupId;?>
+    </div>
+
+    <div class="form_label">
+      <?php echo $this->puts($this->form->subGroupId->getLabel());?> <span class="required">*</span>
+    </div>
+    <div class="form_field">
+      <?php echo $this->form->subGroupId;?>
+    </div>
+  </div>
+  <div class="form_row">
+    <div class="form_label">
+      <?php echo $this->puts($this->form->roleId->getLabel());?> <span class="required">*</span>
+    </div>
+    <div class="form_field">
+      <?php echo $this->form->roleId;?>
+    </div>
+    
+  </div>
+
+    
+  <div class="form_row">
+    <div class="form_label">&nbsp;</div>
+    <div class="form_field">
+            <?php echo $this->form->submit;?>
+      
+        </div>
+  </div>
+</form>
+
+
+<script type="text/javascript">
+
+function getSubGroups()
+{
+    $.post(
+            "/security/privilege/ajax-get-sub-group", 
+            { 
+               "group_id" : $("#groupId").val()
+            }, 
+            function (data) {
+                $("#subGroupId").html("");
+                $.each(data, function(i, item){
+                    $("#subGroupId").append('<option value="' + i + '">' + item + '</option>');
+                });
+                    
+            },"json"
+    );
+}
+function getRoles()
+{
+    $.post(
+            "/security/privilege/ajax-get-role", 
+            { 
+               "sub_group_id" : $("#subGroupId").val()
+            }, 
+            function (data) {
+                $("#roleId").html("");
+                $.each(data, function(i, item){
+                    $("#roleId").append('<option value="' + i + '">' + item + '</option>');
+                });
+                    
+            },"json"
+    );
+}
+</script>

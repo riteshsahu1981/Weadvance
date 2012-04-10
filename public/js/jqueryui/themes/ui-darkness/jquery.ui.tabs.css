@@ -1,0 +1,85 @@
+/*
+ * jQuery UI Tabs 1.8.17
+ *
+ * Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ * http://jquery.org/license
+ *
+ * http://docs.jquery.com/UI/Tabs#theming
+ */
+.ui-tabs {
+	position: relative;
+	padding:0;
+	zoom: 1;
+	background:none;
+	border:none;
+} /* position: relative prevents IE scroll bug (element with position: relative inside container with overflow: auto appear as "fixed") */
+.ui-tabs .ui-tabs-nav {
+	margin: 0;
+	padding:0;
+	background:none;
+	border:none;
+}
+.ui-tabs .ui-tabs-nav li {
+	border: 1px solid #b6becc;
+	background:#b3b8c1 url(../../../../images/tab_normal_bg.gif) repeat-x left top;
+	font-weight: bold;
+	border-radius:10px 10px 0 0;
+	behavior:url(/style/PIE.php);
+	position:relative;
+	font:bold 16px Arial, Helvetica, sans-serif;
+	cursor:pointer;
+	
+}
+.ui-tabs .ui-tabs-nav li a {
+	float: left;
+	padding:.5em 1em;
+	text-decoration: none;
+	cursor:pointer;
+	color:#000;
+}
+.ui-tabs .ui-tabs-nav li:hover{
+    /*border: 1px solid #b6becc;*/
+	background:#b3b8c1 url(../../../../images/tab_normal_bg.gif) repeat-x left top;
+	font-weight: bold;
+	color:#fff!important;
+	border-radius:10px 10px 0 0;
+	behavior:url(/style/PIE.php);
+	position:relative;
+	font:bold 16px Arial, Helvetica, sans-serif;
+	cursor:pointer;	
+}
+
+.ui-tabs .ui-tabs-nav li.ui-tabs-selected {
+	border: 1px solid #4b678c;
+	background:#6889ae url(../../../../images/tab_selected_bg.gif) repeat-x left top;
+	font-weight: bold;
+	color:#ffffff!important;
+	border-radius:10px 10px 0 0;
+	behavior:url(/style/PIE.php);
+	position:relative;
+	font:bold 16px Arial, Helvetica, sans-serif;
+	cursor:pointer;	
+	
+	
+}
+.ui-tabs .ui-tabs-nav li.ui-tabs-selected a, .ui-tabs .ui-tabs-nav li.ui-state-disabled a, .ui-tabs .ui-tabs-nav li.ui-state-processing a {
+	cursor: text;
+	color:#fff;
+	text-shadow:1px 1px 1px #4f647a;
+}
+.ui-tabs .ui-tabs-nav li a, .ui-tabs.ui-tabs-collapsible .ui-tabs-nav li.ui-tabs-selected a {
+	cursor: pointer;
+	color:#5e5a5a;
+	text-shadow:1px 1px 1px #f0f1f4;
+} /* first selector in group seems obsolete, but required to overcome bug in Opera applying cursor: text overall if defined elsewhere... */
+.ui-tabs .ui-tabs-panel {
+	display: block;
+	border-width: 0;
+	padding:0px;
+	background: none;
+	color:#555d6a;
+}
+.ui-tabs .ui-tabs-hide {
+	display: none !important;
+}

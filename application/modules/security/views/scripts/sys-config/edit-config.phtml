@@ -1,0 +1,82 @@
+<form id="db_create" action="<?php echo $this->postUrl?>" method="post">
+<div> <?php echo $this->flashMessages()?> </div>
+ 
+  
+<div class="form_row">
+    <div class="form_label">
+      <?php echo $this->puts($this->form->parentConfigId->getLabel()); ?> 
+    </div>
+    <div class="form_field">
+      <?php echo $this->form->parentConfigId; ?>
+    </div>
+</div>	
+
+ <div class="form_row">	
+    <div class="form_label">
+      <?php echo $this->puts($this->form->configName->getLabel()); ?> <span class="required1">*</span>
+    </div>
+    <div class="form_field">
+       <?php echo $this->form->configName; ?>
+    </div>
+</div>
+
+ <div class="form_row">	
+    <div class="form_label">
+      <?php echo $this->puts($this->form->configDesc->getLabel()); ?> 
+    </div>
+    <div class="form_field">
+       <?php echo $this->form->configDesc; ?>
+    </div>
+</div>
+
+
+
+<div class="form_row">	
+    <div class="form_label">
+      <?php echo $this->puts($this->form->param1->getLabel()); ?> 
+    </div>
+    <div class="form_field">
+      <?php echo $this->form->param1; ?>
+    </div>
+</div>	
+	
+<div class="form_row">	
+    <div class="form_label">
+      <?php echo $this->puts($this->form->param2->getLabel()); ?> 
+    </div>
+    <div class="form_field">
+      <?php echo $this->form->param2; ?>
+    </div>
+</div>	
+<div class="form_row">	
+    <div class="form_label">
+      <?php echo $this->puts($this->form->param3->getLabel()); ?> 
+    </div>
+    <div class="form_field">
+      <?php echo $this->form->param3; ?>
+    </div>
+</div>	
+<div class="form_row">	
+    <div class="form_label">
+      <?php echo $this->puts($this->form->param4->getLabel()); ?> 
+    </div>
+    <div class="form_field">
+      <?php echo $this->form->param4; ?>
+    </div>
+</div>	
+<div class="form_row">	
+    <div class="form_label">
+      <?php echo $this->puts($this->form->param5->getLabel()); ?> 
+    </div>
+    <div class="form_field">
+      <?php echo $this->form->param5; ?>
+    </div>
+</div>	
+
+<div class="form_row">  
+    <div class="form_label">&nbsp;</div>
+    <div class="form_field">
+		<?php echo $this->form->submit; ?>
+     </div>
+</div>
+</form>

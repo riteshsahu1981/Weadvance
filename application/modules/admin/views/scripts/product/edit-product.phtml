@@ -1,0 +1,190 @@
+<?php
+$this->headScript()->appendFile("/js/ui.dropdownchecklist-1.4-min.js");
+$this->headScript()->appendFile("/js/ui.dropdownchecklist.js");
+//$this->headScript()->appendFile("/js/jquery-1.6.1.min.js");
+$this->headScript()->appendFile("/js/jquery-ui-1.8.13.custom.min.js");
+$this->headLink()->appendStylesheet('/js/ui.dropdownchecklist.standalone.css');
+$this->headLink()->appendStylesheet('/js/ui.dropdownchecklist.themeroller.css');
+$this->headLink()->appendStylesheet('/js/smoothness-1.8.13/jquery-ui-1.8.13.custom.css'); 
+?> 
+<script>
+  $(document).ready(function(){
+    $("#product_create").validate();
+  });
+ </script>
+
+<form id="product_create" action="" method="post">
+       <div> <?php echo $this->flashMessages()?> </div>
+        <div class="form_row_add">
+          <div class="form_label">
+              <?php echo $this->puts($this->form->caseFormat->getLabel()); ?> <span class="required1">*</span> 
+          </div>
+          <div class="form_field">
+            <?php echo $this->form->caseFormat; ?>
+          </div>
+
+          <div class="form_row">
+            <div class="form_label">
+              <?php echo $this->puts($this->form->labelCase->getLabel()); ?> <span class="required1">*</span>
+            </div>
+            <div class="form_field">
+              <?php echo $this->form->labelCase; ?>
+          </div>
+          </div>
+          
+        </div>
+        <div class="form_row">
+          <div class="form_label">
+              <?php echo $this->puts($this->form->productIdentifier->getLabel()); ?> <span class="required1">*</span>
+          </div>
+          <div class="form_field">
+            <?php echo $this->form->productIdentifier; ?>
+          </div>
+            
+          <div class="form_label">
+               <?php echo $this->puts($this->form->packLocation->getLabel()); ?> <span class="required1">*</span>
+          </div>
+          <div class="form_field">
+           <?php echo $this->form->packLocation; ?>
+          </div>
+        </div>
+        <div class="form_row">
+          <div class="form_label">
+              <?php echo $this->puts($this->form->partNumber->getLabel()); ?> <span class="required1">*</span>
+          </div>
+          <div class="form_field">
+             <?php echo $this->form->partNumber; ?>
+          </div>
+          <div class="form_label">
+           <?php echo $this->puts($this->form->sellByDays->getLabel()); ?> <span class="required1">*</span>
+          </div>
+          <div class="form_field">
+            <?php echo $this->form->sellByDays; ?>
+          </div>
+        </div>
+        
+        
+        
+        <div class="form_row">
+          
+       
+          <div class="form_label">
+              
+               <?php echo $this->puts($this->form->priceLb->getLabel()); ?>
+          </div>
+          <div class="form_field">
+             <?php echo $this->form->priceLb; ?>
+        </div>
+
+          <div class="form_label">
+              <?php echo $this->puts($this->form->palletId->getLabel()); ?>
+          </div>
+          <div class="form_field">
+            <?php echo $this->form->palletId; ?> (For Partials Pallets Only)
+        </div>
+        </div>
+
+
+        <div class="form_row">
+          <div class="form_label">
+            <span class="required">
+                <?php echo $this->puts($this->form->desLine1->getLabel()); ?>
+            </span>
+          </div>
+          <div class="form_field">
+            <?php echo $this->form->desLine1; ?>
+          </div>
+          <div class="form_label">
+            <span class="required">
+                <?php echo $this->puts($this->form->desLine2->getLabel()); ?>
+            </span>
+          </div>
+          <div class="form_field">
+            <?php echo $this->form->desLine2; ?>
+          </div>
+        </div>
+        <div class="form_row">
+          <div class="form_label">
+            <span class="required">
+            <?php echo $this->puts($this->form->desLine3->getLabel()); ?>
+            </span>
+          </div>
+          <div class="form_field">
+            <?php echo $this->form->desLine3; ?>
+          </div>
+          <div class="form_label">
+            <span class="required">
+               <?php echo $this->puts($this->form->desLine4->getLabel()); ?>
+            </span>
+          </div>
+          <div class="form_field">
+            <?php echo $this->form->desLine4; ?>
+          </div>
+        </div>
+        
+        
+        <div class="form_row form_separate" style="padding:5px 0 5px 0;"> &nbsp; </div>
+        <div class="form_row" style="padding:0;text-align:left;">
+          <div class="form_label" style="text-align:left;">
+            <h2>Weight</h2>
+          </div>
+        </div>
+        
+        <div class="form_row">
+          <div class="form_label">
+              <?php echo $this->puts($this->form->lowerWeight->getLabel()); ?> <span class="required1">*</span>
+          </div>
+          <div class="form_field">
+            <?php echo $this->form->lowerWeight; ?>
+          </div>
+          <div class="form_label">
+              <?php echo $this->puts($this->form->fixedWeight->getLabel()); ?> <span class="required1">*</span>
+          </div>
+          <div class="form_field">
+            <?php echo $this->form->fixedWeight; ?>
+          </div>
+        </div>
+        <div class="form_row">
+          <div class="form_label">
+              <?php echo $this->puts($this->form->heighWeight->getLabel()); ?> <span class="required1">*</span>
+          </div>
+          <div class="form_field">
+             <?php echo $this->form->heighWeight; ?>
+          </div>
+          <div class="form_label">
+              <?php echo $this->puts($this->form->tareWeight->getLabel()); ?> <span class="required1">*</span>
+          </div>
+          <div class="form_field">
+           <?php echo $this->form->tareWeight; ?>
+          </div>
+        </div>
+        <div class="form_row form_separate"> &nbsp; </div>
+        <div class="form_row">
+          <div class="form_label">
+            <h2>Select an Application Requirement</h2>
+          </div>
+        </div>
+        <div class="form_row">
+        <div class="form_label">
+            <?php echo $this->puts($this->form->requiredApp->getLabel()); ?>
+        </div>
+           <div class="form_field_same">
+            <?php echo $this->form->requiredApp; ?>
+              </div>
+          
+        
+            </div>
+        <div class="form_row">
+          <div class="form_label">&nbsp;</div>
+          <div class="form_field">
+            <input type="submit" value="Submit" name="submit">
+          </div>
+        </div>
+      </form>
+
+       <script type="text/javascript">
+
+		$(".s1").dropdownchecklist({ emptyText: "Please select ...", width: 110 });
+                //$(".s1").dropdownchecklist({ firstItemChecksAll: true, explicitClose: '...close' , width: 110 }); //Jitendra
+                
+     </script>

@@ -1,0 +1,203 @@
+
+      <div class="left_con">
+        <div class="left_con_button">
+          <input type="button" class="gray_button" value="Smith">
+          <input type="button" class="gray_button" value="WBS">
+          <input type="button" class="gray_button" value="DB">
+          <input type="button" class="gray_button" value="Tacco">
+          <input type="button" class="gray_button" value="Blain">
+          <input type="button"  class="gray_button" value="Cuff">
+          
+        </div>
+        <div class="idsection">
+          <div class="idsection_bx1">
+            <input type="text" placeholder="Enter Cow ID" class="hex">
+          </div>
+          <div class="idsection_bx2"> <img class="keyboard" id="hex" src="<?php echo $this->cdnUri()?>/images/keyboard.png" alt="Keyboard" title="Keyboard"></div>
+        </div>
+
+        <div class="idsection">
+          <p>Enter Cow ID or Select from above Suppliers</p>
+        </div>
+
+	<div class="sep_left">&nbsp;</div>
+        
+        
+        <div class="product_sec">
+          <div class="product_breadcrum">
+            <ul id="breadCrumb">
+              <li><a href="#" id="bcSelectProduct">Select Product</a></li>
+            </ul>
+          </div>
+            
+          <div class="product_levelone" id="level1">
+            <input type="button" class="blue_button" value="Breed" id="cmdBreed">
+          </div>
+          
+          
+          <div class="product_leveltwo" id="level2"></div>
+          
+        </div>
+        
+        <script type="text/javascript">
+          
+            function cmdBreedClick()
+            {
+                $("#level1").html('<input type="button" class="blue_button" value="Breed" id="cmdBreed">');
+                $("#level2").html('<input type="button" class="bluesm_button" value="Cow" id="cmdCow" >');
+                $("#level2").append('<input type="button" class="bluesm_button" value="Bull" id="cmdBull">');
+                $("#level2").append('<input type="button" class="bluesm_button" value="Hefer" id="cmdHefer">');
+                
+                $("#breadCrumb").html('<li><a href="#" id="bcSelectProduct">Select Product</a></li>');
+                $("#breadCrumb").append('<li>Breed</li>');
+            }
+            $("#cmdBreed").live('click', cmdBreedClick);
+            
+            
+            $("#bcSelectProduct").live('click', function(){
+                $("#level1").html('<input type="button" class="blue_button" value="Breed" id="cmdBreed">');
+                $("#level2").html("");
+                $("#breadCrumb").html('<li><a href="#" id="bcSelectProduct">Select Product</a></li>');
+            });
+            
+            function cmdCowClick()
+            {
+                $("#level1").html('<input type="button" class="green_button" value="Type" id="cmdType">');
+                
+                $("#level2").html('');
+
+
+                 $("#breadCrumb").html('<li><a href="#" id="bcSelectProduct">Select Product</a></li>');
+                 $("#breadCrumb").append('<li><a href="#" id="bcBreed">Breed</a></li>');
+                 $("#breadCrumb").append('<li><a href="#" id="bcCow">Cow</a></li>');
+                 $("#breadCrumb").append('<li>Type</li>');
+            }
+            $('#cmdCow').live('click', cmdCowClick);
+            
+            $("#bcBreed").live('click', cmdBreedClick);
+            $("#bcCow").live('click', cmdBreedClick);
+            function cmdTypeClick()
+            {
+                $("#level1").html('<input type="button" class="green_button" value="Type" id="cmdType">');
+                $("#level2").html('<input type="button" class="green_button" value="Holstein" id="cmdHolstein" >');
+                $("#level2").append('<input type="button" class="green_button" value="Jersey" id="cmdJersey">');
+                $("#level2").append('<input type="button" class="green_button" value="Angus" id="cmdAngus">');
+                $("#level2").append('<input type="button" class="green_button" value="Herford" id="cmdHerford">');
+                $("#level2").append('<input type="button" class="green_button" value="Other" id="cmdOther">');
+                
+            }
+            $("#cmdType").live('click', cmdTypeClick);
+            $("#bcType").live('click', cmdCowClick);
+            function cmdHolsteinClick()
+            {
+                $("#level1").html('<input type="button" class="red_button" value="Color" id="cmdColor">');
+                $("#level2").html('<input type="button" class="red_light_button" value="Red" id="cmdRed" >');
+                $("#level2").append('<input type="button" class="red_light_button" value="Black" id="cmdBlack">');
+                $("#level2").append('<input type="button" class="red_light_button" value="White" id="cmdWhite">');
+                
+                 $("#breadCrumb").html('<li><a href="#" id="bcSelectProduct">Select Product</a></li>');
+                 $("#breadCrumb").append('<li><a href="#" id="bcBreed">Breed</a></li>');
+                 $("#breadCrumb").append('<li><a href="#" id="bcCow">Cow</a></li>');
+                 $("#breadCrumb").append('<li ><a href="#" id="bcType" >Type</a></li>');
+                 $("#breadCrumb").append('<li>Holstein</li>');
+            }
+            $("#cmdHolstein").live('click', cmdHolsteinClick);
+            
+        </script>
+        
+        
+      </div>
+
+
+
+<div class="right_con">
+        <div id="tabs">
+          <ul>
+            <li><a href="#tabs-1">In Yard</a></li>
+            <li><a href="#tabs-2">Killed</a></li>
+          </ul>
+          <div id="tabs-1">
+            <div class="touch_gird_box">
+              <div class="scroll_pane_tab">
+                <table class="grid_table touch_table" width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <th align="left" width="150">Supplier <img src="<?php echo $this->cdnUri()?>/images/arrow.gif" align="right" alt=""></th>
+                    <th align="left" width="150">Cow ID</th>
+                    <th align="left" width="150">Lot <img src="<?php echo $this->cdnUri()?>/images/arrow.gif" align="right" alt=""></th>
+                    <th align="left" width="150">Date In <img src="<?php echo $this->cdnUri()?>/images/arrow.gif" align="right" alt=""></th>
+                  </tr>
+                  
+                  <?php for($i=0;$i<25;$i++):?>
+                  <tr class="package_row1">
+                    <td>Smith</td>
+                    <td>235698</td>
+                    <td>1526</td>
+                    <td>01/15/2012</td>
+                  </tr>
+                  <?php endfor;?>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div id="tabs-2">
+            <div class="touch_gird_box">
+              <div class="scroll_pane_tab">
+                <table class="grid_table touch_table" width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <th align="left" width="150">Supplier <img src="<?php echo $this->cdnUri()?>/images/arrow.gif" align="right" alt=""></th>
+                    <th align="left" width="150">Cow ID</th>
+                    <th align="left" width="150">Lot <img src="<?php echo $this->cdnUri()?>/images/arrow.gif" align="right" alt=""></th>
+                    <th align="left" width="150">Date In <img src="<?php echo $this->cdnUri()?>/images/arrow.gif" align="right" alt=""></th>
+                  </tr>
+                  <?php for($i=0;$i<25;$i++):?>
+                  <tr class="package_row1">
+                    <td>Smith</td>
+                    <td>235698</td>
+                    <td>1526</td>
+                    <td>01/15/2012</td>
+                  </tr>
+                  <?php endfor;?>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript">
+		
+		
+        // Script For Grid Starts //
+		$(document).ready(function(){
+			//row click
+			$('tr.package_row1').click(function (event) {
+								$('tr.package_row1').toggleClass('active', false);
+								$(this).toggleClass('active', true);
+								});
+			// table Width
+			var tblWidth=0;
+			$('.grid_table tr:first').children().each(function(index) {
+									tblWidth = tblWidth + parseInt($(this).attr('width'));
+									});
+			$(".grid_table").css("width", tblWidth);
+		});
+
+		$('.grid_table tr').find('td:last').addClass('last')
+		$('.grid_table tr').find('th:last').addClass('last')
+		// Script For Grid Ends //
+
+
+
+		// Script For Scroll Panel Starts //
+		$(function(){
+		$('.scroll_pane_tab').jScrollPane({showArrows: true});
+		});
+		// Script For Scroll Panel Ends //
+
+
+		// Script For Tabs Panel Starts //
+			$(function(){
+				$('#tabs').tabs();
+			});
+		// Script For Tabs Panel Ends //
+        
+     </script>
+      </div>

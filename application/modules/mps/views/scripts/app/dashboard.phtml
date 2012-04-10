@@ -1,0 +1,159 @@
+<?php 
+ $this->headScript()->appendFile("/js/jquery.carouFredSel-5.0.7.js");
+ $this->headScript()->appendFile("/js/dash.js");
+
+ ?>
+
+<?php echo  $this->flashMessages()?>
+
+
+<div class="list_carousel"><a id="prev3" class="prev arrows" href="#"></a>
+        <ul id="foo3">
+        <?php if ($this->bookmarks) : foreach ($this->bookmarks as $item): 
+            $url=$this->seoUrl($item->strval1);
+            if (empty($item->strval3))
+            $menuIcons="defaultmenuicon.png";
+            else
+            $menuIcons=$item->strval3;
+            
+            ?>
+          <li><a href="<?php echo $url; ?>"><img src="<?php echo $this->cdnUri()?>/media/menu-icons/<?php echo $menuIcons; ?>" alt=""><?php echo $this->puts($item->master_value); ?></a></li>            
+        <?php endforeach; endif; ?>
+        </ul>
+        <a id="next3" class="next arrows" href="#"></a> </div>
+      
+      <script type="text/javascript" language="javascript">
+			$(function() {
+				//	Variable number of visible items with variable sizes
+				$('#foo3').carouFredSel({
+					prev: '#prev3',
+					next: '#next3',
+					circular: false,
+					infinite: false,
+					auto: false,
+					visible: 1,
+					width: 'variable'
+					
+				});
+				
+				$(window).resize(function() {
+					var newWidth = $('.list_carousel').width();
+					$('#foo3').width( newWidth * $('#foo3').children().length ); // set width of carousel, to ensure the items fit next to eachother
+					//$('#foo3').parent().width( newWidth ); // set width of carousel-wrapper
+					//$('#foo3').children().width( newWidth ); // set width of items, -22px for border and margin
+				});
+
+				$(window).resize();
+				
+			});
+		</script>
+      <div class="movable_div">
+          
+            <?php if ($this->widgets) : ?>          
+            <div class="section">
+                <?php $c=1; foreach ($this->widgets as $item): ?>
+                    <div class="column">
+                    <h5><span class="txt"><?php echo $item->master_value; ?></span></h5>
+                    <div class="widget_content_topbg"><img src="<?php echo $this->cdnUri()?>/images/Production_grf.png" alt=""></div>
+                    </div>    
+
+                    <?php
+                    if ($c==2)
+                    {
+                    echo '</div><div class="section">';
+                    $c=0;
+                    }
+                    $c++; endforeach; 
+                ?>
+            </div>
+         <!-- 
+            <div class="section">
+              <div class="column">
+                <h5><span class="txt">Production</span></h5>
+                <div class="widget_content_topbg"><img src="<?php //echo $this->cdnUri()?>/images/Production_grf.png" alt=""></div>
+              </div>
+              <div class="column">
+                <h5><span class="txt">Buying</span></h5>
+                <div class="widget_content_topbg"><img src="<?php //echo $this->cdnUri()?>/images/Buying_grf.png" alt=""></div>
+              </div>
+            </div>
+          
+            <div class="section">
+              <div class="column">
+               <h5><span class="txt">Order Processing</span></h5>
+                <div class="widget_content_topbg"><img src="<?php //echo $this->cdnUri()?>/images/Production_grf.png" alt=""></div>
+              </div>
+              <div class="column">
+                <h5><span class="txt">Meat Packing & Fulfilment</span></h5>
+                <div class="widget_content_topbg"><img src="<?php //echo $this->cdnUri()?>/images/Buying_grf.png" alt=""></div>
+              </div>
+            </div>
+          -->
+            
+            <?php endif; ?>
+            
+            
+            
+              <div class="section">
+              <div class="column">
+                <h5><span class="txt">Production</span></h5>
+                <div class="widget_content_topbg"><img src="<?php echo $this->cdnUri()?>/images/Production_grf.png" alt=""></div>
+              </div>
+              <div class="column">
+                <h5><span class="txt">Buying</span></h5>
+                
+                <div class="widget_content_topbg" id="chart1">
+                    
+                    
+                </div>
+                
+              </div>
+            </div>
+          
+          
+          
+          
+          
+            
+            
+          </div>
+
+
+                
+                
+                
+                
+<div id="dialog-confirm-close-widget" title="Close widget" style="display:none;"><span class="ui-icon ui-icon-alert"></span><span class="ui-text-alert">You are about to delete this widget.<br>Are you sure?</span></div>
+
+
+<script language="javascript">
+    $(document).ready(function(){
+  var line1=[['23-May-08', 578.55], ['20-Jun-08', 566.5], ['25-Jul-08', 480.88], ['22-Aug-08', 509.84],
+      ['26-Sep-08', 454.13], ['24-Oct-08', 379.75], ['21-Nov-08', 303], ['26-Dec-08', 308.56],
+      ['23-Jan-09', 299.14], ['20-Feb-09', 346.51], ['20-Mar-09', 325.99], ['24-Apr-09', 386.15]];
+  var plot1 = $.jqplot('chart1', [line1], {
+      title:'Data Point Highlighting',
+      axes:{
+        xaxis:{
+          renderer:$.jqplot.DateAxisRenderer,
+          tickOptions:{
+            formatString:'%b&nbsp;%#d'
+          }
+        },
+        yaxis:{
+          tickOptions:{
+            formatString:'$%.2f'
+            }
+        }
+      },
+      highlighter: {
+        show: true,
+        sizeAdjust: 7.5
+      },
+      cursor: {
+        show: false
+      }
+  });
+});
+</script>
+    

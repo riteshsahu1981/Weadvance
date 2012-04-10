@@ -1,0 +1,17 @@
+<form id="login_form" action="<?php echo $this->seoUrl("/default/auth/login")?>" method="post">
+    
+    <?php echo $this->form->email;?>
+    <img class="keyboard" src="<?php echo $this->cdnUri()?>/images/keyboard.png" alt="">
+    
+    <?php echo $this->form->password;?>
+    <img class="keyboard" src="<?php echo $this->cdnUri()?>/images/keyboard.png" alt="">
+    <p><a href="<?php echo $this->seoUrl("/default/auth/forgot-password")?>">Forgot Password</a></p>
+    <input id="btnLogin" name="btnLogin" type="button" value="Login" onclick='submitForm()'>
+</form>
+
+<script type="text/javascript">
+$('input[placeholder], textarea[placeholder]').placeholder();
+$('#btnLogin').click(function() {
+  $('#login_form').submit();
+});
+</script>

@@ -1,0 +1,176 @@
+<?php //echo $this->totalItemCount; ?>
+
+<form method="post" action="<?php echo $this->seoUrl("/admin/location/index")?>">
+    
+ <table class="from_table" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right" class="form_tab_lebel" valign="top"><?php echo $this->puts('Location Title');?>:</td>
+    <td align="left" class="form_tab_input" valign="top"><input type="text" 
+	value="<?php echo $this->escape($this->searchText); ?>" name="title"></td>
+    
+    <td align="left" class="form_tab_input" valign="top"><input class="search" value="Search" type="submit" name="search"><img class="search_img" src="<?php echo $this->cdnUri()?>/images/search_img.png" alt=""></td>
+  </tr>
+  
+</table>
+    
+       
+</form>
+
+<?php if (count($this->paginator)): ?>
+
+
+        <?php
+        $sno=0;
+        $page=$this->paginator->getCurrentPageNumber();
+        $items_per_page=$this->paginator->getItemCountPerPage(); 
+        if($page>1)
+        {
+                $sno=$items_per_page*$page - $items_per_page ; 	
+        }
+        ?>
+        <?php 
+           
+           echo $this->paginationControl($this->paginator, 'Sliding', 'pagination-ext.phtml',array("linkArray"=>$this->linkArray));
+              
+        ?>
+<div> <?php echo $this->flashMessages()?> </div>
+
+
+    <div class="gird_box">
+        <div class="scroll-pane">
+          <table class="grid_table" border="0"  cellspacing="0" cellpadding="0" width="100%">
+            <tr>
+                <th align="left" width="8%"><?php echo $this->puts('S. No.');?></th>
+                <th align="left" width="25%"><?php echo $this->puts('Title');?> <?php echo $this->sort("title", $this->sortOptions);?></th>
+                <th align="left" width="40%"><?php echo $this->puts('Description');?></th>
+                <th align="left" width="12%"><?php echo $this->puts('Tare Weight');?></th>
+                <th align="left" width="8%"><?php echo $this->puts('Is Active');?></th>
+                <th align="left" width="7%"><?php echo $this->puts('Action');?></th>
+            </tr>
+        <?php 
+        foreach ($this->paginator as $item): ?>
+        <?php $sno++?>
+          
+            <tr class="package_row1">
+              <td align="left"><?php echo $sno?>.</td>
+              <td align="left"><?php echo $item->title;?></td>
+              <td align="left"><?php echo $item->description;?></td>
+              <td align="left"><?php echo $item->weight;?></td>
+              <td class="image" align="center" id="changeStatus_<?php echo $item->id?>">
+               <?php if($this->checkAcl("/admin/location/change-status")){?>
+                 <?php if( $item->status=="1") {
+                    $title="Click here to make inactive!";
+                    $image="/images/icons/active-1.png";
+                }else{
+                    $image="/images/icons/deactive.png";
+                    $title="Click here to make active!";
+                }?> 
+              <a href="javascript:void(0)" onclick="changeLocationStatus(<?php echo $item->id?>, <?php echo $item->status;?>)" ><img title="<?php echo $title?>" alt="<?php echo $title?>" src="<?php echo $image?>"  /></a>
+              <?php } ?>
+              </td>
+           <td align="center" class="image" >
+               <?php if($this->checkAcl("/admin/location/edit-location")){?>
+		    <a href="<?php echo $this->seoUrl("/admin/location/edit-location/id/".$item->id."/guid/".$item->row_guid)?>"><img title="Edit" alt="Edit"src=" <?php echo $this->cdnUri()?>/images/icons/edit.png" /></a>  
+               <?php } ?>
+           </td>
+            </tr>
+            <?php endforeach; ?>
+          </table>
+        </div>
+      </div>
+        <?php 
+           
+            echo $this->paginationControl($this->paginator, 'Sliding', 'pagination-ext.phtml',array("linkArray"=>$this->linkArray));
+              
+        ?>
+
+<?php else :
+echo "<p>No result found, Please try again.</p>";
+endif; ?>
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+
+
+ function changeLocationStatus(location_id,location_status)
+    {
+        
+       $("#changeStatus_"+location_id).html('<img height="25px" alt="In process..." src="/images/loading.gif"/>');
+       $.post(
+            "/admin/location/change-status", 
+            { 
+               "id" : location_id,
+               "status" : location_status
+            }, 
+            function (data) {
+                
+                if(data.result==1)
+                {
+                    if(location_status==1)
+                        location_status=0;
+                    else
+                        location_status=1;
+                    
+                    if( location_status==1) 
+                    {
+                    
+                        var title="Click here to make inactive!";
+                        var image="/images/icons/active-1.png";
+                    }
+                    else
+                    {
+                        var title="Click here to make active!";
+                        var image="/images/icons/deactive.png";
+                    }
+                
+                    $("#changeStatus_"+location_id).html('<a onclick="changeLocationStatus('+ location_id + ',' + location_status + ')" href="javascript:void(0);" title="'+ title +'" ><img alt="'+ title +'" src="'+ image +'"/></a>');
+                }
+                    
+            },"json"
+        );
+    }
+		
+		
+        // Script For Grid Starts //
+		$(document).ready(function(){
+			//row click
+			$('tr.package_row1').click(function (event) {
+								$('tr.package_row1').toggleClass('active', false);
+								$(this).toggleClass('active', true);
+								});
+			// table Width
+			var tblWidth=0;
+			$('.grid_table tr:first').children().each(function(index) {
+									tblWidth = tblWidth + parseInt($(this).attr('width'));
+									});
+			//$(".grid_table").css("width", tblWidth);
+		});
+
+		$('.grid_table tr').find('td:last').addClass('last')
+		$('.grid_table tr').find('th:last').addClass('last')
+		// Script For Grid Ends //
+
+
+
+		// Script For Scroll Panel Starts //
+		$(function(){
+		//$('.scroll-pane').jScrollPane({showArrows: true});
+		});
+		// Script For Scroll Panel Ends //
+
+
+		// Script For Tabs Panel Starts //
+			$(function(){
+				$('#tabs').tabs();
+			});
+		// Script For Tabs Panel Ends //
+        
+     </script>

@@ -1,0 +1,69 @@
+[production]
+
+resources.modules[] =""
+;resources.modulesetup[] = ""
+pluginPaths.Base_Application_Resource = "Base/Application/Resource"
+
+phpSettings.display_startup_errors = 1
+phpSettings.display_errors = 1
+resources.frontController.params.displayExceptions = 1
+
+includePaths.library = APPLICATION_PATH "/../library"
+bootstrap.path = APPLICATION_PATH "/Bootstrap.php"
+bootstrap.class = "Bootstrap"
+appnamespace = "Application"
+resources.frontController.controllerDirectory = APPLICATION_PATH "/controllers"
+resources.layout.layoutPath = APPLICATION_PATH "/layouts/scripts/"
+resources.view[] =
+resources.frontController.moduleDirectory = APPLICATION_PATH "/modules"
+seofriendlyurl="1"
+site_maintenance="0"
+error_reporting_email=""
+error_flag="1"
+; Layout
+
+
+resources.layout.layout = "1column"
+autoloadernamespaces.Base = "Base_"
+
+resources.db.adapter = "PDO_MYSQL"
+
+resources.db.params.host = "localhost"
+resources.db.params.dbname = "15975"
+resources.db.params.username = "RiteshS"
+resources.db.params.password = "p@$$w0rd"
+
+
+
+
+
+;rite150681
+[staging : production]
+phpSettings.display_startup_errors = 0
+phpSettings.display_errors = 0
+resources.frontController.params.displayExceptions = 0
+error_flag="0"
+gd.siteurl="http://stg2.compunnel.com:8090"
+gd.cdn_uri="http://stg2.compunnel.com:8090"
+gd.domain=".stg2.compunnel.com:8090"
+
+resources.db.params.dbname = "15975"
+resources.db.params.username = "RiteshS"
+resources.db.params.password = "p@$$w0rd"
+
+[testing : production]
+
+
+[development : production]
+phpSettings.display_startup_errors = 1
+phpSettings.display_errors = 1
+resources.frontController.params.displayExceptions = 1
+error_flag="1"
+gd.siteurl="http://localhost:9090"
+gd.cdn_uri="http://localhost:9090"
+gd.domain=".localhost:9090"
+
+resources.db.params.host = "10.1.7.110"
+resources.db.params.dbname = "SmithMeats"
+resources.db.params.username = "riteshs"
+resources.db.params.password = "passRitesh"

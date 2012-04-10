@@ -1,0 +1,106 @@
+<style>
+    .edittextBox{
+        display: none;
+    }
+</style>
+<div> <?php echo $this->flashMessages()?> </div>
+
+<?php if (count($this->paginator)): ?>
+       
+
+<form method="post" action="<?php echo $this->seoUrl("/admin/bookmark/edit-bookmark")?>">
+
+    <div class="gird_box">
+        <div class="scroll-pane">
+          <table class="grid_table" border="0"  cellspacing="0" cellpadding="0" width="100%">
+		  
+		<tr>
+                <th align="left" width="10%">S.No.</th>
+                <th align="left" width="25%">Menu Name <?php echo $this->sort("master_value", $this->sortOptions);?></th>
+                <th align="left" width="10%">Order <?php echo $this->sort("map_id3", $this->sortOptions);?></th>
+                <th align="center" width="10%">Action</th>
+            </tr>
+        <?php $sn=1;
+        foreach ($this->paginator as $item): $mID=$item->map_id2; ?>
+            <tr class="package_row1">
+                <td align="left"><?php echo $sn; ?></td>
+                <td align="left"><?php echo $item->master_value;?></td>
+                <td align="center" class="image"><input onkeyup="valNum(this.id,this.value)" type="text" name="order<?php echo $mID; ?>" id="order<?php echo $mID; ?>" value="<?php echo $item->map_id3;  ?>" size="3" maxlength="4" /></td>
+<?php $dUrl=$this->seoUrl("/admin/bookmark/delete-bookmark/bookID/".$item->map_id2);?>
+                <td align="center" class="image">
+                <?php if($this->checkAcl("/admin/bookmark/delete-bookmark")){?>                    
+                    <a href="javascript:void(0)" onclick="deleteMaster('<?php echo $dUrl; ?>')"><img title="Delete" alt="Delete"src="<?php echo $this->cdnUri()?>/images/del_icon.png" /></a></td>
+                <?php } ?>
+            </tr>
+            <?php $sn++; endforeach; ?>
+          </table>
+        </div>
+      </div>
+ <?php if($this->checkAcl("/admin/bookmark/edit-bookmark")){?>    
+    <p align="right"> <input type="submit" name="save" value="Save"/></p>
+<?php } ?>    
+</form>
+<br/>
+       
+<?php else :
+echo "<p>No result found.</p>";
+endif; ?>
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+function deleteMaster(DURL)
+{
+    var c=confirm("Are you sure to delete");
+    if (c==true)
+     window.location.href=DURL;   
+}
+
+function valNum(id,val)
+{
+    
+    var str = val;
+    if(!str.match(/^[0-9]+$/))
+    $("#"+id).val('');
+    else
+    $("#"+id).val(val); //return val;
+}
+		
+           // Script For Grid Starts //
+		$(document).ready(function(){
+			//row click
+			$('tr.package_row1').click(function (event) {
+								$('tr.package_row1').toggleClass('active', false);
+								$(this).toggleClass('active', true);
+								});
+			// table Width
+			var tblWidth=0;
+			$('.grid_table tr:first').children().each(function(index) {
+									tblWidth = tblWidth + parseInt($(this).attr('width'));
+									});
+			//$(".grid_table").css("width", tblWidth);
+		});
+
+		$('.grid_table tr').find('td:last').addClass('last')
+		$('.grid_table tr').find('th:last').addClass('last')
+		// Script For Grid Ends //
+
+
+
+		
+
+
+		// Script For Tabs Panel Starts //
+			$(function(){
+				$('#tabs').tabs();
+			});
+		// Script For Tabs Panel Ends //
+        
+     </script>

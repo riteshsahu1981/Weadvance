@@ -1,0 +1,455 @@
+<?php
+//$this->headScript()->appendFile("/js/ui.dropdownchecklist-1.4-min.js");
+//$this->headLink()->appendStylesheet('/js/ui.dropdownchecklist.standalone.css');
+//$this->headLink()->appendStylesheet('/js/ui.dropdownchecklist.themeroller.css');
+//$this->headScript()->appendFile("/js/ui.dropdownchecklist.js");
+//$this->headScript()->appendFile("/js/jquery-1.6.1.min.js");
+//$this->headScript()->appendFile("/js/jquery-ui-1.8.13.custom.min.js");
+//$this->headLink()->appendStylesheet('/js/smoothness-1.8.13/jquery-ui-1.8.13.custom.css');
+?>
+<form method="post" action="<?php echo $this->seoUrl("/mps/production/list-blood-station")?>">
+<input type="hidden" value="1" name="search" />
+<div> <?php echo $this->flashMessages()?> </div>
+ <table class="from_table" border="0" cellspacing="0" cellpadding="0">
+    
+  <tr>
+    <td align="right" class="form_tab_lebel" valign="top"><?php echo $this->puts($this->form->breed->getLabel()); ?></td>
+    <td align="left" class="form_tab_input" valign="top"><?php echo $this->form->breed; ?></td>
+    <td align="right" class="form_tab_lebel" valign="top"><?php echo $this->puts($this->form->type->getLabel()); ?></td>
+    <td align="left" class="form_tab_input" valign="top"><?php echo $this->form->type; ?></td>
+    <td align="right"  class="form_tab_lebel" valign="top"><?php echo $this->puts($this->form->color->getLabel()); ?></td>
+    <td align="left" class="form_tab_input" valign="top"><?php echo $this->form->color; ?></td>
+  </tr>
+    
+ <tr>
+    <td align="right" class="form_tab_lebel" valign="top"><?php echo $this->puts($this->form->cowid->getLabel()); ?></td>
+    <td align="left" class="form_tab_input" valign="top"><?php echo $this->form->cowid; ?></td>
+    <td align="right"  class="form_tab_lebel" valign="top"><?php echo $this->puts($this->form->supplier->getLabel()); ?></td>
+    <td align="left" class="form_tab_input" valign="top"><?php echo $this->form->supplier; ?></td>
+    <td align="right"  class="form_tab_lebel" valign="top"><?php echo $this->puts($this->form->inputs->getLabel()); ?></td>
+    <td align="left" valign="top"><?php echo $this->form->inputs; ?></td>
+    
+  </tr>
+ 
+  
+  <tr>
+    <td align="right" class="form_tab_lebel" valign="top">&nbsp;</td>
+    <td align="left" class="form_tab_input search_button" valign="top"><input type="submit" class="search" value="Search"/><img class="search_img" src="<?php echo $this->cdnUri()?>/images/search_img.png" alt=""/></td>
+    <td align="right"  class="form_tab_lebel" valign="top">&nbsp;</td>
+    <td align="left" class="form_tab_input" valign="top">&nbsp;</td>
+    <td align="right"  class="form_tab_lebel" valign="top">&nbsp;</td>
+    <td align="left" class="form_tab_input" valign="top"></td>
+  </tr>
+  
+</table>
+</form>
+<?php if (count($this->paginator)): ?>
+ <?php
+        $sno=0;
+        $page=$this->paginator->getCurrentPageNumber();
+        $items_per_page=$this->paginator->getItemCountPerPage(); 
+        if($page>1)
+        {
+                $sno=$items_per_page*$page - $items_per_page ; 	
+        }
+        ?>
+        <?php 
+            
+           echo $this->paginationControl($this->paginator, 'Sliding', 'pagination-ext.phtml',array("linkArray"=>$this->linkArray));
+              
+        ?>
+
+      <div class="gird_box">
+        <div class="scroll-pane">
+          <table class="grid_table" border="0"  cellspacing="0" cellpadding="0">
+            <tr>
+              <th align="left" width="60"><?php echo $this->puts("Seq. No.")?></th>
+              <th align="left" width="90"><?php echo $this->puts("Cow ID")?> <?php echo $this->sort("id", $this->sortOptions);?></th>
+              <th align="left" width="90"><?php echo $this->puts("Breed")?> <?php echo $this->sort("breed", $this->sortOptions);?></th>
+               <th align="left" width="90"><?php echo $this->puts("Type")?> <?php echo $this->sort("type", $this->sortOptions);?></th>
+              <th align="left" width="90"><?php echo $this->puts("Color")?> <?php echo $this->sort("color", $this->sortOptions);?></th>
+              <th align="left" width="120"><?php echo $this->puts("Auction Tag")?> <?php echo $this->sort("auction_tag", $this->sortOptions);?></th>
+              <th align="left" width="100"><?php echo $this->puts("Back Tag")?> <?php //echo $this->sort("back_tag", $this->sortOptions);?></th>
+              
+              <th align="left" width="90"><?php echo $this->puts("Ear Tag")?> <?php echo $this->sort("ear_tag", $this->sortOptions);?></th>
+              <th align="left" width="90"><?php echo $this->puts("Trich")?> <?php echo $this->sort("trich", $this->sortOptions);?></th>
+              <th align="left" width="120"><?php echo $this->puts("Condumn Status")?></th>
+              <th align="left" width="120"><?php echo $this->puts("Defects")?></th>
+              <th align="left" width="120"><?php echo $this->puts("Grade Column")?></th>             
+              <th align="left" width="115"><?php echo $this->puts("Action")?> </th>
+
+            </tr>
+             
+        <?php 
+        foreach ($this->paginator as $item): ?>
+        <?php $sno++; $id=$item->id;?>
+                <tr class="package_row1">
+                <td align="left"><?php echo $item->sequence_no; ?></td>
+                <td align="left"><?php echo $item->id; ?></td>
+                <td align="left"><?php echo $item->breed; ?></td>
+                <td align="left"><?php echo $item->type; ?></td>
+                <td align="left"><?php echo $item->color; ?></td>
+                <td rel="<?php echo $id; ?>" id="auction_tag_<?php echo $id; ?>" class="image auction_tag"><?php echo $item->auction_tag; ?></td>
+                <td rel="<?php echo $id; ?>" id="back_tag_<?php echo $id; ?>" class="image back_tag"> <?php echo $item->back_tag; ?> </td>
+                <td rel="<?php echo $id; ?>" id="ear_tag_<?php echo $id; ?>" class="image ear_tag" ><?php echo $item->ear_tag; ?></td>
+                <td rel="<?php echo $id; ?>" id="trich_<?php echo $id; ?>" class="image trich" ><?php echo $item->trich; ?></td>
+                <td align="left" valign="middle" class="image">
+                    
+                <select multiple="multiple" id="condem<?php echo $item->id;  ?>" class="s1" rel="<?php echo $item->id;  ?>">
+                    <?php
+                    $str=$item->condumn_sub_status;
+                    $strArr = explode(",", $str);
+                    
+                    foreach($this->condumnSubValue as $inp=>$value) {
+                         if (in_array($inp,$strArr))
+                           $sel='selected';
+                        else
+                           $sel='';
+                    
+                        
+                     echo  '<option class=""  value="'.$inp.'" '.$sel.'>'.$value.'</option>';
+                    }
+                    ?>
+                </select>
+                </td>
+                <td rel="<?php echo $id; ?>" id="defects_<?php echo $id; ?>" class="image defects"><?php echo $item->defects; ?></td>
+                <td rel="<?php echo $id; ?>" id="grade_<?php echo $id; ?>" class="image grade"><?php echo $item->grade; ?></td>
+                <td align="left" class="image loader_<?php echo $id; ?>">
+                <?php  if($this->checkAcl("/mps/production/change-blood-process-status")){ $title="Chnage Process status"; $image="/images/icons/accept.png";?>
+                 <a href="javascript:void(0)" 
+                 onclick="changeProcessStatus('<?php echo $item->id;?>')"><img title="<?php echo $title?>" alt="<?php echo $title?>" src="<?php echo $image?>" /></a>
+                  <?php } ?>
+                </td>
+                </tr>
+            <?php endforeach; ?>
+          </table>
+        </div>
+      </div>
+     <?php 
+      echo $this->paginationControl($this->paginator, 'Sliding', 'pagination-ext.phtml',array("linkArray"=>$this->linkArray));
+      ?>
+    <?php else : ?>
+    <p>No result found</p>
+    <?php endif;?>
+    
+<script type="text/javascript">
+    
+
+$(".s1").dropdownchecklist({ 
+    emptyText: "Please select ...", 
+    width: 110, 
+    onItemClick: function(checkbox, selector){
+        var currentValue=checkbox.val();
+        var justChecked = checkbox.prop("checked");
+        if(justChecked )
+        {
+                for( i = 0; i < selector.options.length; i++ ){
+                if ( selector.options[i].selected )
+                {
+                    //alert("curren value :"+currentValue +": selected value :"+selector.options[i].value)
+                    if((currentValue==6 && selector.options[i].value== 7) || (currentValue==7 && selector.options[i].value== 6))
+                    {
+                        //alert(checkbox.attr("id"));
+                        checkbox.removeAttr("checked");
+                    }
+                }
+            }
+        }
+        
+    },
+    onComplete : function(selector){
+        var cowId=$(selector).attr("rel");
+        var strIds="";
+        for( i = 0; i < selector.options.length; i++ )
+        {
+            if ( selector.options[i].selected )
+            {
+                strIds+=selector.options[i].value + ",";
+            }
+         }
+        
+         strIds=strIds.substring(0, strIds.length - 1);
+         
+        
+        
+        $.post(
+                "/mps/production/save-condumn-value", 
+                { 
+                "value":strIds,
+                "id" : cowId
+                }, 
+                function (data) {
+                    if(data.result==0)
+                    {
+                        alert("Invalid Request");
+                    }
+
+                },"json"
+            );   
+    }
+});
+                
+                
+
+
+
+function changeProcessStatus(id)
+{
+    var c=confirm("Are you sure to change process status.");
+    if (c)
+        {
+            $(".loader_"+id).html('<img height="22px" alt="In process..." src="/images/loading.gif"/>');
+            $.post(
+            "/mps/production/change-process-status", 
+            { 
+               "id":id,
+               "oldstatus" : 'BloodStation'
+               
+            }, 
+            function (data) {
+                if(data.result==0)
+                {
+                        alert("Invalid Request");
+                        $(".loader_"+id).html('<a href="javascript:void(0)" onclick="changeProcessStatus('+id+')"><img title="Chnage Process Status" alt="Chnage Process Status" src="/images/icons/accept.png" /></a>');
+                }
+                    else
+                {
+                    window.setTimeout('location.reload()', 1);
+                }
+            },"json"
+        );
+        }
+   // window.location="/mps/production/change-process-status/id/"+id+"/status/Weighing";
+}
+
+
+ </script>
+         
+<script type="text/javascript">
+    function creatTextBox(cowId,prefix)
+    {
+        var txtname="text_"+prefix+"_"+cowId;
+        var loading="loading_"+prefix+"_"+cowId;
+        var tdvalue=$('#'+prefix+'_'+cowId).html();
+         if ($("#"+txtname).length==0 && $("#"+loading).length ==0)
+         {
+            $('#'+prefix+'_'+cowId).html("<input type='text' id='"+txtname+"' name='"+txtname+"' class='text_"+prefix+"' rel='"+cowId+"'>");
+            $("#"+txtname).val(tdvalue);
+            $("#"+txtname).focus();
+        }
+    }
+    
+ $(function () {
+    //create Text Box
+    $(".auction_tag").click(function(){
+        creatTextBox($(this).attr("rel"), "auction_tag");
+    });
+    
+    $(".back_tag").click(function(){
+        creatTextBox($(this).attr("rel"), "back_tag");
+    });
+    
+     $(".ear_tag").click(function(){
+        creatTextBox($(this).attr("rel"), "ear_tag");
+    });
+    
+    $(".trich").click(function(){
+        creatTextBox($(this).attr("rel"),"trich");
+    });
+    
+     $(".defects").click(function(){
+        creatTextBox($(this).attr("rel"),"defects");
+    });
+    
+     $(".grade").click(function(){
+        creatTextBox($(this).attr("rel"),"grade");
+    });
+    
+    
+     //Save data on Blur
+    $(".text_auction_tag").live("blur",function(){
+        saveValues(this,'auction_tag');
+    });
+    
+    //validation
+    $(".text_auction_tag").live("keyup",function(){
+        var val=$(this).val();
+        val=validateNumber(val);
+        $(this).val(val);
+        
+    });
+    
+     $(".text_ear_tag").live("keyup",function(){
+        var val=$(this).val();
+        val=validateNumber(val);
+        $(this).val(val);
+        
+    });
+    //End validation
+    
+   
+     $(".text_back_tag").live("blur",function(){
+        saveValues(this,'back_tag');
+    });
+    
+     $(".text_ear_tag").live("blur",function(){
+        saveValues(this,'ear_tag');
+    });
+    
+    $(".text_trich").live("blur", function(){
+        saveValues(this,'trich');
+    });
+    
+    $(".text_defects").live("blur", function(){
+        saveValues(this,'defects');
+    });
+    
+    $(".text_grade").live("blur", function(){
+        saveValues(this,'grade');
+    });
+    
+    //save data on Enter key
+    $(".text_auction_tag").live("keypress",function(event){
+        if ( event.which == 13 ) 
+        {
+            saveValues(this,'auction_tag');
+        }
+    });
+    
+    $(".text_back_tag").live("keypress",function(event){
+        if ( event.which == 13 ) 
+        {
+            saveValues(this,'back_tag');
+        }
+    });
+    
+    $(".text_ear_tag").live("keypress",function(event){
+        if ( event.which == 13 ) 
+        {
+            saveValues(this,'ear_tag');
+        }
+    });
+    $(".text_trich").live("keypress",function(event){
+        if ( event.which == 13 ) 
+        {
+            saveValues(this,'trich');
+        }
+    });
+    
+    $(".text_defects").live("keypress",function(event){
+        if ( event.which == 13 ) 
+        {
+            saveValues(this,'defects');
+        }
+    });
+    
+    $(".text_grade").live("keypress",function(event){
+        if ( event.which == 13 ) 
+        {
+            saveValues(this,'grade');
+        }
+    });
+    
+    
+    
+ });
+ 
+ function validateDecimal(str)
+ {
+    
+    if(!str.match(/^[0-9.]+$/)) {
+
+        return '';
+    }
+    else
+    {
+        return str;
+     }
+ }
+ 
+ function validateNumber(str)
+ {
+    
+    if(!str.match(/^[0-9]+$/)) {
+
+        return '';
+    }
+    else
+    {
+        return str;
+     }
+ }
+ 
+function saveValues(objTxt, col)
+{
+    var id=$(objTxt).attr("rel");
+    var val=$(objTxt).val();
+    //$("#"+col+"_"+id).html(val);
+   // return;
+    $("#"+col+"_"+id).html('<img id="loading_'+col+'_'+id+'" height="22px" alt="In process..." src="/images/loading.gif"/>');
+
+
+    $.post(
+            "/mps/production/save-blood-station-value", 
+            { 
+               "value":val,
+               "col" : col,
+               "id" : id
+            }, 
+            function (data) {
+                if(data.result==0)
+                {
+                        alert("Invalid Request");
+                        $("#"+col+"_"+id).html(val);
+                }
+                    else
+                {
+                    $("#"+col+"_"+id).html(val);
+                }
+                             
+                
+            },"json"
+        );
+    
+}
+</script>
+         
+<script type="text/javascript">
+         
+           // Script For Grid Starts //
+		$(document).ready(function(){
+			//row click
+			$('tr.package_row1').click(function (event) {
+								$('tr.package_row1').toggleClass('active', false);
+								$(this).toggleClass('active', true);
+								});
+			// table Width
+			var tblWidth=0;
+			$('.grid_table tr:first').children().each(function(index) {
+									tblWidth = tblWidth + parseInt($(this).attr('width'));
+									});
+			$(".grid_table").css("width", tblWidth);
+		});
+
+		$('.grid_table tr').find('td:last').addClass('last')
+		$('.grid_table tr').find('th:last').addClass('last')
+		// Script For Grid Ends //
+
+
+
+		// Script For Scroll Panel Starts //
+		/*$(function(){
+		$('.scroll-pane').jScrollPane({showArrows: true});
+		});*/
+		// Script For Scroll Panel Ends //
+
+
+		// Script For Tabs Panel Starts //
+			$(function(){
+				$('#tabs').tabs();
+			});
+		// Script For Tabs Panel Ends //
+
+                
+                
+     </script>

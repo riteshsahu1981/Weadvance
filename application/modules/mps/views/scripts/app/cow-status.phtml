@@ -1,0 +1,266 @@
+<script type="text/javascript">
+function updateToDate(obj, obj1Name)
+{
+	var obj1 = document.getElementById(obj1Name)
+	obj1.value= obj.value
+}
+
+</script>
+
+<form>
+  <table class="from_table" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td align="right" class="form_tab_lebel" valign="top"><?php echo $this->puts("Cow ID:")?></td>
+      <td align="left" class="form_tab_input" valign="top">
+        <input type="text" value="">
+      </td>
+      <td align="right"  class="form_tab_lebel" valign="top"><?php echo $this->puts("Breed:")?></td>
+      <td align="left" class="form_tab_input" valign="top">
+        <select>
+          <option value="--Select--">--Select--</option>
+          <option value="--Select--">Cow</option>
+          <option value="--Select--">Bull</option>
+        </select>
+      </td>
+      <td align="right"  class="form_tab_lebel" valign="top"><?php echo $this->puts("Type:")?></td>
+      <td align="left" class="form_tab_input" valign="top">
+        <select>
+          <option value="--Select--">--Select--</option>
+          <option value="--Select--">Angus</option>
+          <option value="--Select--">Holstein</option>
+        </select>
+      </td>
+      <td align="right" class="form_tab_lebel" valign="top"><?php echo $this->puts("Color:")?></td>
+      <td align="left" class="form_tab_input" valign="top">
+        <select>
+          <option value="--Select--">--Select--</option>
+          <option value="--Select--">Red</option>
+          <option value="--Select--">Black</option>
+          <option value="--Select--">Gray</option>
+          <option value="--Select--">Yellow</option>
+          <option value="--Select--">White</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td align="right"  class="form_tab_lebel" valign="top"><?php echo $this->puts("Status:")?></td>
+      <td align="left" class="form_tab_input" valign="top">
+        <select>
+          <option value="--Select--">--Select--</option>
+          <option value="--Select--">Weighed</option>
+          <option value="--Select--">Weighed</option>
+        </select>
+      </td>
+      <td align="right"  class="form_tab_lebel" valign="top"><?php echo $this->puts("Supplier:")?></td>
+      <td align="left" class="form_tab_input" valign="top">
+        <select>
+          <option value="--Select--">--Select--</option>
+          <option value="--Select--">Brian Bott</option>
+          <option value="--Select--">Bryan Thomson</option>
+          <option value="--Select--">David Hinckley</option>
+          <option value="--Select--">Hoffman Ranches, Inc.</option>
+        </select>
+      </td>
+      <td align="right" class="form_tab_lebel" valign="top"><?php echo $this->puts("P.O No:")?></td>
+      <td align="left" class="form_tab_input" valign="top">
+        <input type="text" value="">
+        </td>
+      <td align="right" class="form_tab_lebel" valign="top"><?php echo $this->puts("Transaction:")?></td>
+      <td align="left" class="form_tab_input" valign="top">
+        <input type="text" value="">
+        </td>
+    </tr>
+    <tr>
+      <td align="right" class="form_tab_lebel" valign="top"><?php echo $this->puts("From Date:")?> </td>
+      <td align="left" class="form_tab_input" valign="top">
+        <div class="bone_date_bx2">
+          <input type="text" id="datepicker" onchange="updateToDate(this, 'datepicker1')">
+              </div>
+      </td>
+      <td align="right"  class="form_tab_lebel" valign="top"><?php echo $this->puts("To Date:")?> </td>
+      <td align="left" class="form_tab_input" valign="top">
+        <div class="bone_date_bx2">
+          <input type="text" id="datepicker1">
+              </div>
+      </td>
+    </tr>
+    
+    <tr>
+      <td align="right" class="form_tab_lebel" valign="top">&nbsp; </td>
+      <td align="left" class="form_tab_input search_button" valign="top">
+        <input type="button" class="search" value="<?php echo $this->puts("Search")?>">
+       <img class="search_img" src="<?php echo $this->cdnUri()?>/images/search_img.png" alt="">
+      </td>
+      <td align="right"  class="form_tab_lebel" valign="top">&nbsp; </td>
+      <td align="left" class="form_tab_input" valign="top">
+        &nbsp;
+      </td>
+    </tr>
+  </table>
+  <script>
+    $(function() {
+    $( "#datepicker,#datepicker1" ).datepicker({
+    showOn: "button",
+    buttonImage: "<?php echo $this->cdnUri()?>/images/calendar_icon.png",
+    buttonText: "Calendar",
+    buttonImageOnly: true
+    });
+
+    });
+  </script>
+  
+</form>
+<div class="result_box">Results: 1-20 of 50</div>
+<div class="paging">
+  <ul>
+    <li>
+      <a href="#" class="arrow-first" title="First">
+        <img src="<?php echo $this->cdnUri()?>/images/arrow-first.png" alt="">
+      </a>
+    </li>
+    <li>
+      <a href="#" class="arrow-prev" title="Previous">
+        <img src="<?php echo $this->cdnUri()?>/images/arrow-prev.png" alt="">
+      </a>
+    </li>
+    <li>
+      <a href="#" class="active" title="Page 1">1</a>
+    </li>
+    <li>
+      <a href="#" title="Page 2">2</a>
+    </li>
+    <li>
+      <a href="#" title="Page 3">3</a>
+    </li>
+    <li>
+      <a href="#" class="arrow-next" title="Next">
+        <img src="<?php echo $this->cdnUri()?>/images/arrow-next.png" alt="">
+      </a>
+    </li>
+    <li>
+      <a href="#" class="arrow-last" title="Last">
+        <img src="<?php echo $this->cdnUri()?>/images/arrow-last.png" alt="">
+      </a>
+    </li>
+  </ul>
+</div>
+
+<div class="print_div print_div_1"><a title="Print" href="#"><img src="<?php echo $this->cdnUri()?>/images/icons/print.png" alt="Print" title="Print" border="0"><span>Print</span></a></div>
+<div class="print_div print_div_2"><a title="Export to Excel" href="#"><img src="<?php echo $this->cdnUri()?>/images/icons/smallexporttoexl.png" alt="Export to Excel" title="Export to Excel" style="margin-right:3px" border="0"><span>Export</span></a></div>
+
+
+<div class="gird_box">
+  <div class="scroll-pane">
+    <table class="grid_table" style="margin:0 0 15px 0;" border="0"  cellspacing="0" cellpadding="0">
+      <tr>
+        <th align="left" width="140"><?php echo $this->puts("Supplier")?></th>
+        <th align="left" width="100"><?php echo $this->puts("Transaction ID")?></th>
+        <th align="left" width="100"><?php echo $this->puts("Cow ID")?></th>
+        <th align="left" width="120"><?php echo $this->puts("Date Weigh")?></th>
+        <th align="left" width="120"><?php echo $this->puts("Days In")?></th>
+        <th align="left" width="100"><?php echo $this->puts("Breed")?></th>
+        <th align="left" width="100"><?php echo $this->puts("Type")?></th>
+        <th align="left" width="100"><?php echo $this->puts("Color")?></th>
+        <th align="left" width="150"><?php echo $this->puts("Status")?></th>
+        <th align="left" width="100"><?php echo $this->puts("Cow Wt.")?></th>
+        <th align="left" width="100"><?php echo $this->puts("Paid/Lb ($)")?> </th>
+        <th align="left" width="100"><?php echo $this->puts("Seq No.")?> </th>
+        <th align="left" width="100"><?php echo $this->puts("PO No.")?> </th>
+
+      </tr>
+      <?php for($i=1;$i<21;$i++){?>
+      <tr class="package_row1">
+        <td align="left">Brian Bott</td>
+        <td align="left">12496</td>
+        <td align="left">123</td>
+        <td align="left">24/02/2012</td>
+        <td align="left">1</td>
+        <td align="left">Cow</td>
+        <td align="left">Angus</td>
+        <td align="left">Red</td>
+        <td align="left">Weighed </td>
+        <td align="left">63.00 </td>
+        <td align="left">$0.00 </td>
+        <td align="left">180 </td>
+        <td align="left">12524 </td>
+      </tr>
+      <?php } ?>
+      
+    </table>
+  </div>
+</div>
+<div class="result_box">Results: 1-20 of 50</div>
+<div class="paging">
+  <ul>
+    <li>
+      <a href="#" class="arrow-first" title="First">
+        <img src="<?php echo $this->cdnUri()?>/images/arrow-first.png" alt="">
+      </a>
+    </li>
+    <li>
+      <a href="#" class="arrow-prev" title="Previous">
+        <img src="<?php echo $this->cdnUri()?>/images/arrow-prev.png" alt="">
+      </a>
+    </li>
+    <li>
+      <a href="#" class="active" title="Page 1">1</a>
+    </li>
+    <li>
+      <a href="#" title="Page 2">2</a>
+    </li>
+    <li>
+      <a href="#" title="Page 3">3</a>
+    </li>
+    <li>
+      <a href="#" class="arrow-next" title="Next">
+        <img src="<?php echo $this->cdnUri()?>/images/arrow-next.png" alt="">
+      </a>
+    </li>
+    <li>
+      <a href="#" class="arrow-last" title="Last">
+        <img src="<?php echo $this->cdnUri()?>/images/arrow-last.png" alt="">
+      </a>
+    </li>
+  </ul>
+</div>
+
+<script type="text/javascript">
+
+
+  // Script For Grid Starts //
+  $(document).ready(function(){
+  //row click
+  $('tr.package_row1').click(function (event) {
+  $('tr.package_row1').toggleClass('active', false);
+  $(this).toggleClass('active', true);
+  });
+  // table Width
+  var tblWidth=0;
+  $('.grid_table tr:first').children().each(function(index) {
+  tblWidth = tblWidth + parseInt($(this).attr('width'));
+  });
+  $(".grid_table").css("width", tblWidth);
+  });
+
+  $('.grid_table tr').find('td:last').addClass('last')
+  $('.grid_table tr').find('th:last').addClass('last')
+  // Script For Grid Ends //
+
+
+
+  // Script For Scroll Panel Starts //
+  $(function(){
+  $('.scroll-pane').jScrollPane({showArrows: true});
+  });
+  // Script For Scroll Panel Ends //
+
+
+  // Script For Tabs Panel Starts //
+  $(function(){
+  $('#tabs').tabs();
+  });
+  // Script For Tabs Panel Ends //
+
+
+
+</script>

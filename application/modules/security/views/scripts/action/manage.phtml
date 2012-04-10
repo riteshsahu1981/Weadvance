@@ -1,0 +1,283 @@
+
+<script language="javascript">
+
+$(function () {
+	
+        $("input[name='rdo']").change(function(){
+            var rdoval=$("input[name='rdo']:checked").val();
+            var tmpVal=$("#"+rdoval).val();
+               
+            $("#action_tree").jstree("uncheck_all");
+            
+            $("#groupId").val("")
+            $("#groupId").attr('disabled', 'disabled');
+
+            $("#subGroupId").val("")
+            $("#subGroupId").attr('disabled', 'disabled');
+
+            $("#roleId").val("");
+            $("#roleId").attr('disabled', 'disabled');
+
+            $("#userId").val("");
+            $("#userId").attr('disabled', 'disabled');
+
+            $("#"+rdoval).removeAttr('disabled');
+            $("#"+rdoval).val(tmpVal);
+            
+        });
+        
+        
+        $("#groupId").change(function(){
+            $("#action_tree").jstree("uncheck_all");
+        });
+        $("#subGroupId").change(function(){
+            $("#action_tree").jstree("uncheck_all");
+        });
+        $("#roleId").change(function(){
+            $("#action_tree").jstree("uncheck_all");
+        });
+        $("#userId").change(function(){
+            $("#action_tree").jstree("uncheck_all");
+        });
+        
+    $("#cmdSave").click(function(){
+
+
+        var rdoval=$("input[name='rdo']:checked").val();       
+        if(rdoval==undefined)
+        {
+            $("#error_box p").html("Please select option!");
+            $("#error_box").show();
+            Flash_DelayedHide("error_box");
+            return false;
+        }
+        
+        if($("#"+rdoval).val()=="")
+            {
+                $("#error_box p").html("Please select option!");
+            $("#error_box").show();
+            Flash_DelayedHide("error_box");
+                return false;
+            }
+        $("#cmdSave").hide();
+        $("#saveLoading").show();
+        //delete FROM `system_mapping` WHERE map_code= 'fdMenuGroupMap'
+        var params= $("#frmTree").serialize();
+        
+        $.ajax({
+            url: "/security/action/save-permission",
+            dataType: "json",
+            type: "POST",
+            data: params,
+            success: function(json){
+                
+                if(json.status==1)
+                {
+                    //alert("Permissions Saved!");
+                    $("#success_box p").html("Permissions Saved!");
+                    $("#success_box").show();
+                    Flash_DelayedHide("success_box");
+                }
+                else
+                {
+                    $("#error_box p").html("Operation Failed!");
+                    $("#error_box").show();
+                    Flash_DelayedHide("error_box");
+                }
+                
+                $("#saveLoading").hide();
+                $("#cmdSave").show();
+            },
+            error : function(jqXHR, textStatus, errorThrown){
+                $("#error_box p").html("Operation Failed!");
+                    $("#error_box").show();
+                    Flash_DelayedHide("error_box");
+                $("#saveLoading").hide();
+                $("#cmdSave").show();
+            }
+        });
+        
+        
+
+    });
+        
+   $("#cmdGet").click(function(){
+         
+            var rdoval=$("input[name='rdo']:checked").val();       
+            if(rdoval==undefined)
+            {
+         
+                $("#error_box p").html("Please select option");
+                $("#error_box").show();
+                Flash_DelayedHide("error_box");
+                return false;
+            }
+            
+            if($("#"+rdoval).val()=="")
+            {
+                 $("#error_box p").html("Please select option");
+                $("#error_box").show();
+                Flash_DelayedHide("error_box");
+                return false;
+            }
+            
+           $("#cmdGet").hide();
+           $("#getLoading").show();
+           
+           var params= $("#frmTree").serialize();
+        
+            $.ajax({
+                url: "/security/action/get-permission",
+                dataType: "json",
+                type: "POST",
+                data: params,
+                success: function(json){
+                    if(json.status==1)
+                    {
+                        for(var i=0;i<json.mapId1.length; i++)
+                        {
+                           $.jstree._reference('#action_tree').check_node('#fdAction_'+json.mapId1[i]); 
+                        }
+                    }
+                    else
+                    {
+                         $("#error_box p").html("No permissions found for the selected option.");
+                            $("#error_box").show();
+                            Flash_DelayedHide("error_box");
+                    }
+
+                    $("#getLoading").hide();
+                    $("#cmdGet").show();
+                },
+                error : function(jqXHR, textStatus, errorThrown){
+                     $("#error_box p").html("Operation Failed!");
+                        $("#error_box").show();
+                        Flash_DelayedHide("error_box");
+                     $("#getLoading").hide();
+                     $("#cmdGet").show();
+                }
+            });
+           
+          
+        });
+        
+});
+
+</script>
+
+
+
+<div id="success_box" style="display:none" class="success_box"><img alt="" src="<?php echo $this->cdnUri()?>/images/success_box_img.png" class="error"> <p>Menu information has been updated successfully!</p><img alt="" src="<?php echo $this->cdnUri()?>/images/success_box_close.png" class="close"></div>
+
+<div id="error_box" style="display:none" class="error_box"><img alt="" src="<?php echo $this->cdnUri()?>/images/error_box_img.png" class="error"> <p>Invalid request! Please try again.</p><img alt="" src="<?php echo $this->cdnUri()?>/images/error_box_close.png" class="close"></div>
+
+<form id="frmTree">
+
+    <div class="bone_panel">
+    <div class="cus_order">
+    
+    <table class="from_table" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+        <td align="right" class="form_tab_lebel" valign="top">
+            <div class="rework_tab_bx1">
+                <input type="radio" name="rdo" id="rdo" value="groupId">
+                Group: 
+            </div>
+        </td>
+        <td align="left" class="form_tab_input" valign="top">
+            <select name="groupId" id="groupId" disabled="disabled">
+                    <?php foreach($this->groups as $k=>$v):?>
+                    <option value="<?php echo $k;?>"><?php echo $v;?></option>
+                    <?php endforeach;?>
+            </select>
+        </td>
+    </tr>
+
+    <tr>
+        <td align="right" class="form_tab_lebel" valign="top">
+            <div class="rework_tab_bx1">
+                <input type="radio" name="rdo" id="rdo" value="subGroupId">
+                Sub Group: 
+            </div>
+        </td>
+        <td align="left" class="form_tab_input" valign="top">
+            <select name="subGroupId" id="subGroupId" disabled="disabled" >
+                    <?php foreach($this->subGroups as $k=>$v):?>
+                    <option value="<?php echo $k;?>"><?php echo $v;?></option>
+                    <?php endforeach;?>
+            </select>
+        </td>
+    </tr>
+
+
+    <tr>
+        <td align="right" class="form_tab_lebel" valign="top">
+            <div class="rework_tab_bx1">
+                <input type="radio" name="rdo" id="rdo" value="roleId">
+                Role: 
+            </div>
+        </td>
+        <td align="left" class="form_tab_input" valign="top">
+            <select name="roleId" id="roleId" disabled="disabled">
+                    <?php foreach($this->roles as $k=>$v):?>
+                    <option value="<?php echo $k;?>"><?php echo $v;?></option>
+                    <?php endforeach;?>
+            </select>
+
+        </td>
+    </tr>
+
+    <tr>
+        <td align="right" class="form_tab_lebel" valign="top">
+            <div class="rework_tab_bx1">
+                <input type="radio" name="rdo"  id="rdo" value="userId">
+                User: 
+            </div>
+        </td>
+        <td align="left" class="form_tab_input" valign="top"> 
+            <select name="userId" id="userId" disabled="disabled">
+                    <?php foreach($this->users as $k=>$v):?>
+                    <option value="<?php echo $k;?>"><?php echo $v;?></option>
+                    <?php endforeach;?>
+            </select>
+        </td>
+    </tr>
+
+
+    <tr>
+        <td align="right" class="form_tab_input" style="padding-top:10px;width:165px;" valign="top" >
+            <img id="getLoading" src="/images/loading.gif" width="35px" style="display:none" />
+            <input type="button" class="yellow_button" name="cmdGet" id="cmdGet" value="Get Permission"></td>
+        <td align="left" class="form_tab_input" style="padding-top:10px;" valign="top">
+            <img id="saveLoading" src="/images/loading.gif" width="35px" style="display:none" />
+            <input type="button" class="yellow_button" name="cmdSave" id="cmdSave"  value="Save Permission">
+        
+        </td>
+    </tr>
+
+    </table>
+    
+          
+        </div>
+        <div class="pallet_order">
+      
+        <div class="form_field_tree" id="treeContainer">
+  
+            
+           <?php echo $this->actionTree?>
+              
+          </div>
+
+        </div>    
+    
+  
+    </div>    
+  
+
+   </form>
+
+
+   
+    
+       
+

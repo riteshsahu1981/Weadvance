@@ -1,0 +1,108 @@
+
+
+<script>
+  $(document).ready(function(){
+    $("#supplier_create").validate({
+        rules: {
+            password: "required",
+            c_password: {
+                equalTo: "#password"
+            }
+        }
+    });
+  });
+ </script>
+  
+<form id="supplier_create" action="" method="post">
+  
+    <div>  <?php echo $this->flashMessages()?>  </div>
+ 
+  <div class="form_row">
+    <div class="form_label">
+      <?php echo $this->form->orgName->getLabel(); ?> <span class="required1">*</span>
+    </div>
+    <div class="form_field">
+      <?php echo $this->form->orgName; ?>
+        </div>
+  </div>
+  <div class="form_row">
+    <div class="form_label">
+      <?php echo $this->form->firstName->getLabel(); ?> <span class="required1">*</span>
+    </div>
+    <div class="form_field">
+       <?php echo $this->form->firstName; ?>
+        </div>
+    <div class="form_label">
+      <?php echo $this->form->lastName->getLabel(); ?>: <span class="required1">*</span>
+    </div>
+    <div class="form_field">
+       <?php echo $this->form->lastName; ?>
+        </div>
+  </div>
+  <div class="form_row">
+    <div class="form_label">
+      <?php echo $this->form->address1->getLabel(); ?> <span class="required1">*</span>
+    </div>
+    <div class="form_field">
+      <?php echo $this->form->address1; ?>
+        </div>
+    <div class="form_label">
+      <?php echo $this->form->address2->getLabel(); ?>
+    </div>
+    <div class="form_field">
+      <?php echo $this->form->address2; ?>
+        </div>
+  </div>
+  <div class="form_row">
+    <div class="form_label">
+      <?php echo $this->form->city->getLabel(); ?> <span class="required1">*</span>
+    </div>
+    <div class="form_field">
+      <?php echo $this->form->city; ?>
+        </div>
+    <div class="form_label">
+      <?php echo $this->form->state->getLabel(); ?> <span class="required1">*</span>
+    </div>
+    <div class="form_field">
+      <?php echo $this->form->state; ?>
+        </div>
+  </div>
+  <div class="form_row">
+    <div class="form_label">
+      <?php echo $this->form->zip->getLabel(); ?> <span class="required1">*</span>
+    </div>
+    <div class="form_field">
+      <?php echo $this->form->zip; ?>
+        </div>
+  </div>
+  <div class="form_row">
+    <div class="form_label">
+      <?php echo $this->form->phone->getLabel(); ?> <span class="required1">*</span>
+    </div>
+    <div class="form_field">
+      <?php echo $this->form->phone; ?>
+        </div>
+    <div class="form_label">
+      <?php echo $this->form->fax->getLabel(); ?><span class="required1">*</span>
+    </div>
+    <div class="form_field">
+      <?php echo $this->form->fax; ?>
+        </div>
+  </div>
+  <div class="form_row">
+    <div class="form_label">
+      <?php echo $this->form->email->getLabel(); ?> <span class="required1">*</span>
+    </div>
+    <div class="form_field">
+      <?php echo $this->form->email; ?>
+        </div>
+
+  </div>
+    <div class="form_row">
+        <div class="form_label">&nbsp;</div>
+        <div class="form_field">
+        <!-- <input type="button" value="Submit"> -->
+        <input type="submit" value="Submit">
+        </div>
+    </div>
+</form>

@@ -1,0 +1,45 @@
+<?php echo $this->doctype() ?>
+<html lang="en">
+<head>
+	<?php echo $this->headTitle(); ?>   
+	<?php echo $this->headMeta(); ?>
+	  <?php 
+	  /*-------------- jquery ui----------------------*/
+	  if($this->jQuery()->isEnabled())
+		echo $this->jQuery();
+	  /*-----------------------------------------------*/
+	 ?>
+    <?php $this->headLink()->appendStylesheet('/style/keyboard.css'); ?>
+  <?php echo $this->headScript(); ?>
+  <?php echo $this->headLink(); ?>
+    <script type="text/javascript">
+// Script For All pages Starts //
+		$(document).ready(function(){
+		$(".menu_options p").first().addClass("first");
+		$("footer ul").find("li:last").css("background" , "none");
+		$(".right_section").css("width", $('.main_section').width()-218);
+		});
+		
+		$(window).resize(function(){
+                    $(".right_section").css("width", $('.main_section').width()-218);
+		});
+		
+// Script For All Pages Ends //
+</script>
+</head>
+
+<body id="loginbody">
+   
+<section class="login_section">
+     
+    <section class="login_logo"><a href="<?php echo $this->seoUrl("/default/index/index")?>"><img src="<?php echo $this->cdnUri()?>/images/logo.png" alt=""></a></section>
+    <?php echo  $this->flashMessages()?>
+  <section class="login_box">
+      
+      <h1><?php echo $this->pageHeading?></h1>
+      <?php echo $this->layout()->content ?>
+  </section>
+</section>
+    
+</body>
+</html>
